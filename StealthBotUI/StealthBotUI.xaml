@@ -1,0 +1,304 @@
+﻿<Window x:Class="StealthBotUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+    xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+    Title="StealthBot UI" Height="768" Width="1024" ResizeMode="CanMinimize" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl Margin="12" Name="tabControlBotTabs" TabStripPlacement="Left">
+            <TabItem Header="StealthBotUI Main Page" Name="tabItemMainPage" Width="150" Height="50" >
+                <Grid>
+                    <ListBox Height="250" Margin="6,0,6,6" Name="listBoxMainLogMessages" VerticalAlignment="Bottom" FontFamily="Consolas" FontSize="12" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Test Session Page" Name="tabItemTestSessionPage" Width="150" Height="100" >
+                <Grid>
+                    <ListBox Height="250" Margin="6,0,6,6" Name="listBoxTestLogMessages" VerticalAlignment="Bottom" FontFamily="Consolas" FontSize="12">
+                        <ListBoxItem Content="Log Messages Here" />
+                    </ListBox>
+                    <TabControl Height="435" HorizontalAlignment="Left" Margin="6,11,0,0" Name="tabControl1" VerticalAlignment="Top" Width="815"
+                                TabStripPlacement="Left">
+                        <TabItem Header="Status" Name="tabItemStatus" Width="100">
+                            <Grid>
+                                <ProgressBar Height="28" HorizontalAlignment="Left" Margin="70,6,0,0" Name="progressBar1" VerticalAlignment="Top" Width="627" Foreground="Green" Value="100" />
+                                <Label Content="Shield" HorizontalAlignment="Left" Margin="6,6,0,384" Name="label1" />
+                                <ProgressBar Height="28" HorizontalAlignment="Left" Margin="70,40,0,0" Name="progressBar2" VerticalAlignment="Top" Width="627" Foreground="Blue" Value="100"></ProgressBar>
+                                <Label Content="Armor" HorizontalAlignment="Left" Margin="6,40,0,350" Name="label2" />
+                                <ProgressBar Height="28" HorizontalAlignment="Left" Margin="70,74,0,0" Name="progressBar3" VerticalAlignment="Top" Width="627" Foreground="Red" Value="100" />
+                                <Label Content="Structure" HorizontalAlignment="Left" Margin="6,74,0,316" Name="label3" />
+                                <ProgressBar Height="28" HorizontalAlignment="Left" Margin="70,108,0,0" Name="progressBar4" VerticalAlignment="Top" Width="627" Foreground="Yellow" Value="100" />
+                                <Label Content="Capacitor" HorizontalAlignment="Left" Margin="6,108,0,282" Name="label4" />
+                                <Label Content="Ship" Height="28" HorizontalAlignment="Left" Margin="11,142,0,0" Name="label5" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="70,142,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" IsReadOnly="True" />
+                                <Label Content="Type" Height="28" HorizontalAlignment="Left" Margin="270,142,0,0" Name="label6" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="311,142,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" IsReadOnly="True" />
+                                <Label Content="Runtime" Height="28" HorizontalAlignment="Left" Margin="517,142,0,0" Name="label7" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" IsReadOnly="True" Margin="577,142,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Configuration" Name="tabItemConfig">
+                            <Grid>
+                                <Label Content="Configuration Profiles" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label16" VerticalAlignment="Top" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="137,9,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120">
+                                    <ComboBoxItem Content="Item 1" />
+                                    <ComboBoxItem Content="Item 2" />
+                                </ComboBox>
+                                <Button Content="New" Height="23" HorizontalAlignment="Left" Margin="379,9,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
+                                <Button Content="Open" Height="23" HorizontalAlignment="Left" Margin="460,9,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+                                <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="541,9,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
+                                <Button Content="Close" Height="23" HorizontalAlignment="Right" Margin="0,9,6,0" Name="button4" VerticalAlignment="Top" Width="75" />
+                                <TabControl Height="385" HorizontalAlignment="Left" Margin="6,40,0,0" Name="tabControl2" VerticalAlignment="Top" Width="697"
+                                            TabStripPlacement="Left">
+                                    <TabItem Header="Main" Name="tabItem1" Width="75">
+                                        <Grid>
+                                            <GroupBox Header="Mode and Speed" Height="58" HorizontalAlignment="Left" Margin="6,6,0,0" Name="groupBox1" VerticalAlignment="Top" Width="598">
+                                                <Grid>
+                                                    <Label Content="Bot Mode:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label17" VerticalAlignment="Top" />
+                                                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="77,6,0,0" Name="comboBox2" VerticalAlignment="Top" Width="120" />
+                                                    <Label Content="Pulse Speed:" Height="28" HorizontalAlignment="Left" Margin="211,6,0,0" Name="label19" VerticalAlignment="Top" />
+                                                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="294,6,0,0" Name="comboBox3" VerticalAlignment="Top" Width="120" />
+                                                    <CheckBox Content="Use Random Waits" Height="16" HorizontalAlignment="Left" Margin="463,11,0,0" Name="checkBox1" VerticalAlignment="Top" />
+                                                </Grid>
+                                            </GroupBox>
+                                            <GroupBox Header="Relaunching" Height="62" HorizontalAlignment="Left" Margin="6,70,0,0" Name="groupBox2" VerticalAlignment="Top" Width="598">
+                                                <Grid>
+                                                    <CheckBox Content="Use Relaunching" Height="16" HorizontalAlignment="Left" Margin="6,11,0,0" Name="checkBox2" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="284,8,0,0" Name="textBox4" VerticalAlignment="Top" Width="120" />
+                                                    <Label Content="Character Set to Relaunch:" Height="28" HorizontalAlignment="Left" Margin="129,6,0,0" Name="label18" VerticalAlignment="Top" />
+                                                    <CheckBox Content="Relaunch After Downtime" Height="16" HorizontalAlignment="Left" Margin="428,11,0,0" Name="checkBox3" VerticalAlignment="Top" IsChecked="False" />
+                                                </Grid>
+                                            </GroupBox>
+                                            <GroupBox Header="Rendering" Height="50" HorizontalAlignment="Left" Margin="6,138,0,0" Name="groupBox3" VerticalAlignment="Top" Width="598">
+                                                <Grid>
+                                                    <CheckBox Content="Disable 3D Render" Height="16" HorizontalAlignment="Left" Margin="102,5,0,0" Name="checkBox4" VerticalAlignment="Top" />
+                                                    <CheckBox Content="Disable UI Render" Height="16" HorizontalAlignment="Left" Margin="360,6,0,0" Name="checkBox5" VerticalAlignment="Top" />
+                                                </Grid>
+                                            </GroupBox>
+                                            <GroupBox Header="Max Runtime" HorizontalAlignment="Left" Margin="6,194,0,86" Name="groupBox4" Width="598">
+                                                <Grid>
+                                                    <CheckBox Content="Use Max Runtime" Height="16" HorizontalAlignment="Left" Margin="6,11,0,0" Name="checkBox6" VerticalAlignment="Top" />
+                                                    <Label Content="Max Runtime in Minutes" Height="28" HorizontalAlignment="Left" Margin="6,33,0,0" Name="label20" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="151,35,0,0" Name="textBox5" VerticalAlignment="Top" Width="30" Text="120" />
+                                                    <CheckBox Content="Use Resume After" Height="16" HorizontalAlignment="Right" Margin="0,11,6,0" Name="checkBox7" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="550,35,0,0" Name="textBox6" VerticalAlignment="Top" Width="30" Text="120" />
+                                                    <Label Content="Resume After in Minutes" Height="28" HorizontalAlignment="Left" Margin="404,33,0,0" Name="label21" VerticalAlignment="Top" />
+                                                </Grid>
+                                            </GroupBox>
+                                        </Grid>
+                                    </TabItem>
+                                    <TabItem Header="Movement" Name="tabItem2">
+                                        <Grid>
+                                            <GroupBox Header="Bookmark Prefixes" Height="97" HorizontalAlignment="Left" Margin="6,6,0,0" Name="groupBox5" VerticalAlignment="Top" Width="598">
+                                                <Grid>
+                                                    <Label Content="Safespots:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label22" VerticalAlignment="Top" />
+                                                    <Label Content="Ammo Rearm Can:" Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" Name="label23" VerticalAlignment="Top" />
+                                                    <Label Content="Temp. Can:" Height="28" HorizontalAlignment="Left" Margin="253,6,0,0" Name="label24" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="121,42,0,0" Name="textBox7" VerticalAlignment="Top" Width="50" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="121,8,0,0" Name="textBox8" VerticalAlignment="Top" Width="50" />
+                                                    <Label Content="Temp. Belt:" Height="28" HorizontalAlignment="Left" Margin="253,40,0,0" Name="label25" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Center" Margin="121,8,0,0" Name="textBox9" VerticalAlignment="Top" Width="50" />
+                                                    <TextBox Height="23" HorizontalAlignment="Center" Margin="121,42,0,0" Name="textBox10" VerticalAlignment="Top" Width="50" />
+                                                    <Label Content="Asteroid Belt:" Height="28" HorizontalAlignment="Left" Margin="444,6,0,0" Name="label26" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="530,8,0,0" Name="textBox11" VerticalAlignment="Top" Width="50" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="530,42,0,0" Name="textBox12" VerticalAlignment="Top" Width="50" />
+                                                    <Label Content="Ice Belt:" Height="28" HorizontalAlignment="Left" Margin="473,40,0,0" Name="label27" VerticalAlignment="Top" />
+                                                </Grid>
+                                            </GroupBox>
+                                            <GroupBox Header="Movement Preferences" Height="80" HorizontalAlignment="Left" Margin="6,109,0,0" Name="groupBox6" VerticalAlignment="Top" Width="598">
+                                                <Grid>
+                                                    <CheckBox Content="Use Belt Bookmarks" Height="16" HorizontalAlignment="Left" Margin="91,6,0,0" Name="checkBox9" VerticalAlignment="Top" />
+                                                    <CheckBox Content="Use Random Belt Order" Height="16" HorizontalAlignment="Left" Margin="382,6,0,0" Name="checkBox10" VerticalAlignment="Top" />
+                                                    <CheckBox Content="Use Bounce Warp" Height="16" HorizontalAlignment="Left" Margin="95,31,0,0" Name="checkBox11" VerticalAlignment="Top" />
+                                                    <TextBox Height="23" HorizontalAlignment="Left" Margin="492,28,0,0" Name="textBox13" VerticalAlignment="Top" Width="40" />
+                                                    <Label Content="Max Slowboat Time" Height="28" HorizontalAlignment="Left" Margin="372,26,0,0" Name="label29" VerticalAlignment="Top" />
+                                                </Grid>
+                                            </GroupBox>
+                                            <CheckBox Content="CheckBox" Height="0" HorizontalAlignment="Left" Margin="-7,86,0,0" Name="checkBox8" VerticalAlignment="Top" Width="0" />
+                                        </Grid>
+                                    </TabItem>
+                                    <TabItem Header="Defense" Name="tabItem3">
+                                        <Grid>
+                                            <ScrollViewer Height="Auto" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Width="Auto">
+                                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                    <GroupBox Header="Minimum Tank Percents" Height="58" Name="groupBox7" Width="Auto" Margin="6,6,6,6" HorizontalAlignment="Stretch"  VerticalAlignment="Top">
+                                                        <Grid>
+                                                            <Label Content="Shield" Height="28" HorizontalAlignment="Left" Margin="6,4,0,0" Name="label28" VerticalAlignment="Top" />
+                                                            <TextBox Height="23" HorizontalAlignment="Left" Margin="54,6,0,0" Name="textBox14" VerticalAlignment="Top" Width="50" />
+                                                            <Label Content="Capacitor" Height="28" HorizontalAlignment="Left" Margin="441,4,0,0" Name="label30" VerticalAlignment="Top" />
+                                                            <TextBox Height="23" HorizontalAlignment="Left" Margin="513,6,0,0" Name="textBox15" VerticalAlignment="Top" Width="50" />
+                                                            <Label Content="Armor" Height="28" HorizontalAlignment="Left" Margin="240,4,0,0" Name="label31" VerticalAlignment="Top" />
+                                                            <TextBox Height="23" HorizontalAlignment="Left" Margin="288,6,0,0" Name="textBox16" VerticalAlignment="Top" Width="50" />
+                                                        </Grid>
+                                                    </GroupBox>
+                                                    <GroupBox Header="Resume Percents" Height="58" HorizontalAlignment="Stretch" Margin="6,70,6,0" Name="groupBox8" VerticalAlignment="Top" Width="Auto">
+                                                        <Grid>
+                                                            <Label Content="Shield" Height="28" HorizontalAlignment="Left" Margin="6,4,0,0" Name="label32" VerticalAlignment="Top" />
+                                                            <TextBox Height="23" HorizontalAlignment="Left" Margin="54,6,0,0" Name="textBox17" VerticalAlignment="Top" Width="50" />
+                                                            <Label Content="Capacitor" Height="28" HorizontalAlignment="Left" Margin="441,4,0,0" Name="label33" VerticalAlignment="Top" />
+                                                            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,6,6,0" Name="textBox18" VerticalAlignment="Top" Width="50" />
+                                                            <CheckBox Content="Blacklisted Pilot" Height="16" HorizontalAlignment="Left" Margin="230,9,0,0" Name="checkBox30" VerticalAlignment="Top" />
+                                                        </Grid>
+                                                    </GroupBox>
+                                                    <GroupBox Header="Flee On:" Height="74" HorizontalAlignment="Left" Margin="6,134,0,0" Name="groupBox9" VerticalAlignment="Top" Width="580">
+                                                        <Grid>
+                                                            <CheckBox Content="Non-Whitelisted Pilot" Height="16" HorizontalAlignment="Left" Margin="6,6,0,0" Name="checkBox12" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Blacklisted Pilot" Height="16" HorizontalAlignment="Left" Margin="184,6,0,0" Name="checkBox13" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Low Tank" Height="16" HorizontalAlignment="Left" Margin="495,6,0,0" Name="checkBox14" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Low Capacitor" Height="16" HorizontalAlignment="Left" Margin="6,28,0,0" Name="checkBox15" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Target Jammed" Height="16" HorizontalAlignment="Left" Margin="336,6,0,0" Name="checkBox16" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Low Ammo" Height="16" HorizontalAlignment="Left" Margin="485,28,0,0" Name="checkBox17" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Low Drones" Height="16" HorizontalAlignment="Left" Margin="244,28,0,0" Name="checkBox28" VerticalAlignment="Top" />
+                                                        </Grid>
+                                                    </GroupBox>
+                                                    <GroupBox Header="Standings to check" Height="74" HorizontalAlignment="Left" Margin="6,214,0,0" Name="groupBox10" VerticalAlignment="Top" Width="581">
+                                                        <Grid>
+                                                            <CheckBox Content="Me to Pilot" Height="16" HorizontalAlignment="Left" Margin="6,6,0,0" Name="checkBox18" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Alliance to Alliance" Height="16" HorizontalAlignment="Left" Margin="446,6,0,0" Name="checkBox19" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Me to Corp" Height="16" HorizontalAlignment="Left" Margin="244,6,0,0" Name="checkBox20" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Corp to Pilot" Height="16" HorizontalAlignment="Left" Margin="6,28,0,0" Name="checkBox21" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Corp to Corp" Height="16" HorizontalAlignment="Left" Margin="244,28,0,0" Name="checkBox22" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Corp to Alliance" Height="16" HorizontalAlignment="Left" Margin="461,28,0,0" Name="checkBox23" VerticalAlignment="Top" />
+                                                        </Grid>
+                                                    </GroupBox>
+                                                    <GroupBox Header="Miscellaneous" Height="84" Name="groupBox12" Width="578" Margin="6,294,6,0" HorizontalAlignment="Stretch"  VerticalAlignment="Top">
+                                                        <Grid>
+                                                            <CheckBox Content="Prefer Stations over Safespots" Height="16" HorizontalAlignment="Left" Margin="6,6,0,0" Name="checkBox24" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Always Shield Boost" Height="16" HorizontalAlignment="Left" Margin="438,6,0,0" Name="checkBox25" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Quit if Warp Jammed and local unsafe" Height="16" HorizontalAlignment="Left" Margin="200,6,0,0" Name="checkBox26" VerticalAlignment="Top" />
+                                                            <CheckBox Content="Rearm At Bookmarks" Height="16" HorizontalAlignment="Left" Margin="432,33,0,0" Name="checkBox27" VerticalAlignment="Top" />
+                                                            <Label Content="Min. Drones" Height="28" HorizontalAlignment="Left" Margin="6,28,0,0" Name="label40" VerticalAlignment="Top" />
+                                                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,30,0,0" Name="textBox25" VerticalAlignment="Top" Width="50" />
+                                                            <CheckBox Content="Disable Standings Checks" Height="16" HorizontalAlignment="Left" Margin="210,33,0,0" Name="checkBox29" VerticalAlignment="Top" />
+                                                        </Grid>
+                                                    </GroupBox>
+                                                    <GroupBox Header="Post-Fleeing" Height="58" Name="groupBox13" Width="Auto" Margin="6,384,6,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                                        <Grid>
+                                                            <CheckBox Content="Wait After Fleeing" Margin="6,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="16"/>
+                                                            <TextBox Width="50" Height="23" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,6,0" />
+                                                            <Label Height="28" Content="Minutes to wait:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,62,0" />
+                                                        </Grid>
+                                                    </GroupBox>
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </TabItem>
+                                    <TabItem Header="Social" Name="tabItem4">
+                                        <ScrollViewer>
+                                            <Grid>
+                                                <GroupBox Header="Minimum Standings" Height="58" HorizontalAlignment="Left" Margin="6,6,0,0" Name="groupBox11" VerticalAlignment="Top" Width="581">
+                                                    <Grid>
+                                                        <Label Content="Pilot" Height="28" HorizontalAlignment="Left" Margin="5,2,0,0" Name="label34" VerticalAlignment="Top" />
+                                                        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,4,474,0" Name="textBox19" VerticalAlignment="Top" Width="50" />
+                                                        <Label Content="Corp" Height="28" HorizontalAlignment="Left" Margin="222,4,0,0" Name="label36" VerticalAlignment="Top" />
+                                                        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,6,255,0" Name="textBox21" VerticalAlignment="Top" Width="50" />
+                                                        <Label Content="Alliance" Height="28" HorizontalAlignment="Left" Margin="456,4,0,0" Name="label37" VerticalAlignment="Top" />
+                                                        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,6,6,0" Name="textBox22" VerticalAlignment="Top" Width="50" />
+                                                    </Grid>
+                                                </GroupBox>
+                                                <GroupBox Header="Whitelists / Blacklists" Height="378" HorizontalAlignment="Left" Margin="6,70,0,0" Name="groupBox14" VerticalAlignment="Top" Width="581">
+                                                    <Grid>
+                                                        <GroupBox Header="Pilot Whitelist" Height="166" HorizontalAlignment="Left" Margin="6,6,0,0" Name="groupBox15" VerticalAlignment="Top" Width="180">
+                                                            <Grid>
+                                                                <ListBox Height="132" HorizontalAlignment="Left" Margin="6,6,0,0" Name="listBox7" VerticalAlignment="Top" Width="156" />
+                                                            </Grid>
+                                                        </GroupBox>
+                                                        <GroupBox Header="Corp Whitelist" Height="166" HorizontalAlignment="Left" Margin="192,6,0,0" Name="groupBox16" VerticalAlignment="Top" Width="180">
+                                                            <Grid>
+                                                                <ListBox Height="132" HorizontalAlignment="Left" Margin="6,6,0,0" Name="listBox8" VerticalAlignment="Top" Width="156" />
+                                                            </Grid>
+                                                        </GroupBox>
+                                                        <GroupBox Header="Alliance Whitelist" Height="166" HorizontalAlignment="Left" Margin="378,6,0,0" Name="groupBox17" VerticalAlignment="Top" Width="180">
+                                                            <Grid>
+                                                                <ListBox Height="132" HorizontalAlignment="Left" Margin="6,6,0,0" Name="listBox9" VerticalAlignment="Top" Width="156" />
+                                                            </Grid>
+                                                        </GroupBox>
+                                                        <GroupBox Header="Pilot Blacklist" Height="166" HorizontalAlignment="Left" Margin="6,178,0,0" Name="groupBox18" VerticalAlignment="Top" Width="180">
+                                                            <Grid>
+                                                                <ListBox Height="132" HorizontalAlignment="Left" Margin="6,6,0,0" Name="listBox10" VerticalAlignment="Top" Width="156" />
+                                                            </Grid>
+                                                        </GroupBox>
+                                                        <GroupBox Header="Corp Blacklist" Height="166" HorizontalAlignment="Left" Margin="192,178,0,0" Name="groupBox19" VerticalAlignment="Top" Width="180">
+                                                            <Grid>
+                                                                <ListBox Height="132" HorizontalAlignment="Left" Margin="6,6,0,0" Name="listBox11" VerticalAlignment="Top" Width="156" />
+                                                            </Grid>
+                                                        </GroupBox>
+                                                        <GroupBox Header="Alliance Blacklist" Height="166" HorizontalAlignment="Left" Margin="378,178,0,0" Name="groupBox20" VerticalAlignment="Top" Width="180">
+                                                            <Grid>
+                                                                <ListBox Height="132" HorizontalAlignment="Left" Margin="6,6,0,0" Name="listBox12" VerticalAlignment="Top" Width="156" />
+                                                            </Grid>
+                                                        </GroupBox>
+                                                    </Grid>
+                                                </GroupBox>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </TabItem>
+                                    <TabItem Header="Fleet" Name="tabItem5">
+                                        <Grid />
+                                    </TabItem>
+                                    <TabItem Header="Alerts" Name="tabItem6">
+                                        <Grid />
+                                    </TabItem>
+                                    <TabItem Header="Missions" Name="tabItem7">
+                                        <Grid />
+                                    </TabItem>
+                                    <TabItem Header="Mining" Name="tabItem8">
+                                        <Grid />
+                                    </TabItem>
+                                    <TabItem Header="Freight" Name="tabItem9">
+                                        <Grid />
+                                    </TabItem>
+                                    <TabItem Header="Hauling" Name="tabItem10">
+                                        <Grid />
+                                    </TabItem>
+                                </TabControl>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Commands" Name="tabItemCommands">
+                            <Grid />
+                        </TabItem>
+                        <TabItem Header="Core Lists" Name="tabItemLists">
+                            <Grid>
+                                <ListBox Height="100" Margin="4,37,0,0" Name="listBox1" VerticalAlignment="Top" Width="345" HorizontalAlignment="Left">
+                                    <ListBoxItem Content="Hello!" />
+                                </ListBox>
+                                <ListBox Height="100" HorizontalAlignment="Right" Margin="0,37,4,0" Name="listBox2" VerticalAlignment="Top" Width="345">
+                                    <ListBoxItem Content="Hello!" />
+                                </ListBox>
+                                <Label Content="Queued Targets" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label8" VerticalAlignment="Top" />
+                                <Label Content="Locked Targets" Height="28" HorizontalAlignment="Left" Margin="354,6,0,0" Name="label9" VerticalAlignment="Top" />
+                                <Label Content="Destination Queue" Height="28" HorizontalAlignment="Left" Margin="6,143,0,0" Name="label10" VerticalAlignment="Top" />
+                                <Label Content="Threats" Height="28" HorizontalAlignment="Left" Margin="354,143,0,0" Name="label11" VerticalAlignment="Top" />
+                                <ListBox Height="100" HorizontalAlignment="Left" Margin="4,175,0,0" Name="listBox3" VerticalAlignment="Top" Width="345">
+                                    <ListBoxItem Content="Hello!" />
+                                </ListBox>
+                                <ListBox Height="100" HorizontalAlignment="Right" Margin="0,175,4,0" Name="listBox4" VerticalAlignment="Top" Width="345">
+                                    <ListBoxItem Content="Hello!" />
+                                </ListBox>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Behavior Lists" Name="tabItemBehaviorLists">
+                            <Grid>
+                                <ListBox Height="100" Margin="4,37,0,0" Name="listBox5" VerticalAlignment="Top" Width="345" HorizontalAlignment="Left">
+                                    <ListBoxItem Content="Hello!" />
+                                </ListBox>
+                                <ListBox Height="100" HorizontalAlignment="Right" Margin="0,37,4,0" Name="listBox6" VerticalAlignment="Top" Width="345">
+                                    <ListBoxItem Content="Hello!" />
+                                </ListBox>
+                                <Label Content="Asteroids In Range" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label12" VerticalAlignment="Top" />
+                                <Label Content="Asteroids Out of Range" Height="28" HorizontalAlignment="Left" Margin="354,6,0,0" Name="label13" VerticalAlignment="Top" />
+                                <Label Content="Items Mined / Moved" Height="28" HorizontalAlignment="Left" Margin="6,143,0,0" Name="label14" VerticalAlignment="Top" />
+                                <wfi:WindowsFormsHost Height="100" Width="345" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,177,0,0">
+                                    <wf:DataGridView x:Name="dataGridView" />
+                                </wfi:WindowsFormsHost>
+                                <Label Content="Ammo / Crystals Used" Height="28" HorizontalAlignment="Left" Margin="356,143,0,0" Name="label15" VerticalAlignment="Top" />
+                                <WindowsFormsHost Height="100" HorizontalAlignment="Left" Margin="354,177,0,0" VerticalAlignment="Top" Width="345">
+                                    <wf:DataGridView x:Name="dataGridView1" />
+                                </WindowsFormsHost>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

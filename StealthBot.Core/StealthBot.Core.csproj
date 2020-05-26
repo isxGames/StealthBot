@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B36BE89-E070-4F3D-BB2B-A3E1ABEAB2BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StealthBot.Core</RootNamespace>
+    <AssemblyName>StealthBot.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>sbkey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ISXEVE Beta|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ISXEVE Beta\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ISXEVE_BETA</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ISXEVEWrapper">
+      <HintPath>..\Libraries\ISXEVEWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Lavish.InnerSpace">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\InnerSpace\Lavish.InnerSpace.dll</HintPath>
+    </Reference>
+    <Reference Include="Lavish.LavishVMRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\InnerSpace\Lavish.LavishVMRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.666, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.666\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Action.cs" />
+    <Compile Include="ActionSet.cs" />
+    <Compile Include="AnomalyProvider.cs" />
+    <Compile Include="ApproachTypes.cs" />
+    <Compile Include="CachedAgent.cs" />
+    <Compile Include="CachedAlliance.cs" />
+    <Compile Include="CachedBelt.cs" />
+    <Compile Include="CachedBookMark.cs" />
+    <Compile Include="CachedBookMarkedBelt.cs" />
+    <Compile Include="CachedCorporation.cs" />
+    <Compile Include="CachedDrone.cs" />
+    <Compile Include="CachedMission.cs" />
+    <Compile Include="CachedPilot.cs" />
+    <Compile Include="CachedStanding.cs" />
+    <Compile Include="Collections\Generic\Pair.cs" />
+    <Compile Include="Config\AlertConfiguration.cs" />
+    <Compile Include="Config\ConfigProperty.cs" />
+    <Compile Include="Config\Configuration.cs" />
+    <Compile Include="Config\ConfigurationBase.cs" />
+    <Compile Include="Config\HaulingConfiguration.cs" />
+    <Compile Include="Destination.cs" />
+    <Compile Include="DestinationTypes.cs" />
+    <Compile Include="Extensions\CryptographicExtensions.cs" />
+    <Compile Include="Interfaces\IDefensiveConfiguration.cs" />
+    <Compile Include="Config\MaxRuntimeConfiguration.cs" />
+    <Compile Include="Config\SalvageConfiguration.cs" />
+    <Compile Include="Config\ShipHubConfiguration.cs" />
+    <Compile Include="CustomEventArgs\WalletStatisticsUpdatedEventArgs.cs" />
+    <Compile Include="Config\DefensiveConfiguration.cs" />
+    <Compile Include="DamageProfile.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="CustomEventArgs\SessionChangedEventArgs.cs" />
+    <Compile Include="Config\FleetConfiguration.cs" />
+    <Compile Include="Config\CargoConfiguration.cs" />
+    <Compile Include="EveWindowProvider.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="FileReadStateObject.cs" />
+    <Compile Include="FileWriteStateObject.cs" />
+    <Compile Include="Interfaces\IAnomalyClaimTracker.cs" />
+    <Compile Include="Interfaces\IAnomalyProvider.cs" />
+    <Compile Include="Interfaces\IInventoryProvider.cs" />
+    <Compile Include="Interfaces\IAgentCache.cs" />
+    <Compile Include="Interfaces\IAlerts.cs" />
+    <Compile Include="Interfaces\IAllianceCache.cs" />
+    <Compile Include="Interfaces\IAsteroidBelts.cs" />
+    <Compile Include="Interfaces\IAttackers.cs" />
+    <Compile Include="Interfaces\IBookmarkCache.cs" />
+    <Compile Include="Interfaces\IBookmarks.cs" />
+    <Compile Include="Interfaces\ICargoContainer.cs" />
+    <Compile Include="Interfaces\IConfiguration.cs" />
+    <Compile Include="Interfaces\IConfigurationManager.cs" />
+    <Compile Include="Interfaces\ICorporateHangarArray.cs" />
+    <Compile Include="Interfaces\ICorporationCache.cs" />
+    <Compile Include="Interfaces\ICriticallyBlocking.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Interfaces\IDrones.cs" />
+    <Compile Include="Interfaces\IEntityProvider.cs" />
+    <Compile Include="Interfaces\IEntityWrapper.cs" />
+    <Compile Include="Interfaces\IEveWindowProvider.cs" />
+    <Compile Include="Interfaces\IFileManager.cs" />
+    <Compile Include="Interfaces\IFleet.cs" />
+    <Compile Include="Interfaces\IIsxeveProvider.cs" />
+    <Compile Include="Interfaces\IJettisonContainer.cs" />
+    <Compile Include="Interfaces\ILogEventArgs.cs" />
+    <Compile Include="Interfaces\ILogging.cs" />
+    <Compile Include="Interfaces\IMeCache.cs" />
+    <Compile Include="Interfaces\IMeToEntityCache.cs" />
+    <Compile Include="Interfaces\IMissionCache.cs" />
+    <Compile Include="Interfaces\IMissionDatabase.cs" />
+    <Compile Include="Interfaces\IModule.cs" />
+    <Compile Include="Interfaces\IModuleManager.cs" />
+    <Compile Include="Interfaces\IMovement.cs" />
+    <Compile Include="Interfaces\INpcBountyCache.cs" />
+    <Compile Include="Interfaces\IPilotCache.cs" />
+    <Compile Include="Interfaces\IPossibleEwarNpcs.cs" />
+    <Compile Include="Interfaces\IRandomWaitObject.cs" />
+    <Compile Include="Interfaces\ISafespots.cs" />
+    <Compile Include="Interfaces\IShip.cs" />
+    <Compile Include="Interfaces\IShipCache.cs" />
+    <Compile Include="Interfaces\ISocial.cs" />
+    <Compile Include="Interfaces\IStation.cs" />
+    <Compile Include="Interfaces\IStatistics.cs" />
+    <Compile Include="Interfaces\ITargeting.cs" />
+    <Compile Include="Interfaces\ITargetQueue.cs" />
+    <Compile Include="InventoryProvider.cs" />
+    <Compile Include="IsxeveProvider.cs" />
+    <Compile Include="Loader.cs" />
+    <Compile Include="Config\MainConfiguration.cs" />
+    <Compile Include="Config\MiningConfiguration.cs" />
+    <Compile Include="Config\MissionConfiguration.cs" />
+    <Compile Include="Config\MovementConfiguration.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LogEventArgs.cs" />
+    <Compile Include="LogFile.cs" />
+    <Compile Include="Mission.cs" />
+    <Compile Include="MovementTypes.cs" />
+    <Compile Include="PairEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Config\RattingConfiguration.cs" />
+    <Compile Include="Config\SocialConfiguration.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="QueueTarget.cs" />
+    <Compile Include="Safespots.cs" />
+    <Compile Include="TimeSpanEventArgs.cs" />
+    <Compile Include="MathUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="sbkey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EventCommunication\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(SolutionDir)PostBuild.bat" "$(TargetDir)$(ProjectName)$(TargetExt)" "$(TargetDir)$(ProjectName).pdb"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

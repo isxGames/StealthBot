@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Manifest>
+  <Project>
+    <Name>StealthBot</Name>
+    <Author>stealthy</Author>
+    <Event_FileUpdated>stealthbot_OnFileUpdated</Event_FileUpdated>
+    <Event_UpdateError>stealthbot_OnUpdateError</Event_UpdateError>
+    <Event_UpdateComplete>stealthbot_OnUpdateComplete</Event_UpdateComplete>
+  </Project>
+  <FileInfo>
+    <filename>.NET Programs/StealthBot.exe</filename>
+    <url>http://stealthsoftware.net/software/stealthbot/StealthBot.exe</url>
+    <version>0938</version>
+  </FileInfo>
+</Manifest>

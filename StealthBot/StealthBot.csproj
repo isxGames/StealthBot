@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A3BB5112-ECEE-4839-B042-27A292797BBE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StealthBot</RootNamespace>
+    <AssemblyName>StealthBot</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>sbkey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ISXEVE Beta|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ISXEVE Beta\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ISXEVE_BETA</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ISXEVEWrapper, Version=1.0.4723.35879, Culture=neutral, PublicKeyToken=103485bb2d98b2ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\ISXEVEWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Lavish.InnerSpace">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\InnerSpace\Lavish.InnerSpace.dll</HintPath>
+    </Reference>
+    <Reference Include="Lavish.LavishVMRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\InnerSpace\Lavish.LavishVMRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="protobuf-net, Version=2.0.0.666, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.666\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SQLite, Version=1.0.74.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.74.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Speech">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionModules\Defense.cs" />
+    <Compile Include="ActionModules\Movement.cs" />
+    <Compile Include="ActionModules\NonOffensive.cs" />
+    <Compile Include="ActionModules\Offensive.cs" />
+    <Compile Include="ActionModules\Targeting.cs" />
+    <Compile Include="Actions\DropOffToJetissonContainerAction.cs" />
+    <Compile Include="Auth.cs" />
+    <Compile Include="BehaviorModules\BehaviorBase.cs" />
+    <Compile Include="BehaviorModules\BehaviorManager.cs" />
+    <Compile Include="BehaviorModules\BoostCanOrca.cs" />
+    <Compile Include="BehaviorModules\BoostOrca.cs" />
+    <Compile Include="BehaviorModules\Freighter.cs" />
+    <Compile Include="BehaviorModules\Hauler.cs" />
+    <Compile Include="BehaviorModules\JumpStabilityTest.cs" />
+    <Compile Include="BehaviorModules\Mining.cs" />
+    <Compile Include="BehaviorModules\MissionRunner.cs" />
+    <Compile Include="BehaviorModules\PartialBehaviors\DropOffCargoPartialBehavior.cs" />
+    <Compile Include="BehaviorModules\PartialBehaviors\MoveToDropOffLocationPartialBehavior.cs" />
+    <Compile Include="BehaviorModules\PartialBehaviors\PartialBehaviorBase.cs" />
+    <Compile Include="BehaviorModules\Ratting.cs" />
+    <Compile Include="BigInteger.cs" />
+    <Compile Include="Core\AgentCache.cs" />
+    <Compile Include="Core\Alerts.cs" />
+    <Compile Include="Core\AnomalyClaimTracker.cs" />
+    <Compile Include="Core\AsteroidBelts.cs" />
+    <Compile Include="Core\Attackers.cs" />
+    <Compile Include="Core\BookmarkCache.cs" />
+    <Compile Include="Core\CargoContainer.cs" />
+    <Compile Include="Core\ConfigurationManager.cs" />
+    <Compile Include="Core\CorporateHangarArray.cs" />
+    <Compile Include="Core\EventCommunication\BaseEvent.cs" />
+    <Compile Include="Core\EventCommunication\ConfigurationFilesUpdatedEvent.cs" />
+    <Compile Include="Core\EventCommunication\AnomalyClaimedEventArgs.cs" />
+    <Compile Include="Core\EventCommunication\FleetAcceptInvitationEvent.cs" />
+    <Compile Include="Core\EventCommunication\FleetNeedCombatAssistEvent.cs" />
+    <Compile Include="Core\EventCommunication\FleetNeedPickupEvent.cs" />
+    <Compile Include="Core\EventCommunication\FleetMemberSkillsReceivedEvent.cs" />
+    <Compile Include="Core\EventCommunication\FleetNotificationEvent.cs" />
+    <Compile Include="Core\JettisonContainer.cs" />
+    <Compile Include="Core\Logging.cs" />
+    <Compile Include="Core\MissionDatabase.cs" />
+    <Compile Include="Core\MissionProcessor.cs" />
+    <Compile Include="Core\MeToEntityCache.cs" />
+    <Compile Include="Core\NpcBountyCache.cs" />
+    <Compile Include="Core\PlayerShip.cs" />
+    <Compile Include="Core\PlayerShipDatabase.cs" />
+    <Compile Include="Core\PossibleEwarNpcs.cs" />
+    <Compile Include="Core\ShipCache.cs" />
+    <Compile Include="Core\ShipHub.cs" />
+    <Compile Include="Core\SqLiteDbModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqLiteDbModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\FileManager.cs" />
+    <Compile Include="Core\MissionCache.cs" />
+    <Compile Include="Core\ModuleBase.cs" />
+    <Compile Include="Core\Bookmarks.cs" />
+    <Compile Include="Core\MeCache.cs" />
+    <Compile Include="Core\Drones.cs" />
+    <Compile Include="Core\EntityPopulator.cs" />
+    <Compile Include="Core\EntityWrapper.cs" />
+    <Compile Include="Core\AllianceCache.cs" />
+    <Compile Include="Core\CorporationCache.cs" />
+    <Compile Include="Core\EventCommunication\EventCommunications.cs" />
+    <Compile Include="Core\Fleet.cs" />
+    <Compile Include="Core\ModuleManager.cs" />
+    <Compile Include="Core\PilotCache.cs" />
+    <Compile Include="Core\RandomWaitObject.cs" />
+    <Compile Include="Core\SbUiCommunication.cs" />
+    <Compile Include="Core\Ship.cs" />
+    <Compile Include="Core\Social.cs" />
+    <Compile Include="Core\Station.cs" />
+    <Compile Include="Core\Statistics.cs" />
+    <Compile Include="Core\StealthBot.cs" />
+    <Compile Include="Core\TargetQueue.cs" />
+    <Compile Include="Data\EVEDBs.cs" />
+    <Compile Include="ManuallyAddPilotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManuallyAddPilotForm.Designer.cs">
+      <DependentUpon>ManuallyAddPilotForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="StealthBotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StealthBotForm.Designer.cs">
+      <DependentUpon>StealthBotForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ManuallyAddPilotForm.resx">
+      <DependentUpon>ManuallyAddPilotForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StealthBotForm.resx">
+      <DependentUpon>StealthBotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextInputForm.resx">
+      <DependentUpon>TextInputForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Core\SqLiteDbModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SqLiteDbModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\StealthBot.Core.CorporationModelContainer.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TextInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextInputForm.Designer.cs">
+      <DependentUpon>TextInputForm.cs</DependentUpon>
+    </Compile>
+    <None Include="sbkey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\MissionDatabase.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Data\PossibleEwarNpcNames.xml" />
+    <Content Include="PatcherManifests\isxGamesPatcher_PossibleEwarNpcNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="PatcherManifests\isxGamesPatcher_MissionDatabase.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="PatcherManifests\isxGamesPatcher_NpcBounties.xml" />
+    <Content Include="PatcherManifests\isxGamesPatcher_StealthBot-Test.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="PatcherManifests\isxGamesPatcher_StealthBot.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Stealthbot_Test_Changelog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StealthBot.Core\StealthBot.Core.csproj">
+      <Project>{2B36BE89-E070-4F3D-BB2B-A3E1ABEAB2BB}</Project>
+      <Name>StealthBot.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StealthBotIPC\StealthBotIpc.csproj">
+      <Project>{1C10A027-1958-46E3-9667-5EF45CA6CD44}</Project>
+      <Name>StealthBotIpc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(SolutionDir)PostBuild.bat" "$(TargetDir)$(ProjectName)$(TargetExt)" "$(TargetDir)$(ProjectName).pdb"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
