@@ -159,6 +159,8 @@ namespace StealthBot.Core
 
 		private void CheckForUpdates()
 		{
+			// Disable updates after STealthy code release -- CT
+			return;
 			UpdateStealthBot();
 			UpdateMissionDatabase();
 			UpdateNpcBounties();
