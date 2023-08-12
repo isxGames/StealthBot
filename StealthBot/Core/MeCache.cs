@@ -20,7 +20,7 @@ namespace StealthBot.Core
         public string Corporation { get; private set; }
         public string AllianceTicker { get; private set; }
         public string Alliance { get; private set; }
-        public int StationId { get; private set; }
+        public long StationId { get; private set; }
         public int SolarSystemId { get; private set; }
         public int AllianceId { get; private set; }
         public Int64 CharId { get; private set; }

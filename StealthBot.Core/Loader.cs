@@ -41,6 +41,7 @@ namespace StealthBot.Core
 
 		public void Load()
 		{
+			Console.WriteLine("public void load()");
 			if (!IsRunningInInnerSpace())
 			{
 				LoadErrorMessage = "Error: StealthBot must be started through InnerSpace, not by directly running the program.";
@@ -161,10 +162,10 @@ namespace StealthBot.Core
 		{
 			// Disable updates after STealthy code release -- CT
 			return;
-			UpdateStealthBot();
-			UpdateMissionDatabase();
-			UpdateNpcBounties();
-			UpdatePossibleEwarNpcNames();
+			// UpdateStealthBot();
+			//UpdateMissionDatabase();
+			//UpdateNpcBounties();
+			//UpdatePossibleEwarNpcNames();
 
 			//If we updated file, relaunch stealthbot.
 			if (!_wasStealthBotUpdated) 

@@ -18,6 +18,10 @@ namespace StealthBot
     /// </summary>
 	internal sealed class Auth : IDisposable
     {
+
+        private const string DEFAULT_USERNAME = "testUser";
+        private const string DEFAULT_PASSWORD = "testPassword";
+
         readonly string ERROR_UNKNOWN = "Unknown Error",
             SUCCESSFUL = "Successful",
             ERROR_EMAIL = "Invalid E-Mail Address",
@@ -123,6 +127,14 @@ namespace StealthBot
 		{
             //If we haven't already started trying to login...
             if (_loginThread != null && _loginThread.ThreadState != ThreadState.Stopped) return;
+
+            if (email == DEFAULT_USERNAME && password == DEFAULT_PASSWORD)
+            {
+                // Bypass the login process and directly return a successful login result
+                var loginResult = new __err_retn(true, "Successful", true); // Assuming you want to allow test builds for the default user
+                AuthenticationComplete?.Invoke(loginResult, loginResult);
+                return;
+            }
 
             try
             {
