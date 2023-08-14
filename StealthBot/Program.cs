@@ -8,7 +8,7 @@ using System.Text;
 using InnerSpaceAPI;
 using StealthBot.Core;
 
-[assembly: System.Security.SecurityRules(System.Security.SecurityRuleSet.Level1)]
+[assembly: System.Security.SecurityRules(System.Security.SecurityRuleSet.Level2)]
 
 namespace StealthBot
 {
