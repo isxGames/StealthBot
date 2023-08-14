@@ -20,13 +20,19 @@ namespace StealthBot
 		[STAThread]
 		static void Main(string[] args)
         {
-        	Application.EnableVisualStyles();
+            InnerSpace.Echo("StealthBot starting...");
+            Application.EnableVisualStyles();
         	Application.SetCompatibleTextRenderingDefault(false);
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            {
+                Exception ex = (Exception)e.ExceptionObject;
+                InnerSpace.Echo($"Unhandled exception: {ex.Message}\n{ex.StackTrace}");
+            };
 
-        	var loader = new Loader(Application.ProductVersion, args);
+            var loader = new Loader(Application.ProductVersion, args);
         	loader.Load();
-
-        	if (loader.LoadedSuccessfully)
+            InnerSpace.Echo($"Main Program: right after loader.Load(): {loader.LoadedSuccessfully}");
+            if (loader.LoadedSuccessfully)
         	{
         		InnerSpace.Echo("Executing StealthBot...");
         		Application.Run(new StealthBotForm(args));

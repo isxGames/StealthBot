@@ -19,9 +19,6 @@ namespace StealthBot
 	internal sealed class Auth : IDisposable
     {
 
-        private const string DEFAULT_USERNAME = "testUser";
-        private const string DEFAULT_PASSWORD = "testPassword";
-
         readonly string ERROR_UNKNOWN = "Unknown Error",
             SUCCESSFUL = "Successful",
             ERROR_EMAIL = "Invalid E-Mail Address",
@@ -30,7 +27,7 @@ namespace StealthBot
             ERROR_PASSWORD = "Invalid password",
             ERROR_LOCKED = "Account has been locked or frozen",
             ERROR_MYSQL = "MySQL connection reported an error, try again in 5 minutes or contact Snipa",
-			ERROR_BAD_RESPONSE = "Received a bad response from the server. Blame Snipa.";
+            ERROR_BAD_RESPONSE = "Received a bad response from the server. Blame Snipa.";
 
         #region Encryption-related variables
         //Value used in salting pre-encryption by the server; needs removed from the decrypted result
@@ -60,13 +57,13 @@ namespace StealthBot
         //List of servers to be used for authentication attempts
         readonly List<string> AUTH_SERVERS = new List<string>
         {
-            "https://sbauth.goo.im/auth" 
+            "https://sbauth.goo.im/auth"
         };
 
         //Event for notifying listeners of a completed authentication result
-		public event EventHandler<__err_retn> AuthenticationComplete;
+        public event EventHandler<__err_retn> AuthenticationComplete;
 
-		Thread _loginThread = null;
+        Thread _loginThread = null;
 
         #region IDisposable members
         bool _isDisposed = false;
@@ -81,9 +78,9 @@ namespace StealthBot
 
         #region IDisposable implementors
         ~Auth()
-		{
+        {
             Dispose(false);
-		}
+        }
 
         /// <summary>
         /// Cleanup this object.
@@ -124,17 +121,9 @@ namespace StealthBot
         /// <param name="email">Username</param>
         /// <param name="password">Password</param>
         public void TryLogin(string email, string password)
-		{
+        {
             //If we haven't already started trying to login...
             if (_loginThread != null && _loginThread.ThreadState != ThreadState.Stopped) return;
-
-            if (email == DEFAULT_USERNAME && password == DEFAULT_PASSWORD)
-            {
-                // Bypass the login process and directly return a successful login result
-                var loginResult = new __err_retn(true, "Successful", true); // Assuming you want to allow test builds for the default user
-                AuthenticationComplete?.Invoke(loginResult, loginResult);
-                return;
-            }
 
             try
             {
@@ -146,13 +135,13 @@ namespace StealthBot
             {
                 _logging.LogException("Authentication", e, "TryLogin", "Caught exception starting login process:");
             }
-		}
+        }
 
         private void TryLogin(object stateInfo)
         {
             try
             {
-                var authStateInfo = (AuthStateInfo) stateInfo;
+                var authStateInfo = (AuthStateInfo)stateInfo;
                 Login(authStateInfo);
             }
             catch (Exception e)
@@ -196,10 +185,10 @@ namespace StealthBot
             var userInfoBytes = Encoding.ASCII.GetBytes(userInfoString);
 
             // Key and iv for encryption
-			// Key is the sessionKey in Hex
-			string key = sessionKey.ToHexString();
-			// iv is the 
-			string iv = _modulus.ToHexString().Substring(0, 32);
+            // Key is the sessionKey in Hex
+            string key = sessionKey.ToHexString();
+            // iv is the 
+            string iv = _modulus.ToHexString().Substring(0, 32);
 
             //Get the encrypted user info bytes using our key and IV
             var encryptedUserInfoBytes = EncryptBytes(userInfoBytes, key, iv);
@@ -221,18 +210,18 @@ namespace StealthBot
             //Try to authenticate with each auth server until we have a successful one.
             foreach (var serverUrl in AUTH_SERVERS)
             {
-				var formattedUrl = string.Format("{0}?a={1}&b={2}&c={3}",
+                var formattedUrl = string.Format("{0}?a={1}&b={2}&c={3}",
                     serverUrl, clientPublicKeyString, encryptedUserInfoString, encryptedHardwareHashString);
                 _logging.LogMessage("Authentication", "Authenticate", LogSeverityTypes.Debug, "Request URL: {0}", formattedUrl);
 
                 //Try to authenticate and save the result
                 var authResult = Authenticate(formattedUrl, key, iv);
 
-				//Firstly, if it was bad response, just re-try.
-				if (authResult.AuthenticationResult == ERROR_BAD_RESPONSE)
-				{
-					authResult = Authenticate(formattedUrl, key, iv);
-				}
+                //Firstly, if it was bad response, just re-try.
+                if (authResult.AuthenticationResult == ERROR_BAD_RESPONSE)
+                {
+                    authResult = Authenticate(formattedUrl, key, iv);
+                }
 
                 //If the connection succeeded...
                 if (authResult.DidAuthenticationFail)
@@ -262,107 +251,107 @@ namespace StealthBot
         /// <returns>Result of the login attempt.</returns>
         private __err_retn Authenticate(string authServerUrl, string key, string iv)
         {
-			try
-			{
-				//First, try to connect to the given server.
-				var httpWebRequest = (HttpWebRequest)WebRequest.Create(authServerUrl);
+            try
+            {
+                //First, try to connect to the given server.
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(authServerUrl);
 
-				using (var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
-				using (var stream = new StreamReader(httpWebResponse.GetResponseStream(), Encoding.GetEncoding(httpWebResponse.CharacterSet)))
-				{
-					var base64AuthString = "";
+                using (var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+                using (var stream = new StreamReader(httpWebResponse.GetResponseStream(), Encoding.GetEncoding(httpWebResponse.CharacterSet)))
+                {
+                    var base64AuthString = "";
 
-					try
-					{
-						// Try to read from the response stream
-						base64AuthString = stream.ReadToEnd();
-					}
-					catch (Exception e)
-					{
-						_logging.LogException("Authentication", e, "Authenticate", "Caught exception reading response: \n{0}", e.Message);
-						return new __err_retn(false, ERROR_BAD_RESPONSE, false);
-					}
+                    try
+                    {
+                        // Try to read from the response stream
+                        base64AuthString = stream.ReadToEnd();
+                    }
+                    catch (Exception e)
+                    {
+                        _logging.LogException("Authentication", e, "Authenticate", "Caught exception reading response: \n{0}", e.Message);
+                        return new __err_retn(false, ERROR_BAD_RESPONSE, false);
+                    }
 
-					if (!string.IsNullOrEmpty(base64AuthString))
-					{
-						byte[] encryptedResultBytes = null;
-						try
-						{
-							// Base64-Decode the data from the webserver
-							encryptedResultBytes = Convert.FromBase64String(base64AuthString);
-						}
-						catch (Exception e)
-						{
-							_logging.LogException("Authentication", e, "Authenticate", "Caught exception during base64 decoding: \n{0}", e.Message);
-							return new __err_retn(false, ERROR_BAD_RESPONSE, false);
-						}
+                    if (!string.IsNullOrEmpty(base64AuthString))
+                    {
+                        byte[] encryptedResultBytes = null;
+                        try
+                        {
+                            // Base64-Decode the data from the webserver
+                            encryptedResultBytes = Convert.FromBase64String(base64AuthString);
+                        }
+                        catch (Exception e)
+                        {
+                            _logging.LogException("Authentication", e, "Authenticate", "Caught exception during base64 decoding: \n{0}", e.Message);
+                            return new __err_retn(false, ERROR_BAD_RESPONSE, false);
+                        }
 
-						//Get the decrypted result
-						//_logging.LogMessage("Authentication", "Authenticate", LogSeverityTypes.Debug, "Encrypted result string: {0}", encryptedResultBytes);
-						var decryptedResultString = DecryptBytes(encryptedResultBytes, key, iv);
-						//_logging.LogMessage("Authentication", "Authenticate", LogSeverityTypes.Debug, "Decrypted result string: {0}", decryptedResultString);
+                        //Get the decrypted result
+                        //_logging.LogMessage("Authentication", "Authenticate", LogSeverityTypes.Debug, "Encrypted result string: {0}", encryptedResultBytes);
+                        var decryptedResultString = DecryptBytes(encryptedResultBytes, key, iv);
+                        //_logging.LogMessage("Authentication", "Authenticate", LogSeverityTypes.Debug, "Decrypted result string: {0}", decryptedResultString);
 
-						//Split the decrypted result into its components
-						var decryptedResults = decryptedResultString.Split(':');
+                        //Split the decrypted result into its components
+                        var decryptedResults = decryptedResultString.Split(':');
 
-						//Determine if this is a test-enabled account
-						var isTesterInt = -1;
-						int.TryParse(decryptedResults[1], out isTesterInt);
-						var isTester = (isTesterInt == 1);
+                        //Determine if this is a test-enabled account
+                        var isTesterInt = -1;
+                        int.TryParse(decryptedResults[1], out isTesterInt);
+                        var isTester = (isTesterInt == 1);
 
-						//Get the login result.
-						var authResult = y6675636b65647570.x2121;
+                        //Get the login result.
+                        var authResult = y6675636b65647570.x2121;
 
-						//See if our result is defined in the results enum.
-						if (Enum.IsDefined(typeof(y6675636b65647570), decryptedResults[0]))
-						{
-							//It was defined, so parse the result.
-							authResult = (y6675636b65647570)Enum.Parse(typeof(y6675636b65647570), decryptedResults[0]);
-						}
+                        //See if our result is defined in the results enum.
+                        if (Enum.IsDefined(typeof(y6675636b65647570), decryptedResults[0]))
+                        {
+                            //It was defined, so parse the result.
+                            authResult = (y6675636b65647570)Enum.Parse(typeof(y6675636b65647570), decryptedResults[0]);
+                        }
 
-						var authResultString = ERROR_UNKNOWN;
-						switch (authResult)
-						{
-							case y6675636b65647570.x2121:
-								authResultString = ERROR_UNKNOWN;
-								break;
-							case y6675636b65647570.x6561:
-								authResultString = ERROR_EMAIL;
-								break;
-							case y6675636b65647570.x6674:
-								authResultString = ERROR_INSTANCES;
-								break;
-							case y6675636b65647570.x6862:
-								authResultString = ERROR_UNPAID;
-								break;
-							case y6675636b65647570.x6c74:
-								authResultString = ERROR_PASSWORD;
-								break;
-							case y6675636b65647570.x6f74:
-								authResultString = ERROR_LOCKED;
-								break;
-							case y6675636b65647570.x7374:
-								authResultString = SUCCESSFUL;
-								break;
-							case y6675636b65647570.x7721:
-								authResultString = ERROR_MYSQL;
-								break;
-						}
+                        var authResultString = ERROR_UNKNOWN;
+                        switch (authResult)
+                        {
+                            case y6675636b65647570.x2121:
+                                authResultString = ERROR_UNKNOWN;
+                                break;
+                            case y6675636b65647570.x6561:
+                                authResultString = ERROR_EMAIL;
+                                break;
+                            case y6675636b65647570.x6674:
+                                authResultString = ERROR_INSTANCES;
+                                break;
+                            case y6675636b65647570.x6862:
+                                authResultString = ERROR_UNPAID;
+                                break;
+                            case y6675636b65647570.x6c74:
+                                authResultString = ERROR_PASSWORD;
+                                break;
+                            case y6675636b65647570.x6f74:
+                                authResultString = ERROR_LOCKED;
+                                break;
+                            case y6675636b65647570.x7374:
+                                authResultString = SUCCESSFUL;
+                                break;
+                            case y6675636b65647570.x7721:
+                                authResultString = ERROR_MYSQL;
+                                break;
+                        }
 
-						//Build the login result and break, done reading
-						_logging.LogMessage("Authentication", "Login", LogSeverityTypes.Debug, "Parsed decrypted result {0} as enum value {1}.", decryptedResults[0], authResultString);
-						return new __err_retn(true, authResultString, isTester);
-					}
-				}
+                        //Build the login result and break, done reading
+                        _logging.LogMessage("Authentication", "Login", LogSeverityTypes.Debug, "Parsed decrypted result {0} as enum value {1}.", decryptedResults[0], authResultString);
+                        return new __err_retn(true, authResultString, isTester);
+                    }
+                }
 
-			}
-			catch (Exception e)
-			{
-				_logging.LogException("Authentication", e, "Authenticate", "Caught exception reading response:", e.Message);
-				return new __err_retn(false, ERROR_BAD_RESPONSE, false);
-			}
-			// If we fall thru to here, we failed.
-			return new __err_retn(false, ERROR_UNKNOWN, false);
+            }
+            catch (Exception e)
+            {
+                _logging.LogException("Authentication", e, "Authenticate", "Caught exception reading response:", e.Message);
+                return new __err_retn(false, ERROR_BAD_RESPONSE, false);
+            }
+            // If we fall thru to here, we failed.
+            return new __err_retn(false, ERROR_UNKNOWN, false);
         }
 
         /// <summary>
@@ -470,35 +459,35 @@ namespace StealthBot
             return aesEncryptor;
         }
 
-		private byte[] GenerateHardwareHash()
-		{
-		    var hashValues = new List<string>();
+        private byte[] GenerateHardwareHash()
+        {
+            var hashValues = new List<string>();
 
-		    var hddValues = GetHddIDs();
-		    hashValues.Add(hddValues);
+            var hddValues = GetHddIDs();
+            hashValues.Add(hddValues);
 
-		    var macAddresses = GetMacAddresses();
-		    hashValues.Add(macAddresses);
+            var macAddresses = GetMacAddresses();
+            hashValues.Add(macAddresses);
 
-			//now put all these srings in one big-ass byte[]
-			var hashStringBuilder = new StringBuilder();
-		    for (var index = 0; index < hashValues.Count; index++)
-		    {
+            //now put all these srings in one big-ass byte[]
+            var hashStringBuilder = new StringBuilder();
+            for (var index = 0; index < hashValues.Count; index++)
+            {
                 if (index > 0)
                     hashStringBuilder.Append("|");
 
-		        var hashValue = hashValues[index];
-		        hashStringBuilder.Append(hashValue);
-		    }
-		    return Encoding.ASCII.GetBytes(hashStringBuilder.ToString());
-		}
+                var hashValue = hashValues[index];
+                hashStringBuilder.Append(hashValue);
+            }
+            return Encoding.ASCII.GetBytes(hashStringBuilder.ToString());
+        }
 
-		//These courtesy of Lecht @ LavishNet/QuakeNet. What he didn't write, I based off his.
+        //These courtesy of Lecht @ LavishNet/QuakeNet. What he didn't write, I based off his.
         //Very little of the original code remains, but I'm leaving this here as thanks.
 
-		private string GetHddIDs()
-		{
-		    var primaryHddID = "PrimaryHddID:";
+        private string GetHddIDs()
+        {
+            var primaryHddID = "PrimaryHddID:";
 
             using (var managementClass = new ManagementClass("Win32_DiskDrive"))
             using (var wmiDisks = managementClass.GetInstances())
@@ -510,8 +499,8 @@ namespace StealthBot
                 }
             }
 
-		    return primaryHddID;
-		}
+            return primaryHddID;
+        }
 
         private string GetMacAddresses()
         {
@@ -525,10 +514,10 @@ namespace StealthBot
             {
                 foreach (ManagementObject networkAdapter in networkAdapters)
                 {
-                    var macAddress = (string) networkAdapter.Properties["MacAddress"].Value;
+                    var macAddress = (string)networkAdapter.Properties["MacAddress"].Value;
 
                     if (string.IsNullOrEmpty(macAddress)) continue;
-                    
+
                     macAddresses.Add(macAddress);
                 }
             }
@@ -591,27 +580,27 @@ namespace StealthBot
         }
     }
 
-	public class __err_retn : EventArgs
-	{
-		public bool DidAuthenticationFail;
-		public string AuthenticationResult;
+    public class __err_retn : EventArgs
+    {
+        public bool DidAuthenticationFail;
+        public string AuthenticationResult;
         public bool CanUseTestBuilds;
-		public __err_retn(bool connSucceeded, string loginResult, bool isTester)
-		{
-			DidAuthenticationFail = connSucceeded;
-			AuthenticationResult = loginResult;
+        public __err_retn(bool connSucceeded, string loginResult, bool isTester)
+        {
+            DidAuthenticationFail = connSucceeded;
+            AuthenticationResult = loginResult;
             CanUseTestBuilds = isTester;
-		}
-	}
+        }
+    }
 
-	//"fuckedup" -> hex, just incase the obfuscator fails me a bit
-	public enum y6675636b65647570
-	{
-		//I'm gonna fuck with people and fuck with these. "stealthbotftw!!!" -> hex, two byte chunks
+    //"fuckedup" -> hex, just incase the obfuscator fails me a bit
+    public enum y6675636b65647570
+    {
+        //I'm gonna fuck with people and fuck with these. "stealthbotftw!!!" -> hex, two byte chunks
         /// <summary>
         /// Successful
         /// </summary>
-		x7374,
+        x7374,
         /// <summary>
         /// Error_IncorrectEmail
         /// </summary>
@@ -640,13 +629,13 @@ namespace StealthBot
         /// Error_Unknown
         /// </summary>
 		x2121,
-		x7375,	//Fake results just to fuck with people. "suckmyhairydick!" -> hex, two-byte chunks
-		x636b,
-		x6d79,
-		x6861,
-		x6972,
-		x7964,
-		x6963,
-		x6b21
-	}
+        x7375,  //Fake results just to fuck with people. "suckmyhairydick!" -> hex, two-byte chunks
+        x636b,
+        x6d79,
+        x6861,
+        x6972,
+        x7964,
+        x6963,
+        x6b21
+    }
 }

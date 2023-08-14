@@ -16,10 +16,11 @@ namespace StealthBot
 {
     public partial class StealthBotForm : Form
     {
-        private bool _areTabsLocked = true;
+        private bool _areTabsLocked = false;
+        private bool _authCompleted = true;
         private readonly string _stealthBotVersionAndBuild;
 
-        private bool _authStarted, _authCompleted, _autoStarted, _isReadyToExit;
+        private bool _authStarted, _autoStarted, _isReadyToExit;
 
         private readonly Dictionary<string, long> _idsByName = new Dictionary<string, long>();
         private int _pilotCacheIndex = 0, _miningCargoFullEvents;
@@ -53,7 +54,7 @@ namespace StealthBot
         	var instance = Core.StealthBot.Instance;
 			if (string.IsNullOrEmpty(instance.ModuleName)) return;
 
-            _auth = Auth.CreateAuth(Core.StealthBot.Logging);
+            //_auth = Auth.CreateAuth(Core.StealthBot.Logging);
             LavishScript.ExecuteCommand("stealthbotLoaded:Set[TRUE]");
 
             ButtonPause.Visible = false;
@@ -133,58 +134,58 @@ namespace StealthBot
             Close();
         }
 
-        private void Auth_AuthenticationComplete(object sender, __err_retn e)
-        {
-            if (InvokeRequired)
-            {
-                _exitResetEvent.WaitOne();
-                Invoke(_authenticationCompleted, sender, e);
-                _exitResetEvent.Set();
-                return;
-            }
+        //private void Auth_AuthenticationComplete(object sender, __err_retn e)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        _exitResetEvent.WaitOne();
+        //        Invoke(_authenticationCompleted, sender, e);
+        //        _exitResetEvent.Set();
+        //        return;
+        //    }
 
             //use a bunch of =='s instead of !=
-            if (!e.DidAuthenticationFail ||
-                e.AuthenticationResult != "Successful")
-            {
-                _authCompleted = false;
-                _authStarted = false;
+        //    if (!e.DidAuthenticationFail ||
+        //        e.AuthenticationResult != "Successful")
+        //    {
+        //        _authCompleted = true;
+        //        _authStarted = true;
 
-                if (e.DidAuthenticationFail)
-                {
-                    Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
-                        "Authentication failed. Reason: {0}. Contact a StealthBot administrator for help.", e.AuthenticationResult);
-                }
-                else
-                {
-                    Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
-                        "Authentication failed. Reason: __err_fail. Contact a StealthBot administrator for help.");
-                }
-            }
-            else
-            {
-                var isTestBuild = false;
-#if DEBUG
-                isTestBuild = true;
-#endif
+        //        if (e.DidAuthenticationFail)
+        //        {
+        //            Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
+        //                "Authentication failed. Reason: {0}. Contact a StealthBot administrator for help.", e.AuthenticationResult);
+        //        }
+        //        else
+        //        {
+        //            Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
+        //                "Authentication failed. Reason: __err_fail. Contact a StealthBot administrator for help.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var isTestBuild = false;
+//#if DEBUG
+        //        isTestBuild = true;
+//#endif
 
-                if ((isTestBuild && e.CanUseTestBuilds) || !isTestBuild)
-                {
-                    Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard, "Authentication successful.");
-                    _authCompleted = true;
-                    _areTabsLocked = false;
-                    ButtonStartResume_Click(this, new EventArgs());
-                }
-                else
-                {
-                    if (isTestBuild && !e.CanUseTestBuilds)
-                    {
-                        Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
-                            "Authentication failed. This is a test build of StealthBot and you are not an authorized tester.");
-                    }
-                }
-            }
-        }
+        //        if ((isTestBuild && e.CanUseTestBuilds) || !isTestBuild)
+        //        {
+        //            Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard, "Authentication successful.");
+        //            _authCompleted = true;
+        //            _areTabsLocked = false;
+        //            ButtonStartResume_Click(this, new EventArgs());
+        //        }
+        //        else
+        //        {
+        //            if (isTestBuild && !e.CanUseTestBuilds)
+        //            {
+        //                Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
+        //                    "Authentication failed. This is a test build of StealthBot and you are not an authorized tester.");
+        //            }
+        //        }
+        //    }
+        //}
 
         private void Statistics_OnMiningCargoFull(object sender, TimeSpanEventArgs e)
         {
@@ -801,8 +802,8 @@ namespace StealthBot
             _onPulse = Pulse;
             Core.StealthBot.OnPulse += _onPulse;
 
-            _authenticationCompleted = Auth_AuthenticationComplete;
-            _auth.AuthenticationComplete += _authenticationCompleted;
+            //_authenticationCompleted = Auth_AuthenticationComplete;
+            //_auth.AuthenticationComplete += _authenticationCompleted;
 
             _walletStatisticsUpdated = WalletStatisticsUpdated;
             Core.StealthBot.Statistics.WalletStatisticsUpdated += _walletStatisticsUpdated;
