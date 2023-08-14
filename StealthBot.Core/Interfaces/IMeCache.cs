@@ -14,7 +14,7 @@ namespace StealthBot.Core.Interfaces
         string Corporation { get; }
         string AllianceTicker { get; }
         string Alliance { get; }
-        int StationId { get; }
+        long StationId { get; }
         int SolarSystemId { get; }
         int AllianceId { get; }
         Int64 CharId { get; }

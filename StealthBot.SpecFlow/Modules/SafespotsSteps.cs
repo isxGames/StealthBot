@@ -31,6 +31,11 @@ namespace StealthBot.SpecFlow.Modules
         private bool? _isAtSafeSpot;
         private Destination _safeSpotDestination;
 
+        public SafespotsSteps(CustomScenarioContext context, ScenarioContext scenarioContext) : base(context, scenarioContext)
+        {
+            // ... rest of the constructor code
+        }
+
         [BeforeScenario("@Safespots")]
         public void BeforeScenarioSafespots()
         {

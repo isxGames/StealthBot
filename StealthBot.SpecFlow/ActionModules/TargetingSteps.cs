@@ -20,6 +20,11 @@ namespace StealthBot.SpecFlow.ActionModules
     {
         // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
 
+        public TargetingSteps(CustomScenarioContext context, ScenarioContext scenarioContext) : base(context, scenarioContext)
+        {
+            // ... rest of the constructor code
+        }
+
         [BeforeScenario("Targeting")]
         public void BeforeTargetingFeature()
         {
@@ -162,72 +167,72 @@ namespace StealthBot.SpecFlow.ActionModules
             entityMock.Verify(em => em.UnlockTarget(), Times.Never());
         }
 
-        #region ScenarioContext Objects
+        #region CustomScenarioContext Properties
 
         private bool WereTargetsUnlocked
         {
-            get { return GetFromScenarioContext<bool>("wereTargetsUnlocked"); }
-            set { SetInScenarioContext("wereTargetsUnlocked", value); }
+            get { return _context.WereTargetsUnlocked; }
+            set { _context.WereTargetsUnlocked = value; }
         }
 
         private int TimesUnlockTargetWasCalled
         {
-            get { return GetFromScenarioContext<int>("timesUnlockTargetWasCalled"); }
-            set { SetInScenarioContext("timesUnlockTargetWasCalled", value); }
+            get { return _context.TimesUnlockTargetWasCalled; }
+            set { _context.TimesUnlockTargetWasCalled = value; }
         }
 
         private new Mock<ILogging> Logging
         {
-            get { return GetFromScenarioContext<Mock<ILogging>>("logging"); }
-            set { SetInScenarioContext("logging", value); }
+            get { return _context.Logging; }
+            set { _context.Logging = value; }
         }
 
         private Mock<IMaxRuntimeConfiguration> MaxRuntimeConfiguration
         {
-            get { return GetFromScenarioContext<Mock<IMaxRuntimeConfiguration>>("maxRuntimeConfiguration"); }
-            set { SetInScenarioContext("maxRuntimeConfiguration", value); }
+            get { return _context.MaxRuntimeConfiguration; }
+            set { _context.MaxRuntimeConfiguration = value; }
         }
 
         private Mock<IMeCache> MeCache
         {
-            get { return GetFromScenarioContext<Mock<IMeCache>>("meCache"); }
-            set { SetInScenarioContext("meCache", value); }
+            get { return _context.MeCache; }
+            set { _context.MeCache = value; }
         }
 
         private Mock<IDrones> Drones
         {
-            get { return GetFromScenarioContext<Mock<IDrones>>("drones"); }
-            set { SetInScenarioContext("drones", value); }
+            get { return _context.Drones; }
+            set { _context.Drones = value; }
         }
 
         private Mock<IAlerts> Alerts
         {
-            get { return GetFromScenarioContext<Mock<IAlerts>>("alerts"); }
-            set { SetInScenarioContext("alerts", value); }
+            get { return _context.Alerts; }
+            set { _context.Alerts = value; }
         }
 
         private Mock<IModuleManager> ModuleManager
         {
-            get { return GetFromScenarioContext<Mock<IModuleManager>>("moduleManager"); }
-            set { SetInScenarioContext("moduleManager", value); }
+            get { return _context.ModuleManager; }
+            set { _context.ModuleManager = value; }
         }
 
         private Mock<ITargetQueue> TargetQueue
         {
-            get { return GetFromScenarioContext<Mock<ITargetQueue>>("targetQueue"); }
-            set { SetInScenarioContext("targetQueue", value); }
+            get { return _context.TargetQueue; }
+            set { _context.TargetQueue = value; }
         }
 
         private Mock<IMovement> Movement
         {
-            get { return GetFromScenarioContext<Mock<IMovement>>("movement"); }
-            set { SetInScenarioContext("movement", value); }
+            get { return _context.Movement; }
+            set { _context.Movement = value; }
         }
 
         private ITargeting Targeting
         {
-            get { return GetFromScenarioContext<ITargeting>("targeting"); }
-            set { SetInScenarioContext("targeting", value); }
+            get { return _context.Targeting; }
+            set { _context.Targeting = value; }
         }
         #endregion
     }

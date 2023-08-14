@@ -93,13 +93,13 @@ namespace StealthBot.Core
     	public ReadOnlyCollection<EVE.ISXEVE.Interfaces.IModule> SensorBoosterModules { get { return _sensorBoosterModules.AsReadOnly(); }}
         #endregion
         #region Ammo-related variables
-        private Dictionary<string, double> _hybridRangeModsByName = new Dictionary<string, double>();
-		private Dictionary<string, double> _frequencyRangeModsByName = new Dictionary<string, double>();
-		private Dictionary<string, double> _projectileRangeModsByName = new Dictionary<string, double>();
-        private Dictionary<string, double> _missileRangeModsByName = new Dictionary<string, double>();
+        private readonly Dictionary<string, double> _hybridRangeModsByName = new Dictionary<string, double>();
+		private readonly Dictionary<string, double> _frequencyRangeModsByName = new Dictionary<string, double>();
+		private readonly Dictionary<string, double> _projectileRangeModsByName = new Dictionary<string, double>();
+        private readonly Dictionary<string, double> _missileRangeModsByName = new Dictionary<string, double>();
 
-        private Dictionary<string, DamageProfile> _projectileDamageProfilesByChargeName = new Dictionary<string, DamageProfile>();
-        private Dictionary<string, DamageProfile> _missileDamageProfilesByChargeName = new Dictionary<string, DamageProfile>();
+        private readonly Dictionary<string, DamageProfile> _projectileDamageProfilesByChargeName = new Dictionary<string, DamageProfile>();
+        private readonly Dictionary<string, DamageProfile> _missileDamageProfilesByChargeName = new Dictionary<string, DamageProfile>();
 
 		internal Dictionary<string, List<Dictionary<int, double>>> DictionariesByModuleType = new Dictionary<string, List<Dictionary<int, double>>>();
 		private bool _dictionariesByModuleNameBuilt = false;
@@ -107,7 +107,7 @@ namespace StealthBot.Core
 		internal Dictionary<int, double> ModuleBaseOptimaRanges = new Dictionary<int, double>();
 
 		//track the next ammo change, per module
-		private Dictionary<Int64, DateTime> _nextAmmoChangeByModuleID = new Dictionary<long, DateTime>();
+		private readonly Dictionary<Int64, DateTime> _nextAmmoChangeByModuleID = new Dictionary<long, DateTime>();
 		//Constant for time between ammo changes
 		private readonly int SECONDS_BETWEEN_STANDARD_AMMO_CHANGES = 12,
 			SECONDS_BETWEEN_CRYSTAL_AMMO_CHANGES = 2;

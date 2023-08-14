@@ -41,13 +41,13 @@
             this.authenticationGroupBox = new System.Windows.Forms.GroupBox();
             this.buildsToPatchComboBox = new System.Windows.Forms.ComboBox();
             this.buttonChangeBuild = new System.Windows.Forms.Button();
-            this.textBoxAuthPassword = new System.Windows.Forms.TextBox();
-            this.textBoxAuthEmailAddress = new System.Windows.Forms.TextBox();
+            this.TextBoxAuthPassword = new System.Windows.Forms.TextBox();
+            this.TextBoxAuthEmailAddress = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.listBox_logMessages = new System.Windows.Forms.ListBox();
-            this.buttonPause = new System.Windows.Forms.Button();
-            this.buttonStartResume = new System.Windows.Forms.Button();
+            this.ButtonPause = new System.Windows.Forms.Button();
+            this.ButtonStartResume = new System.Windows.Forms.Button();
             this.configurationTabPage = new System.Windows.Forms.TabPage();
             this.configurationTabControl = new System.Windows.Forms.TabControl();
             this.mainConfigTabPage = new System.Windows.Forms.TabPage();
@@ -430,14 +430,14 @@
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(588, 414);
             this.mainTabControl.TabIndex = 0;
-            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // homeTabPage
             // 
             this.homeTabPage.Controls.Add(this.authenticationGroupBox);
             this.homeTabPage.Controls.Add(this.listBox_logMessages);
-            this.homeTabPage.Controls.Add(this.buttonPause);
-            this.homeTabPage.Controls.Add(this.buttonStartResume);
+            this.homeTabPage.Controls.Add(this.ButtonPause);
+            this.homeTabPage.Controls.Add(this.ButtonStartResume);
             this.homeTabPage.Location = new System.Drawing.Point(4, 22);
             this.homeTabPage.Name = "homeTabPage";
             this.homeTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -451,8 +451,8 @@
             this.authenticationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.authenticationGroupBox.Controls.Add(this.buildsToPatchComboBox);
             this.authenticationGroupBox.Controls.Add(this.buttonChangeBuild);
-            this.authenticationGroupBox.Controls.Add(this.textBoxAuthPassword);
-            this.authenticationGroupBox.Controls.Add(this.textBoxAuthEmailAddress);
+            this.authenticationGroupBox.Controls.Add(this.TextBoxAuthPassword);
+            this.authenticationGroupBox.Controls.Add(this.TextBoxAuthEmailAddress);
             this.authenticationGroupBox.Controls.Add(this.label31);
             this.authenticationGroupBox.Controls.Add(this.label30);
             this.authenticationGroupBox.Location = new System.Drawing.Point(296, 6);
@@ -480,24 +480,24 @@
             this.buttonChangeBuild.TabIndex = 1;
             this.buttonChangeBuild.Text = "Patch to...";
             this.buttonChangeBuild.UseVisualStyleBackColor = true;
-            this.buttonChangeBuild.Click += new System.EventHandler(this.buttonChangeBuild_Click);
+            this.buttonChangeBuild.Click += new System.EventHandler(this.ButtonChangeBuild_Click);
             // 
             // textBoxAuthPassword
             // 
-            this.textBoxAuthPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxAuthPassword.Location = new System.Drawing.Point(102, 45);
-            this.textBoxAuthPassword.Name = "textBoxAuthPassword";
-            this.textBoxAuthPassword.Size = new System.Drawing.Size(165, 20);
-            this.textBoxAuthPassword.TabIndex = 3;
-            this.textBoxAuthPassword.UseSystemPasswordChar = true;
+            this.TextBoxAuthPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxAuthPassword.Location = new System.Drawing.Point(102, 45);
+            this.TextBoxAuthPassword.Name = "TextBoxAuthPassword";
+            this.TextBoxAuthPassword.Size = new System.Drawing.Size(165, 20);
+            this.TextBoxAuthPassword.TabIndex = 3;
+            this.TextBoxAuthPassword.UseSystemPasswordChar = true;
             // 
             // textBoxAuthEmailAddress
             // 
-            this.textBoxAuthEmailAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxAuthEmailAddress.Location = new System.Drawing.Point(102, 19);
-            this.textBoxAuthEmailAddress.Name = "textBoxAuthEmailAddress";
-            this.textBoxAuthEmailAddress.Size = new System.Drawing.Size(165, 20);
-            this.textBoxAuthEmailAddress.TabIndex = 2;
+            this.TextBoxAuthEmailAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxAuthEmailAddress.Location = new System.Drawing.Point(102, 19);
+            this.TextBoxAuthEmailAddress.Name = "TextBoxAuthEmailAddress";
+            this.TextBoxAuthEmailAddress.Size = new System.Drawing.Size(165, 20);
+            this.TextBoxAuthEmailAddress.TabIndex = 2;
             // 
             // label31
             // 
@@ -533,24 +533,24 @@
             // 
             // buttonPause
             // 
-            this.buttonPause.BackColor = System.Drawing.Color.Red;
-            this.buttonPause.Location = new System.Drawing.Point(66, 6);
-            this.buttonPause.Name = "buttonPause";
-            this.buttonPause.Size = new System.Drawing.Size(45, 23);
-            this.buttonPause.TabIndex = 4;
-            this.buttonPause.Text = "Pause";
-            this.buttonPause.UseVisualStyleBackColor = false;
-            this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
+            this.ButtonPause.BackColor = System.Drawing.Color.Red;
+            this.ButtonPause.Location = new System.Drawing.Point(66, 6);
+            this.ButtonPause.Name = "ButtonPause";
+            this.ButtonPause.Size = new System.Drawing.Size(45, 23);
+            this.ButtonPause.TabIndex = 4;
+            this.ButtonPause.Text = "Pause";
+            this.ButtonPause.UseVisualStyleBackColor = false;
+            this.ButtonPause.Click += new System.EventHandler(this.ButtonPause_Click);
             // 
             // buttonStartResume
             // 
-            this.buttonStartResume.Location = new System.Drawing.Point(6, 6);
-            this.buttonStartResume.Name = "buttonStartResume";
-            this.buttonStartResume.Size = new System.Drawing.Size(54, 23);
-            this.buttonStartResume.TabIndex = 3;
-            this.buttonStartResume.Text = "Auth";
-            this.buttonStartResume.UseVisualStyleBackColor = true;
-            this.buttonStartResume.Click += new System.EventHandler(this.buttonStartResume_Click);
+            this.ButtonStartResume.Location = new System.Drawing.Point(6, 6);
+            this.ButtonStartResume.Name = "ButtonStartResume";
+            this.ButtonStartResume.Size = new System.Drawing.Size(54, 23);
+            this.ButtonStartResume.TabIndex = 3;
+            this.ButtonStartResume.Text = "Auth";
+            this.ButtonStartResume.UseVisualStyleBackColor = true;
+            this.ButtonStartResume.Click += new System.EventHandler(this.ButtonStartResume_Click);
             // 
             // configurationTabPage
             // 
@@ -588,7 +588,7 @@
             this.configurationTabControl.Size = new System.Drawing.Size(580, 392);
             this.configurationTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.configurationTabControl.TabIndex = 0;
-            this.configurationTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.configurationTabControl_DrawItem);
+            this.configurationTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ConfigurationTabControl_DrawItem);
             // 
             // mainConfigTabPage
             // 
@@ -623,7 +623,7 @@
             this.comboBoxBotMode.Name = "comboBoxBotMode";
             this.comboBoxBotMode.Size = new System.Drawing.Size(121, 21);
             this.comboBoxBotMode.TabIndex = 9;
-            this.comboBoxBotMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxBotMode_SelectedIndexChanged);
+            this.comboBoxBotMode.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBotMode_SelectedIndexChanged);
             // 
             // groupBoxConfigProfiles
             // 
@@ -654,7 +654,7 @@
             this.buttonCopyProfile.TabIndex = 6;
             this.buttonCopyProfile.Text = "Copy";
             this.buttonCopyProfile.UseVisualStyleBackColor = true;
-            this.buttonCopyProfile.Click += new System.EventHandler(this.buttonCopyProfile_Click);
+            this.buttonCopyProfile.Click += new System.EventHandler(this.ButtonCopyProfile_Click);
             // 
             // buttonSaveProfiles
             // 
@@ -665,7 +665,7 @@
             this.buttonSaveProfiles.TabIndex = 5;
             this.buttonSaveProfiles.Text = "Save";
             this.buttonSaveProfiles.UseVisualStyleBackColor = true;
-            this.buttonSaveProfiles.Click += new System.EventHandler(this.buttonSaveProfiles_Click);
+            this.buttonSaveProfiles.Click += new System.EventHandler(this.ButtonSaveProfiles_Click);
             // 
             // buttonLoadProfile
             // 
@@ -676,7 +676,7 @@
             this.buttonLoadProfile.TabIndex = 4;
             this.buttonLoadProfile.Text = "Load";
             this.buttonLoadProfile.UseVisualStyleBackColor = true;
-            this.buttonLoadProfile.Click += new System.EventHandler(this.buttonLoadProfile_Click);
+            this.buttonLoadProfile.Click += new System.EventHandler(this.ButtonLoadProfile_Click);
             // 
             // buttonRenameProfile
             // 
@@ -687,7 +687,7 @@
             this.buttonRenameProfile.TabIndex = 3;
             this.buttonRenameProfile.Text = "Rename";
             this.buttonRenameProfile.UseVisualStyleBackColor = true;
-            this.buttonRenameProfile.Click += new System.EventHandler(this.buttonRenameProfile_Click);
+            this.buttonRenameProfile.Click += new System.EventHandler(this.ButtonRenameProfile_Click);
             // 
             // buttonRemoveProfile
             // 
@@ -698,7 +698,7 @@
             this.buttonRemoveProfile.TabIndex = 2;
             this.buttonRemoveProfile.Text = "RemoveBookmarkAndCacheEntry";
             this.buttonRemoveProfile.UseVisualStyleBackColor = true;
-            this.buttonRemoveProfile.Click += new System.EventHandler(this.buttonRemoveProfile_Click);
+            this.buttonRemoveProfile.Click += new System.EventHandler(this.ButtonRemoveProfile_Click);
             // 
             // buttonAddProfile
             // 
@@ -709,7 +709,7 @@
             this.buttonAddProfile.TabIndex = 1;
             this.buttonAddProfile.Text = "Add";
             this.buttonAddProfile.UseVisualStyleBackColor = true;
-            this.buttonAddProfile.Click += new System.EventHandler(this.buttonAddProfile_Click);
+            this.buttonAddProfile.Click += new System.EventHandler(this.ButtonAddProfile_Click);
             // 
             // listBoxConfigProfiles
             // 
@@ -741,7 +741,7 @@
             this.checkBoxDisableTextureLoading.TabIndex = 14;
             this.checkBoxDisableTextureLoading.Text = "Disable Texture Loading";
             this.checkBoxDisableTextureLoading.UseVisualStyleBackColor = true;
-            this.checkBoxDisableTextureLoading.CheckedChanged += new System.EventHandler(this.checkBoxDisableTextureLoading_CheckedChanged);
+            this.checkBoxDisableTextureLoading.CheckedChanged += new System.EventHandler(this.CheckBoxDisableTextureLoading_CheckedChanged);
             // 
             // checkBoxDisableUIRender
             // 
@@ -752,7 +752,7 @@
             this.checkBoxDisableUIRender.TabIndex = 13;
             this.checkBoxDisableUIRender.Text = "Disable UI Render";
             this.checkBoxDisableUIRender.UseVisualStyleBackColor = true;
-            this.checkBoxDisableUIRender.CheckedChanged += new System.EventHandler(this.checkBoxDisableUIRender_CheckedChanged);
+            this.checkBoxDisableUIRender.CheckedChanged += new System.EventHandler(this.CheckBoxDisableUIRender_CheckedChanged);
             // 
             // checkBoxDisable3dRender
             // 
@@ -763,7 +763,7 @@
             this.checkBoxDisable3dRender.TabIndex = 12;
             this.checkBoxDisable3dRender.Text = "Disable 3D Render";
             this.checkBoxDisable3dRender.UseVisualStyleBackColor = true;
-            this.checkBoxDisable3dRender.CheckedChanged += new System.EventHandler(this.checkBoxDisable3dRender_CheckedChanged);
+            this.checkBoxDisable3dRender.CheckedChanged += new System.EventHandler(this.CheckBoxDisable3dRender_CheckedChanged);
             // 
             // defenseConfigTabPage
             // 
@@ -807,7 +807,7 @@
             this.checkBoxRunOnLowTank.TabIndex = 17;
             this.checkBoxRunOnLowTank.Text = "Run on Low Tank";
             this.checkBoxRunOnLowTank.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnLowTank.CheckedChanged += new System.EventHandler(this.checkBoxRunOnLowTank_CheckedChanged);
+            this.checkBoxRunOnLowTank.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnLowTank_CheckedChanged);
             // 
             // textBoxMinShieldPct
             // 
@@ -816,7 +816,7 @@
             this.textBoxMinShieldPct.Name = "textBoxMinShieldPct";
             this.textBoxMinShieldPct.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinShieldPct.TabIndex = 13;
-            this.textBoxMinShieldPct.TextChanged += new System.EventHandler(this.textBoxMinShieldPct_TextChanged);
+            this.textBoxMinShieldPct.TextChanged += new System.EventHandler(this.TextBoxMinShieldPct_TextChanged);
             // 
             // label10
             // 
@@ -835,7 +835,7 @@
             this.textBoxMinArmorPct.Name = "textBoxMinArmorPct";
             this.textBoxMinArmorPct.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinArmorPct.TabIndex = 14;
-            this.textBoxMinArmorPct.TextChanged += new System.EventHandler(this.textBoxMinArmorPct_TextChanged);
+            this.textBoxMinArmorPct.TextChanged += new System.EventHandler(this.TextBoxMinArmorPct_TextChanged);
             // 
             // label11
             // 
@@ -854,7 +854,7 @@
             this.textBoxResumeShieldPct.Name = "textBoxResumeShieldPct";
             this.textBoxResumeShieldPct.Size = new System.Drawing.Size(34, 20);
             this.textBoxResumeShieldPct.TabIndex = 15;
-            this.textBoxResumeShieldPct.TextChanged += new System.EventHandler(this.textBoxResumeShieldPct_TextChanged);
+            this.textBoxResumeShieldPct.TextChanged += new System.EventHandler(this.TextBoxResumeShieldPct_TextChanged);
             // 
             // label9
             // 
@@ -892,7 +892,7 @@
             this.checkBoxRunOnAllianceToAlliance.TabIndex = 5;
             this.checkBoxRunOnAllianceToAlliance.Text = "Alliance To Alliance";
             this.checkBoxRunOnAllianceToAlliance.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnAllianceToAlliance.CheckedChanged += new System.EventHandler(this.checkBoxRunOnAllianceToAlliance_CheckedChanged);
+            this.checkBoxRunOnAllianceToAlliance.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnAllianceToAlliance_CheckedChanged);
             // 
             // checkBoxRunOnCorpToAlliance
             // 
@@ -904,7 +904,7 @@
             this.checkBoxRunOnCorpToAlliance.TabIndex = 4;
             this.checkBoxRunOnCorpToAlliance.Text = "Corp To Alliance";
             this.checkBoxRunOnCorpToAlliance.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnCorpToAlliance.CheckedChanged += new System.EventHandler(this.checkBoxRunOnCorpToAlliance_CheckedChanged);
+            this.checkBoxRunOnCorpToAlliance.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnCorpToAlliance_CheckedChanged);
             // 
             // checkBoxRunOnCorpToCorp
             // 
@@ -916,7 +916,7 @@
             this.checkBoxRunOnCorpToCorp.TabIndex = 3;
             this.checkBoxRunOnCorpToCorp.Text = "Corp To Corp";
             this.checkBoxRunOnCorpToCorp.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnCorpToCorp.CheckedChanged += new System.EventHandler(this.checkBoxRunOnCorpToCorp_CheckedChanged);
+            this.checkBoxRunOnCorpToCorp.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnCorpToCorp_CheckedChanged);
             // 
             // checkBoxRunOnMeToCorp
             // 
@@ -928,7 +928,7 @@
             this.checkBoxRunOnMeToCorp.TabIndex = 2;
             this.checkBoxRunOnMeToCorp.Text = "Me To Corp";
             this.checkBoxRunOnMeToCorp.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnMeToCorp.CheckedChanged += new System.EventHandler(this.checkBoxRunOnMeToCorp_CheckedChanged);
+            this.checkBoxRunOnMeToCorp.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnMeToCorp_CheckedChanged);
             // 
             // checkBoxRunOnCorpToPilot
             // 
@@ -940,7 +940,7 @@
             this.checkBoxRunOnCorpToPilot.TabIndex = 1;
             this.checkBoxRunOnCorpToPilot.Text = "Corp To Pilot";
             this.checkBoxRunOnCorpToPilot.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnCorpToPilot.CheckedChanged += new System.EventHandler(this.checkBoxRunOnCorpToPilot_CheckedChanged);
+            this.checkBoxRunOnCorpToPilot.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnCorpToPilot_CheckedChanged);
             // 
             // checkBoxRunOnMeToPilot
             // 
@@ -952,7 +952,7 @@
             this.checkBoxRunOnMeToPilot.TabIndex = 0;
             this.checkBoxRunOnMeToPilot.Text = "Me To Pilot";
             this.checkBoxRunOnMeToPilot.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnMeToPilot.CheckedChanged += new System.EventHandler(this.checkBoxRunOnMeToPilot_CheckedChanged);
+            this.checkBoxRunOnMeToPilot.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnMeToPilot_CheckedChanged);
             // 
             // groupBoxMiscOptions
             // 
@@ -979,7 +979,7 @@
             this.checkBoxUseChatReading.TabIndex = 6;
             this.checkBoxUseChatReading.Text = "Use Chat Reading";
             this.checkBoxUseChatReading.UseVisualStyleBackColor = true;
-            this.checkBoxUseChatReading.CheckedChanged += new System.EventHandler(this.checkBoxUseChatReading_CheckedChanged);
+            this.checkBoxUseChatReading.CheckedChanged += new System.EventHandler(this.CheckBoxUseChatReading_CheckedChanged);
             // 
             // checkBoxAlwaysRunTank
             // 
@@ -991,7 +991,7 @@
             this.checkBoxAlwaysRunTank.TabIndex = 5;
             this.checkBoxAlwaysRunTank.Text = "Always Run Tank";
             this.checkBoxAlwaysRunTank.UseVisualStyleBackColor = true;
-            this.checkBoxAlwaysRunTank.CheckedChanged += new System.EventHandler(this.checkBoxAlwaysRunTank_CheckedChanged);
+            this.checkBoxAlwaysRunTank.CheckedChanged += new System.EventHandler(this.CheckBoxAlwaysRunTank_CheckedChanged);
             // 
             // checkBoxDisableStandingsChecks
             // 
@@ -1003,7 +1003,7 @@
             this.checkBoxDisableStandingsChecks.TabIndex = 4;
             this.checkBoxDisableStandingsChecks.Text = "Disable standings checking";
             this.checkBoxDisableStandingsChecks.UseVisualStyleBackColor = true;
-            this.checkBoxDisableStandingsChecks.CheckedChanged += new System.EventHandler(this.checkBoxDisableStandingsChecks_CheckedChanged);
+            this.checkBoxDisableStandingsChecks.CheckedChanged += new System.EventHandler(this.CheckBoxDisableStandingsChecks_CheckedChanged);
             // 
             // checkBoxAlwaysShieldBoost
             // 
@@ -1015,7 +1015,7 @@
             this.checkBoxAlwaysShieldBoost.TabIndex = 1;
             this.checkBoxAlwaysShieldBoost.Text = "Always Shield Boost";
             this.checkBoxAlwaysShieldBoost.UseVisualStyleBackColor = true;
-            this.checkBoxAlwaysShieldBoost.CheckedChanged += new System.EventHandler(this.checkBoxAlwaysShieldBoost_CheckedChanged);
+            this.checkBoxAlwaysShieldBoost.CheckedChanged += new System.EventHandler(this.CheckBoxAlwaysShieldBoost_CheckedChanged);
             // 
             // checkBoxPreferStationSafespots
             // 
@@ -1027,7 +1027,7 @@
             this.checkBoxPreferStationSafespots.TabIndex = 0;
             this.checkBoxPreferStationSafespots.Text = "Prefer Stations over Safespots";
             this.checkBoxPreferStationSafespots.UseVisualStyleBackColor = true;
-            this.checkBoxPreferStationSafespots.CheckedChanged += new System.EventHandler(this.checkBoxPreferStationSafespots_CheckedChanged);
+            this.checkBoxPreferStationSafespots.CheckedChanged += new System.EventHandler(this.CheckBoxPreferStationSafespots_CheckedChanged);
             // 
             // groupBoxMiscDefensive
             // 
@@ -1074,7 +1074,7 @@
             this.checkBoxRunOnBlacklist.TabIndex = 0;
             this.checkBoxRunOnBlacklist.Text = "Run on Blacklisted Pilot";
             this.checkBoxRunOnBlacklist.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnBlacklist.CheckedChanged += new System.EventHandler(this.checkBoxRunOnBlacklist_CheckedChanged);
+            this.checkBoxRunOnBlacklist.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnBlacklist_CheckedChanged);
             // 
             // textBoxMinutesToWait
             // 
@@ -1083,7 +1083,7 @@
             this.textBoxMinutesToWait.Name = "textBoxMinutesToWait";
             this.textBoxMinutesToWait.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinutesToWait.TabIndex = 1;
-            this.textBoxMinutesToWait.TextChanged += new System.EventHandler(this.textBoxMinutesToWait_TextChanged);
+            this.textBoxMinutesToWait.TextChanged += new System.EventHandler(this.TextBoxMinutesToWait_TextChanged);
             // 
             // checkBoxRunOnNonWhitelisted
             // 
@@ -1095,7 +1095,7 @@
             this.checkBoxRunOnNonWhitelisted.TabIndex = 1;
             this.checkBoxRunOnNonWhitelisted.Text = "Run on Non-Whitelisted Pilot";
             this.checkBoxRunOnNonWhitelisted.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnNonWhitelisted.CheckedChanged += new System.EventHandler(this.checkBoxRunOnNonWhitelisted_CheckedChanged);
+            this.checkBoxRunOnNonWhitelisted.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnNonWhitelisted_CheckedChanged);
             // 
             // checkBoxWaitAfterFleeing
             // 
@@ -1107,7 +1107,7 @@
             this.checkBoxWaitAfterFleeing.TabIndex = 0;
             this.checkBoxWaitAfterFleeing.Text = "Wait after fleeing";
             this.checkBoxWaitAfterFleeing.UseVisualStyleBackColor = true;
-            this.checkBoxWaitAfterFleeing.CheckedChanged += new System.EventHandler(this.checkBoxWaitAfterFleeing_CheckedChanged);
+            this.checkBoxWaitAfterFleeing.CheckedChanged += new System.EventHandler(this.CheckBoxWaitAfterFleeing_CheckedChanged);
             // 
             // checkBoxRunOnTargetJammed
             // 
@@ -1119,7 +1119,7 @@
             this.checkBoxRunOnTargetJammed.TabIndex = 4;
             this.checkBoxRunOnTargetJammed.Text = "Run when Target Jammed";
             this.checkBoxRunOnTargetJammed.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnTargetJammed.CheckedChanged += new System.EventHandler(this.checkBoxRunOnTargetJammed_CheckedChanged);
+            this.checkBoxRunOnTargetJammed.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnTargetJammed_CheckedChanged);
             // 
             // checkBoxRunOnLowDrones
             // 
@@ -1131,7 +1131,7 @@
             this.checkBoxRunOnLowDrones.TabIndex = 6;
             this.checkBoxRunOnLowDrones.Text = "Run on Low Drones";
             this.checkBoxRunOnLowDrones.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnLowDrones.CheckedChanged += new System.EventHandler(this.checkBoxRunOnLowDrones_CheckedChanged);
+            this.checkBoxRunOnLowDrones.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnLowDrones_CheckedChanged);
             // 
             // label46
             // 
@@ -1153,7 +1153,7 @@
             this.checkBoxRunOnLowAmmo.TabIndex = 5;
             this.checkBoxRunOnLowAmmo.Text = "Run on Low Ammo";
             this.checkBoxRunOnLowAmmo.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnLowAmmo.CheckedChanged += new System.EventHandler(this.checkBoxRunOnLowAmmo_CheckedChanged);
+            this.checkBoxRunOnLowAmmo.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnLowAmmo_CheckedChanged);
             // 
             // textBoxMinNumDrones
             // 
@@ -1162,7 +1162,7 @@
             this.textBoxMinNumDrones.Name = "textBoxMinNumDrones";
             this.textBoxMinNumDrones.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinNumDrones.TabIndex = 12;
-            this.textBoxMinNumDrones.TextChanged += new System.EventHandler(this.textBoxMinNumDrones_TextChanged);
+            this.textBoxMinNumDrones.TextChanged += new System.EventHandler(this.TextBoxMinNumDrones_TextChanged);
             // 
             // label13
             // 
@@ -1184,7 +1184,7 @@
             this.checkBoxRunOnLowCapacitor.TabIndex = 3;
             this.checkBoxRunOnLowCapacitor.Text = "Run on Low Capacitor";
             this.checkBoxRunOnLowCapacitor.UseVisualStyleBackColor = true;
-            this.checkBoxRunOnLowCapacitor.CheckedChanged += new System.EventHandler(this.checkBoxRunOnLowCapacitor_CheckedChanged);
+            this.checkBoxRunOnLowCapacitor.CheckedChanged += new System.EventHandler(this.CheckBoxRunOnLowCapacitor_CheckedChanged);
             // 
             // label12
             // 
@@ -1203,7 +1203,7 @@
             this.textBoxResumeCapPct.Name = "textBoxResumeCapPct";
             this.textBoxResumeCapPct.Size = new System.Drawing.Size(34, 20);
             this.textBoxResumeCapPct.TabIndex = 8;
-            this.textBoxResumeCapPct.TextChanged += new System.EventHandler(this.textBoxResumeCapPct_TextChanged);
+            this.textBoxResumeCapPct.TextChanged += new System.EventHandler(this.TextBoxResumeCapPct_TextChanged);
             // 
             // textBoxMinCapPct
             // 
@@ -1212,7 +1212,7 @@
             this.textBoxMinCapPct.Name = "textBoxMinCapPct";
             this.textBoxMinCapPct.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinCapPct.TabIndex = 5;
-            this.textBoxMinCapPct.TextChanged += new System.EventHandler(this.textBoxMinCapPct_TextChanged);
+            this.textBoxMinCapPct.TextChanged += new System.EventHandler(this.TextBoxMinCapPct_TextChanged);
             // 
             // groupBoxSocialStandings
             // 
@@ -1237,7 +1237,7 @@
             this.textBoxMinimumPilotStanding.Name = "textBoxMinimumPilotStanding";
             this.textBoxMinimumPilotStanding.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinimumPilotStanding.TabIndex = 5;
-            this.textBoxMinimumPilotStanding.TextChanged += new System.EventHandler(this.textBoxMinimumPilotStanding_TextChanged);
+            this.textBoxMinimumPilotStanding.TextChanged += new System.EventHandler(this.TextBoxMinimumPilotStanding_TextChanged);
             // 
             // textBoxMinimumCorpStanding
             // 
@@ -1246,7 +1246,7 @@
             this.textBoxMinimumCorpStanding.Name = "textBoxMinimumCorpStanding";
             this.textBoxMinimumCorpStanding.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinimumCorpStanding.TabIndex = 4;
-            this.textBoxMinimumCorpStanding.TextChanged += new System.EventHandler(this.textBoxMinimumCorpStanding_TextChanged);
+            this.textBoxMinimumCorpStanding.TextChanged += new System.EventHandler(this.TextBoxMinimumCorpStanding_TextChanged);
             // 
             // textBoxMinimumAllianceStanding
             // 
@@ -1255,7 +1255,7 @@
             this.textBoxMinimumAllianceStanding.Name = "textBoxMinimumAllianceStanding";
             this.textBoxMinimumAllianceStanding.Size = new System.Drawing.Size(34, 20);
             this.textBoxMinimumAllianceStanding.TabIndex = 3;
-            this.textBoxMinimumAllianceStanding.TextChanged += new System.EventHandler(this.textBoxMinimumAllianceStanding_TextChanged);
+            this.textBoxMinimumAllianceStanding.TextChanged += new System.EventHandler(this.TextBoxMinimumAllianceStanding_TextChanged);
             // 
             // label8
             // 
@@ -1334,7 +1334,7 @@
             this.buttonManuallyAdd.TabIndex = 57;
             this.buttonManuallyAdd.Text = "Manually Add Entry";
             this.buttonManuallyAdd.UseVisualStyleBackColor = true;
-            this.buttonManuallyAdd.Click += new System.EventHandler(this.buttonManuallyAdd_Click);
+            this.buttonManuallyAdd.Click += new System.EventHandler(this.ButtonManuallyAdd_Click);
             // 
             // radioButtonDisplayAllianceCache
             // 
@@ -1346,7 +1346,7 @@
             this.radioButtonDisplayAllianceCache.TabIndex = 56;
             this.radioButtonDisplayAllianceCache.TabStop = true;
             this.radioButtonDisplayAllianceCache.UseVisualStyleBackColor = true;
-            this.radioButtonDisplayAllianceCache.CheckedChanged += new System.EventHandler(this.radioButtonDisplayPilotCache_CheckedChanged);
+            this.radioButtonDisplayAllianceCache.CheckedChanged += new System.EventHandler(this.RadioButtonDisplayPilotCache_CheckedChanged);
             // 
             // radioButtonDisplayCorporationCache
             // 
@@ -1358,7 +1358,7 @@
             this.radioButtonDisplayCorporationCache.TabIndex = 55;
             this.radioButtonDisplayCorporationCache.TabStop = true;
             this.radioButtonDisplayCorporationCache.UseVisualStyleBackColor = true;
-            this.radioButtonDisplayCorporationCache.CheckedChanged += new System.EventHandler(this.radioButtonDisplayPilotCache_CheckedChanged);
+            this.radioButtonDisplayCorporationCache.CheckedChanged += new System.EventHandler(this.RadioButtonDisplayPilotCache_CheckedChanged);
             // 
             // radioButtonDisplayPilotCache
             // 
@@ -1371,7 +1371,7 @@
             this.radioButtonDisplayPilotCache.TabIndex = 54;
             this.radioButtonDisplayPilotCache.TabStop = true;
             this.radioButtonDisplayPilotCache.UseVisualStyleBackColor = true;
-            this.radioButtonDisplayPilotCache.CheckedChanged += new System.EventHandler(this.radioButtonDisplayPilotCache_CheckedChanged);
+            this.radioButtonDisplayPilotCache.CheckedChanged += new System.EventHandler(this.RadioButtonDisplayPilotCache_CheckedChanged);
             // 
             // textBoxSearchCache
             // 
@@ -1380,7 +1380,7 @@
             this.textBoxSearchCache.Name = "textBoxSearchCache";
             this.textBoxSearchCache.Size = new System.Drawing.Size(140, 20);
             this.textBoxSearchCache.TabIndex = 53;
-            this.textBoxSearchCache.TextChanged += new System.EventHandler(this.textBoxSearchCache_TextChanged);
+            this.textBoxSearchCache.TextChanged += new System.EventHandler(this.TextBoxSearchCache_TextChanged);
             // 
             // buttonAddWhitelistAlliance
             // 
@@ -1391,7 +1391,7 @@
             this.buttonAddWhitelistAlliance.TabIndex = 52;
             this.buttonAddWhitelistAlliance.Text = "Alliance";
             this.buttonAddWhitelistAlliance.UseVisualStyleBackColor = true;
-            this.buttonAddWhitelistAlliance.Click += new System.EventHandler(this.buttonAddWhitelistAlliance_Click_1);
+            this.buttonAddWhitelistAlliance.Click += new System.EventHandler(this.ButtonAddWhitelistAlliance_Click_1);
             // 
             // buttonAddWhitelistCorp
             // 
@@ -1402,7 +1402,7 @@
             this.buttonAddWhitelistCorp.TabIndex = 51;
             this.buttonAddWhitelistCorp.Text = "Corp";
             this.buttonAddWhitelistCorp.UseVisualStyleBackColor = true;
-            this.buttonAddWhitelistCorp.Click += new System.EventHandler(this.buttonAddWhitelistCorp_Click);
+            this.buttonAddWhitelistCorp.Click += new System.EventHandler(this.ButtonAddWhitelistCorp_Click);
             // 
             // buttonAddWhitelistPilot
             // 
@@ -1413,7 +1413,7 @@
             this.buttonAddWhitelistPilot.TabIndex = 50;
             this.buttonAddWhitelistPilot.Text = "Pilot";
             this.buttonAddWhitelistPilot.UseVisualStyleBackColor = true;
-            this.buttonAddWhitelistPilot.Click += new System.EventHandler(this.buttonAddWhitelistPilot_Click);
+            this.buttonAddWhitelistPilot.Click += new System.EventHandler(this.ButtonAddWhitelistPilot_Click);
             // 
             // label5
             // 
@@ -1444,7 +1444,7 @@
             this.buttonAddBlacklistAlliance.TabIndex = 47;
             this.buttonAddBlacklistAlliance.Text = "Alliance";
             this.buttonAddBlacklistAlliance.UseVisualStyleBackColor = true;
-            this.buttonAddBlacklistAlliance.Click += new System.EventHandler(this.buttonAddBlacklistAlliance_Click);
+            this.buttonAddBlacklistAlliance.Click += new System.EventHandler(this.ButtonAddBlacklistAlliance_Click);
             // 
             // buttonAddBlacklistCorp
             // 
@@ -1455,7 +1455,7 @@
             this.buttonAddBlacklistCorp.TabIndex = 46;
             this.buttonAddBlacklistCorp.Text = "Corp";
             this.buttonAddBlacklistCorp.UseVisualStyleBackColor = true;
-            this.buttonAddBlacklistCorp.Click += new System.EventHandler(this.buttonAddBlacklistCorp_Click);
+            this.buttonAddBlacklistCorp.Click += new System.EventHandler(this.ButtonAddBlacklistCorp_Click);
             // 
             // buttonAddBlacklistPilot
             // 
@@ -1466,7 +1466,7 @@
             this.buttonAddBlacklistPilot.TabIndex = 45;
             this.buttonAddBlacklistPilot.Text = "Pilot";
             this.buttonAddBlacklistPilot.UseVisualStyleBackColor = true;
-            this.buttonAddBlacklistPilot.Click += new System.EventHandler(this.buttonAddBlacklistPilot_Click_1);
+            this.buttonAddBlacklistPilot.Click += new System.EventHandler(this.ButtonAddBlacklistPilot_Click_1);
             // 
             // buttonRemoveBlacklistAlliance
             // 
@@ -1477,7 +1477,7 @@
             this.buttonRemoveBlacklistAlliance.TabIndex = 44;
             this.buttonRemoveBlacklistAlliance.Text = "X";
             this.buttonRemoveBlacklistAlliance.UseVisualStyleBackColor = true;
-            this.buttonRemoveBlacklistAlliance.Click += new System.EventHandler(this.buttonRemoveBlacklistAlliance_Click);
+            this.buttonRemoveBlacklistAlliance.Click += new System.EventHandler(this.ButtonRemoveBlacklistAlliance_Click);
             // 
             // buttonRemoveBlacklistCorp
             // 
@@ -1488,7 +1488,7 @@
             this.buttonRemoveBlacklistCorp.TabIndex = 43;
             this.buttonRemoveBlacklistCorp.Text = "X";
             this.buttonRemoveBlacklistCorp.UseVisualStyleBackColor = true;
-            this.buttonRemoveBlacklistCorp.Click += new System.EventHandler(this.buttonRemoveBlacklistCorp_Click);
+            this.buttonRemoveBlacklistCorp.Click += new System.EventHandler(this.ButtonRemoveBlacklistCorp_Click);
             // 
             // buttonRemoveBlacklistPilot
             // 
@@ -1499,7 +1499,7 @@
             this.buttonRemoveBlacklistPilot.TabIndex = 42;
             this.buttonRemoveBlacklistPilot.Text = "X";
             this.buttonRemoveBlacklistPilot.UseVisualStyleBackColor = true;
-            this.buttonRemoveBlacklistPilot.Click += new System.EventHandler(this.buttonRemoveBlacklistPilot_Click);
+            this.buttonRemoveBlacklistPilot.Click += new System.EventHandler(this.ButtonRemoveBlacklistPilot_Click);
             // 
             // buttonRemoveWhitelistAlliance
             // 
@@ -1510,7 +1510,7 @@
             this.buttonRemoveWhitelistAlliance.TabIndex = 41;
             this.buttonRemoveWhitelistAlliance.Text = "X";
             this.buttonRemoveWhitelistAlliance.UseVisualStyleBackColor = true;
-            this.buttonRemoveWhitelistAlliance.Click += new System.EventHandler(this.buttonRemoveWhitelistAlliance_Click);
+            this.buttonRemoveWhitelistAlliance.Click += new System.EventHandler(this.ButtonRemoveWhitelistAlliance_Click);
             // 
             // buttonRemoveWhitelistCorp
             // 
@@ -1521,7 +1521,7 @@
             this.buttonRemoveWhitelistCorp.TabIndex = 40;
             this.buttonRemoveWhitelistCorp.Text = "X";
             this.buttonRemoveWhitelistCorp.UseVisualStyleBackColor = true;
-            this.buttonRemoveWhitelistCorp.Click += new System.EventHandler(this.buttonRemoveWhitelistCorp_Click);
+            this.buttonRemoveWhitelistCorp.Click += new System.EventHandler(this.ButtonRemoveWhitelistCorp_Click);
             // 
             // buttonRemoveWhitelistPilot
             // 
@@ -1532,7 +1532,7 @@
             this.buttonRemoveWhitelistPilot.TabIndex = 39;
             this.buttonRemoveWhitelistPilot.Text = "X";
             this.buttonRemoveWhitelistPilot.UseVisualStyleBackColor = true;
-            this.buttonRemoveWhitelistPilot.Click += new System.EventHandler(this.buttonRemoveWhitelistPilot_Click);
+            this.buttonRemoveWhitelistPilot.Click += new System.EventHandler(this.ButtonRemoveWhitelistPilot_Click);
             // 
             // label3
             // 
@@ -1553,7 +1553,7 @@
             this.listBoxSearchResults.Name = "listBoxSearchResults";
             this.listBoxSearchResults.Size = new System.Drawing.Size(140, 95);
             this.listBoxSearchResults.TabIndex = 37;
-            this.listBoxSearchResults.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstBox_DrawItem);
+            this.listBoxSearchResults.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LstBox_DrawItem);
             // 
             // label2
             // 
@@ -1677,7 +1677,7 @@
             this.textBoxSalvagingPrefix.Name = "textBoxSalvagingPrefix";
             this.textBoxSalvagingPrefix.Size = new System.Drawing.Size(84, 20);
             this.textBoxSalvagingPrefix.TabIndex = 12;
-            this.textBoxSalvagingPrefix.TextChanged += new System.EventHandler(this.textBoxSalvagingPrefix_TextChanged);
+            this.textBoxSalvagingPrefix.TextChanged += new System.EventHandler(this.TextBoxSalvagingPrefix_TextChanged);
             // 
             // label47
             // 
@@ -1694,7 +1694,7 @@
             this.textBoxTemporaryCanPrefix.Name = "textBoxTemporaryCanPrefix";
             this.textBoxTemporaryCanPrefix.Size = new System.Drawing.Size(84, 20);
             this.textBoxTemporaryCanPrefix.TabIndex = 10;
-            this.textBoxTemporaryCanPrefix.TextChanged += new System.EventHandler(this.textBoxTemporaryCanPrefix_TextChanged);
+            this.textBoxTemporaryCanPrefix.TextChanged += new System.EventHandler(this.TextBoxTemporaryCanPrefix_TextChanged);
             // 
             // label18
             // 
@@ -1720,7 +1720,7 @@
             this.textBoxTemporaryBeltBookMark.Name = "textBoxTemporaryBeltBookMark";
             this.textBoxTemporaryBeltBookMark.Size = new System.Drawing.Size(84, 20);
             this.textBoxTemporaryBeltBookMark.TabIndex = 6;
-            this.textBoxTemporaryBeltBookMark.TextChanged += new System.EventHandler(this.textBoxTemporaryBeltBookMark_TextChanged);
+            this.textBoxTemporaryBeltBookMark.TextChanged += new System.EventHandler(this.TextBoxTemporaryBeltBookMark_TextChanged);
             // 
             // textBoxIceBeltBookmarkPrefix
             // 
@@ -1728,7 +1728,7 @@
             this.textBoxIceBeltBookmarkPrefix.Name = "textBoxIceBeltBookmarkPrefix";
             this.textBoxIceBeltBookmarkPrefix.Size = new System.Drawing.Size(84, 20);
             this.textBoxIceBeltBookmarkPrefix.TabIndex = 4;
-            this.textBoxIceBeltBookmarkPrefix.TextChanged += new System.EventHandler(this.textBoxIceBeltBookmarkPrefix_TextChanged);
+            this.textBoxIceBeltBookmarkPrefix.TextChanged += new System.EventHandler(this.TextBoxIceBeltBookmarkPrefix_TextChanged);
             // 
             // textBoxAsteroidBeltBookmarkPrefix
             // 
@@ -1736,7 +1736,7 @@
             this.textBoxAsteroidBeltBookmarkPrefix.Name = "textBoxAsteroidBeltBookmarkPrefix";
             this.textBoxAsteroidBeltBookmarkPrefix.Size = new System.Drawing.Size(84, 20);
             this.textBoxAsteroidBeltBookmarkPrefix.TabIndex = 3;
-            this.textBoxAsteroidBeltBookmarkPrefix.TextChanged += new System.EventHandler(this.textBoxAsteroidBeltBookmarkPrefix_TextChanged);
+            this.textBoxAsteroidBeltBookmarkPrefix.TextChanged += new System.EventHandler(this.TextBoxAsteroidBeltBookmarkPrefix_TextChanged);
             // 
             // label15
             // 
@@ -1762,7 +1762,7 @@
             this.textBoxSafeBookmarkPrefix.Name = "textBoxSafeBookmarkPrefix";
             this.textBoxSafeBookmarkPrefix.Size = new System.Drawing.Size(84, 20);
             this.textBoxSafeBookmarkPrefix.TabIndex = 0;
-            this.textBoxSafeBookmarkPrefix.TextChanged += new System.EventHandler(this.textBoxSafeBookmarkPrefix_TextChanged);
+            this.textBoxSafeBookmarkPrefix.TextChanged += new System.EventHandler(this.TextBoxSafeBookmarkPrefix_TextChanged);
             // 
             // movementConfigTabPage
             // 
@@ -1800,7 +1800,7 @@
             this.checkBoxKeepAtRange.TabIndex = 31;
             this.checkBoxKeepAtRange.Text = "Keep At Range Instead";
             this.checkBoxKeepAtRange.UseVisualStyleBackColor = true;
-            this.checkBoxKeepAtRange.CheckedChanged += new System.EventHandler(this.checkBoxKeepAtRange_CheckedChanged);
+            this.checkBoxKeepAtRange.CheckedChanged += new System.EventHandler(this.CheckBoxKeepAtRange_CheckedChanged);
             // 
             // label17
             // 
@@ -1819,7 +1819,7 @@
             this.textBoxOrbitDistance.Name = "textBoxOrbitDistance";
             this.textBoxOrbitDistance.Size = new System.Drawing.Size(52, 20);
             this.textBoxOrbitDistance.TabIndex = 29;
-            this.textBoxOrbitDistance.TextChanged += new System.EventHandler(this.textBoxOrbitDistance_TextChanged);
+            this.textBoxOrbitDistance.TextChanged += new System.EventHandler(this.TextBoxOrbitDistance_TextChanged);
             // 
             // checkBoxUseCustomOrbitDistance
             // 
@@ -1831,7 +1831,7 @@
             this.checkBoxUseCustomOrbitDistance.TabIndex = 26;
             this.checkBoxUseCustomOrbitDistance.Text = "Use Custom Orbit Distance";
             this.checkBoxUseCustomOrbitDistance.UseVisualStyleBackColor = true;
-            this.checkBoxUseCustomOrbitDistance.CheckedChanged += new System.EventHandler(this.checkBoxUseCustomOrbitDistance_CheckedChanged);
+            this.checkBoxUseCustomOrbitDistance.CheckedChanged += new System.EventHandler(this.CheckBoxUseCustomOrbitDistance_CheckedChanged);
             // 
             // groupBoxPropulsionModules
             // 
@@ -1866,7 +1866,7 @@
             this.textBoxPropModResumeCapPct.Name = "textBoxPropModResumeCapPct";
             this.textBoxPropModResumeCapPct.Size = new System.Drawing.Size(52, 20);
             this.textBoxPropModResumeCapPct.TabIndex = 14;
-            this.textBoxPropModResumeCapPct.TextChanged += new System.EventHandler(this.textBoxPropModResumeCapPct_TextChanged);
+            this.textBoxPropModResumeCapPct.TextChanged += new System.EventHandler(this.TextBoxPropModResumeCapPct_TextChanged);
             // 
             // label62
             // 
@@ -1885,7 +1885,7 @@
             this.textBoxPropModMinCapPct.Name = "textBoxPropModMinCapPct";
             this.textBoxPropModMinCapPct.Size = new System.Drawing.Size(52, 20);
             this.textBoxPropModMinCapPct.TabIndex = 12;
-            this.textBoxPropModMinCapPct.TextChanged += new System.EventHandler(this.textBoxPropModMinCapPct_TextChanged);
+            this.textBoxPropModMinCapPct.TextChanged += new System.EventHandler(this.TextBoxPropModMinCapPct_TextChanged);
             // 
             // groupBoxMovementBounce
             // 
@@ -1911,7 +1911,7 @@
             this.checkBoxUseTempBeltBookmarks.TabIndex = 29;
             this.checkBoxUseTempBeltBookmarks.Text = "Use Temporary Bookmarks";
             this.checkBoxUseTempBeltBookmarks.UseVisualStyleBackColor = true;
-            this.checkBoxUseTempBeltBookmarks.CheckedChanged += new System.EventHandler(this.checkBoxUseTempBeltBookmarks_CheckedChanged);
+            this.checkBoxUseTempBeltBookmarks.CheckedChanged += new System.EventHandler(this.CheckBoxUseTempBeltBookmarks_CheckedChanged);
             // 
             // label25
             // 
@@ -1930,7 +1930,7 @@
             this.textBoxMaxSlowboatTime.Name = "textBoxMaxSlowboatTime";
             this.textBoxMaxSlowboatTime.Size = new System.Drawing.Size(51, 20);
             this.textBoxMaxSlowboatTime.TabIndex = 27;
-            this.textBoxMaxSlowboatTime.TextChanged += new System.EventHandler(this.textBoxMaxSlowboatTime_TextChanged);
+            this.textBoxMaxSlowboatTime.TextChanged += new System.EventHandler(this.TextBoxMaxSlowboatTime_TextChanged);
             // 
             // checkBoxBounceWarp
             // 
@@ -1942,7 +1942,7 @@
             this.checkBoxBounceWarp.TabIndex = 25;
             this.checkBoxBounceWarp.Text = "Bounce Warp";
             this.checkBoxBounceWarp.UseVisualStyleBackColor = true;
-            this.checkBoxBounceWarp.CheckedChanged += new System.EventHandler(this.checkBoxBounceWarp_CheckedChanged);
+            this.checkBoxBounceWarp.CheckedChanged += new System.EventHandler(this.CheckBoxBounceWarp_CheckedChanged);
             // 
             // groupBoxMovementBelts
             // 
@@ -1984,7 +1984,7 @@
             this.comboBoxBeltSubsetMode.Name = "comboBoxBeltSubsetMode";
             this.comboBoxBeltSubsetMode.Size = new System.Drawing.Size(101, 21);
             this.comboBoxBeltSubsetMode.TabIndex = 14;
-            this.comboBoxBeltSubsetMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxBeltSubsetMode_SelectedIndexChanged);
+            this.comboBoxBeltSubsetMode.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBeltSubsetMode_SelectedIndexChanged);
             // 
             // textBoxNumBeltsInSubset
             // 
@@ -1993,7 +1993,7 @@
             this.textBoxNumBeltsInSubset.Name = "textBoxNumBeltsInSubset";
             this.textBoxNumBeltsInSubset.Size = new System.Drawing.Size(62, 20);
             this.textBoxNumBeltsInSubset.TabIndex = 13;
-            this.textBoxNumBeltsInSubset.TextChanged += new System.EventHandler(this.textBoxNumBeltsInSubset_TextChanged);
+            this.textBoxNumBeltsInSubset.TextChanged += new System.EventHandler(this.TextBoxNumBeltsInSubset_TextChanged);
             // 
             // label24
             // 
@@ -2015,7 +2015,7 @@
             this.checkBoxUseBeltSubsets.TabIndex = 5;
             this.checkBoxUseBeltSubsets.Text = "Use Belt Subsets";
             this.checkBoxUseBeltSubsets.UseVisualStyleBackColor = true;
-            this.checkBoxUseBeltSubsets.CheckedChanged += new System.EventHandler(this.checkBoxUseBeltSubsets_CheckedChanged);
+            this.checkBoxUseBeltSubsets.CheckedChanged += new System.EventHandler(this.CheckBoxUseBeltSubsets_CheckedChanged);
             // 
             // checkBoxOnlyUseBookMarkedBelts
             // 
@@ -2027,7 +2027,7 @@
             this.checkBoxOnlyUseBookMarkedBelts.TabIndex = 3;
             this.checkBoxOnlyUseBookMarkedBelts.Text = "Only Use Belt BookMarks";
             this.checkBoxOnlyUseBookMarkedBelts.UseVisualStyleBackColor = true;
-            this.checkBoxOnlyUseBookMarkedBelts.CheckedChanged += new System.EventHandler(this.checkBoxOnlyUseBookMarkedBelts_CheckedChanged);
+            this.checkBoxOnlyUseBookMarkedBelts.CheckedChanged += new System.EventHandler(this.CheckBoxOnlyUseBookMarkedBelts_CheckedChanged);
             // 
             // checkBoxMoveToRandomBelts
             // 
@@ -2039,7 +2039,7 @@
             this.checkBoxMoveToRandomBelts.TabIndex = 4;
             this.checkBoxMoveToRandomBelts.Text = "Move to random belts";
             this.checkBoxMoveToRandomBelts.UseVisualStyleBackColor = true;
-            this.checkBoxMoveToRandomBelts.CheckedChanged += new System.EventHandler(this.checkBoxMoveToRandomBelts_CheckedChanged);
+            this.checkBoxMoveToRandomBelts.CheckedChanged += new System.EventHandler(this.CheckBoxMoveToRandomBelts_CheckedChanged);
             // 
             // cargoConfigTabPage
             // 
@@ -2081,7 +2081,7 @@
             this.textBoxCargoFullThreshold.Name = "textBoxCargoFullThreshold";
             this.textBoxCargoFullThreshold.Size = new System.Drawing.Size(93, 20);
             this.textBoxCargoFullThreshold.TabIndex = 49;
-            this.textBoxCargoFullThreshold.TextChanged += new System.EventHandler(this.textBoxCargoFullThreshold_TextChanged);
+            this.textBoxCargoFullThreshold.TextChanged += new System.EventHandler(this.TextBoxCargoFullThreshold_TextChanged);
             // 
             // groupBoxCargoPickupLocation
             // 
@@ -2118,7 +2118,7 @@
             this.checkBoxAlwaysPopCans.TabIndex = 51;
             this.checkBoxAlwaysPopCans.Text = "Always Empty (Pop) Jetcans";
             this.checkBoxAlwaysPopCans.UseVisualStyleBackColor = true;
-            this.checkBoxAlwaysPopCans.CheckedChanged += new System.EventHandler(this.checkBoxAlwaysPopCans_CheckedChanged);
+            this.checkBoxAlwaysPopCans.CheckedChanged += new System.EventHandler(this.CheckBoxAlwaysPopCans_CheckedChanged);
             // 
             // label54
             // 
@@ -2137,7 +2137,7 @@
             this.textPickupHangarDivision.Name = "textPickupHangarDivision";
             this.textPickupHangarDivision.Size = new System.Drawing.Size(131, 20);
             this.textPickupHangarDivision.TabIndex = 35;
-            this.textPickupHangarDivision.TextChanged += new System.EventHandler(this.textPickupHangarDivision_TextChanged);
+            this.textPickupHangarDivision.TextChanged += new System.EventHandler(this.TextPickupHangarDivision_TextChanged);
             // 
             // label50
             // 
@@ -2156,7 +2156,7 @@
             this.textBoxPickupID.Name = "textBoxPickupID";
             this.textBoxPickupID.Size = new System.Drawing.Size(131, 20);
             this.textBoxPickupID.TabIndex = 27;
-            this.textBoxPickupID.TextChanged += new System.EventHandler(this.textBoxPickupID_TextChanged);
+            this.textBoxPickupID.TextChanged += new System.EventHandler(this.TextBoxPickupID_TextChanged);
             // 
             // label38
             // 
@@ -2185,7 +2185,7 @@
             this.textBoxPickupName.Name = "textBoxPickupName";
             this.textBoxPickupName.Size = new System.Drawing.Size(131, 20);
             this.textBoxPickupName.TabIndex = 25;
-            this.textBoxPickupName.TextChanged += new System.EventHandler(this.textBoxPickupName_TextChanged);
+            this.textBoxPickupName.TextChanged += new System.EventHandler(this.TextBoxPickupName_TextChanged);
             // 
             // label48
             // 
@@ -2206,7 +2206,7 @@
             this.comboBoxPickupType.Name = "comboBoxPickupType";
             this.comboBoxPickupType.Size = new System.Drawing.Size(131, 21);
             this.comboBoxPickupType.TabIndex = 13;
-            this.comboBoxPickupType.SelectedIndexChanged += new System.EventHandler(this.comboBoxPickupType_SelectedIndexChanged);
+            this.comboBoxPickupType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPickupType_SelectedIndexChanged);
             // 
             // textBoxPickupSystemBookmark
             // 
@@ -2215,7 +2215,7 @@
             this.textBoxPickupSystemBookmark.Name = "textBoxPickupSystemBookmark";
             this.textBoxPickupSystemBookmark.Size = new System.Drawing.Size(131, 20);
             this.textBoxPickupSystemBookmark.TabIndex = 22;
-            this.textBoxPickupSystemBookmark.TextChanged += new System.EventHandler(this.textBoxPickupSystemBookmark_TextChanged);
+            this.textBoxPickupSystemBookmark.TextChanged += new System.EventHandler(this.TextBoxPickupSystemBookmark_TextChanged);
             // 
             // gorupBoxCargoDropoffLocation
             // 
@@ -2256,7 +2256,7 @@
             this.textBoxJetcanNameFormat.Size = new System.Drawing.Size(126, 20);
             this.textBoxJetcanNameFormat.TabIndex = 53;
             this.textBoxJetcanNameFormat.Text = "CORP HH:MM FULL";
-            this.textBoxJetcanNameFormat.TextChanged += new System.EventHandler(this.textBoxJetcanNameFormat_TextChanged);
+            this.textBoxJetcanNameFormat.TextChanged += new System.EventHandler(this.TextBoxJetcanNameFormat_TextChanged);
             // 
             // label33
             // 
@@ -2275,7 +2275,7 @@
             this.textBoxDropoffID.Name = "textBoxDropoffID";
             this.textBoxDropoffID.Size = new System.Drawing.Size(126, 20);
             this.textBoxDropoffID.TabIndex = 24;
-            this.textBoxDropoffID.TextChanged += new System.EventHandler(this.textBoxDropoffID_TextChanged);
+            this.textBoxDropoffID.TextChanged += new System.EventHandler(this.TextBoxDropoffID_TextChanged);
             // 
             // label22
             // 
@@ -2294,7 +2294,7 @@
             this.textBoxDropoffBookmarkLabel.Name = "textBoxDropoffBookmarkLabel";
             this.textBoxDropoffBookmarkLabel.Size = new System.Drawing.Size(126, 20);
             this.textBoxDropoffBookmarkLabel.TabIndex = 22;
-            this.textBoxDropoffBookmarkLabel.TextChanged += new System.EventHandler(this.textBoxDropoffBookmarkLabel_TextChanged);
+            this.textBoxDropoffBookmarkLabel.TextChanged += new System.EventHandler(this.TextBoxDropoffBookmarkLabel_TextChanged);
             // 
             // label21
             // 
@@ -2315,7 +2315,7 @@
             this.comboBoxDropoffType.Name = "comboBoxDropoffType";
             this.comboBoxDropoffType.Size = new System.Drawing.Size(126, 21);
             this.comboBoxDropoffType.TabIndex = 20;
-            this.comboBoxDropoffType.SelectedIndexChanged += new System.EventHandler(this.comboBoxDropoffType_SelectedIndexChanged);
+            this.comboBoxDropoffType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxDropoffType_SelectedIndexChanged);
             // 
             // label34
             // 
@@ -2334,7 +2334,7 @@
             this.textBoxDropoffHangarDivision.Name = "textBoxDropoffHangarDivision";
             this.textBoxDropoffHangarDivision.Size = new System.Drawing.Size(126, 20);
             this.textBoxDropoffHangarDivision.TabIndex = 26;
-            this.textBoxDropoffHangarDivision.TextChanged += new System.EventHandler(this.textBoxDropoffHangarDivision_TextChanged);
+            this.textBoxDropoffHangarDivision.TextChanged += new System.EventHandler(this.TextBoxDropoffHangarDivision_TextChanged);
             // 
             // maxRuntimeTabPage
             // 
@@ -2375,7 +2375,7 @@
             this.checkBoxUseRandomWaits.Text = "Use Random Waits";
             this.checkBoxUseRandomWaits.UseVisualStyleBackColor = true;
             this.checkBoxUseRandomWaits.Visible = false;
-            this.checkBoxUseRandomWaits.CheckedChanged += new System.EventHandler(this.checkBoxUseRandomWaits_CheckedChanged);
+            this.checkBoxUseRandomWaits.CheckedChanged += new System.EventHandler(this.CheckBoxUseRandomWaits_CheckedChanged);
             // 
             // label45
             // 
@@ -2404,7 +2404,7 @@
             this.textBoxResumeAfter.Name = "textBoxResumeAfter";
             this.textBoxResumeAfter.Size = new System.Drawing.Size(42, 20);
             this.textBoxResumeAfter.TabIndex = 3;
-            this.textBoxResumeAfter.TextChanged += new System.EventHandler(this.textBoxResumeAfter_TextChanged);
+            this.textBoxResumeAfter.TextChanged += new System.EventHandler(this.TextBoxResumeAfter_TextChanged);
             // 
             // textBoxMaxRuntime
             // 
@@ -2413,7 +2413,7 @@
             this.textBoxMaxRuntime.Name = "textBoxMaxRuntime";
             this.textBoxMaxRuntime.Size = new System.Drawing.Size(42, 20);
             this.textBoxMaxRuntime.TabIndex = 2;
-            this.textBoxMaxRuntime.TextChanged += new System.EventHandler(this.textBoxMaxRuntime_TextChanged);
+            this.textBoxMaxRuntime.TextChanged += new System.EventHandler(this.TextBoxMaxRuntime_TextChanged);
             // 
             // checkBoxResumeAfter
             // 
@@ -2425,7 +2425,7 @@
             this.checkBoxResumeAfter.TabIndex = 1;
             this.checkBoxResumeAfter.Text = "Resume after waiting";
             this.checkBoxResumeAfter.UseVisualStyleBackColor = true;
-            this.checkBoxResumeAfter.CheckedChanged += new System.EventHandler(this.checkBoxResumeAfter_CheckedChanged);
+            this.checkBoxResumeAfter.CheckedChanged += new System.EventHandler(this.CheckBoxResumeAfter_CheckedChanged);
             // 
             // checkBoxUseMaxRuntime
             // 
@@ -2437,7 +2437,7 @@
             this.checkBoxUseMaxRuntime.TabIndex = 0;
             this.checkBoxUseMaxRuntime.Text = "Use Max Runtime";
             this.checkBoxUseMaxRuntime.UseVisualStyleBackColor = true;
-            this.checkBoxUseMaxRuntime.CheckedChanged += new System.EventHandler(this.checkBoxUseMaxRuntime_CheckedChanged);
+            this.checkBoxUseMaxRuntime.CheckedChanged += new System.EventHandler(this.CheckBoxUseMaxRuntime_CheckedChanged);
             // 
             // groupBoxRelaunch
             // 
@@ -2462,7 +2462,7 @@
             this.checkBoxRelaunchAfterDowntime.TabIndex = 4;
             this.checkBoxRelaunchAfterDowntime.Text = "Relaunch after downtime";
             this.checkBoxRelaunchAfterDowntime.UseVisualStyleBackColor = true;
-            this.checkBoxRelaunchAfterDowntime.CheckedChanged += new System.EventHandler(this.checkBoxRelaunchAfterDowntime_CheckedChanged);
+            this.checkBoxRelaunchAfterDowntime.CheckedChanged += new System.EventHandler(this.CheckBoxRelaunchAfterDowntime_CheckedChanged);
             // 
             // label32
             // 
@@ -2481,7 +2481,7 @@
             this.textBoxCharacterSetToLaunch.Name = "textBoxCharacterSetToLaunch";
             this.textBoxCharacterSetToLaunch.Size = new System.Drawing.Size(100, 20);
             this.textBoxCharacterSetToLaunch.TabIndex = 1;
-            this.textBoxCharacterSetToLaunch.TextChanged += new System.EventHandler(this.textBoxCharacterSetToLaunch_TextChanged);
+            this.textBoxCharacterSetToLaunch.TextChanged += new System.EventHandler(this.TextBoxCharacterSetToLaunch_TextChanged);
             // 
             // checkBoxUseRelaunching
             // 
@@ -2493,7 +2493,7 @@
             this.checkBoxUseRelaunching.TabIndex = 0;
             this.checkBoxUseRelaunching.Text = "Use Relaunching";
             this.checkBoxUseRelaunching.UseVisualStyleBackColor = true;
-            this.checkBoxUseRelaunching.CheckedChanged += new System.EventHandler(this.checkBoxUseRelaunching_CheckedChanged);
+            this.checkBoxUseRelaunching.CheckedChanged += new System.EventHandler(this.CheckBoxUseRelaunching_CheckedChanged);
             // 
             // fleetConfigTabPage
             // 
@@ -2533,7 +2533,7 @@
             this.checkBoxOnlyHaulForListedMembers.TabIndex = 5;
             this.checkBoxOnlyHaulForListedMembers.Text = "Only Haul For These";
             this.checkBoxOnlyHaulForListedMembers.UseVisualStyleBackColor = true;
-            this.checkBoxOnlyHaulForListedMembers.CheckedChanged += new System.EventHandler(this.checkBoxOnlyHaulForListedMembers_CheckedChanged);
+            this.checkBoxOnlyHaulForListedMembers.CheckedChanged += new System.EventHandler(this.CheckBoxOnlyHaulForListedMembers_CheckedChanged);
             // 
             // buttonFleetRemoveSkipCharID
             // 
@@ -2544,7 +2544,7 @@
             this.buttonFleetRemoveSkipCharID.TabIndex = 3;
             this.buttonFleetRemoveSkipCharID.Text = "X";
             this.buttonFleetRemoveSkipCharID.UseVisualStyleBackColor = true;
-            this.buttonFleetRemoveSkipCharID.Click += new System.EventHandler(this.buttonFleetRemoveSkipCharID_Click);
+            this.buttonFleetRemoveSkipCharID.Click += new System.EventHandler(this.ButtonFleetRemoveSkipCharID_Click);
             // 
             // buttonFleetAddSkipCharID
             // 
@@ -2555,7 +2555,7 @@
             this.buttonFleetAddSkipCharID.TabIndex = 2;
             this.buttonFleetAddSkipCharID.Text = "Add CharID";
             this.buttonFleetAddSkipCharID.UseVisualStyleBackColor = true;
-            this.buttonFleetAddSkipCharID.Click += new System.EventHandler(this.buttonFleetAddSkipCharID_Click);
+            this.buttonFleetAddSkipCharID.Click += new System.EventHandler(this.ButtonFleetAddSkipCharID_Click);
             // 
             // textBoxFleetCharIDSkip
             // 
@@ -2564,7 +2564,7 @@
             this.textBoxFleetCharIDSkip.Name = "textBoxFleetCharIDSkip";
             this.textBoxFleetCharIDSkip.Size = new System.Drawing.Size(120, 20);
             this.textBoxFleetCharIDSkip.TabIndex = 1;
-            this.textBoxFleetCharIDSkip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxFleetCharIDSkip_KeyUp);
+            this.textBoxFleetCharIDSkip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxFleetCharIDSkip_KeyUp);
             // 
             // label43
             // 
@@ -2584,7 +2584,7 @@
             this.listBoxFleetCharIDsToSkip.Name = "listBoxFleetCharIDsToSkip";
             this.listBoxFleetCharIDsToSkip.Size = new System.Drawing.Size(120, 121);
             this.listBoxFleetCharIDsToSkip.TabIndex = 0;
-            this.listBoxFleetCharIDsToSkip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listBoxFleetCharIDsToSkip_KeyUp);
+            this.listBoxFleetCharIDsToSkip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListBoxFleetCharIDsToSkip_KeyUp);
             // 
             // groupBoxFleetInvitation
             // 
@@ -2613,7 +2613,7 @@
             this.checkBoxDoFleetInvites.TabIndex = 4;
             this.checkBoxDoFleetInvites.Text = " Do Fleet Invites";
             this.checkBoxDoFleetInvites.UseVisualStyleBackColor = true;
-            this.checkBoxDoFleetInvites.CheckedChanged += new System.EventHandler(this.checkBoxDoFleetInvites_CheckedChanged);
+            this.checkBoxDoFleetInvites.CheckedChanged += new System.EventHandler(this.CheckBoxDoFleetInvites_CheckedChanged);
             // 
             // buttonFleetRemoveCharID
             // 
@@ -2624,7 +2624,7 @@
             this.buttonFleetRemoveCharID.TabIndex = 3;
             this.buttonFleetRemoveCharID.Text = "X";
             this.buttonFleetRemoveCharID.UseVisualStyleBackColor = true;
-            this.buttonFleetRemoveCharID.Click += new System.EventHandler(this.buttonFleetRemoveCharID_Click);
+            this.buttonFleetRemoveCharID.Click += new System.EventHandler(this.ButtonFleetRemoveCharID_Click);
             // 
             // buttonFleetAddCharID
             // 
@@ -2635,7 +2635,7 @@
             this.buttonFleetAddCharID.TabIndex = 2;
             this.buttonFleetAddCharID.Text = "Add CharID";
             this.buttonFleetAddCharID.UseVisualStyleBackColor = true;
-            this.buttonFleetAddCharID.Click += new System.EventHandler(this.buttonFleetAddCharID_Click);
+            this.buttonFleetAddCharID.Click += new System.EventHandler(this.ButtonFleetAddCharID_Click);
             // 
             // textBoxFleetCharID
             // 
@@ -2644,7 +2644,7 @@
             this.textBoxFleetCharID.Name = "textBoxFleetCharID";
             this.textBoxFleetCharID.Size = new System.Drawing.Size(120, 20);
             this.textBoxFleetCharID.TabIndex = 1;
-            this.textBoxFleetCharID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxFleetCharID_KeyUp);
+            this.textBoxFleetCharID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxFleetCharID_KeyUp);
             // 
             // label41
             // 
@@ -2664,7 +2664,7 @@
             this.listBoxFleetCharIDs.Name = "listBoxFleetCharIDs";
             this.listBoxFleetCharIDs.Size = new System.Drawing.Size(120, 121);
             this.listBoxFleetCharIDs.TabIndex = 0;
-            this.listBoxFleetCharIDs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listBoxFleetCharIDs_KeyUp);
+            this.listBoxFleetCharIDs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListBoxFleetCharIDs_KeyUp);
             // 
             // alertsConfigTabPage
             // 
@@ -2687,7 +2687,7 @@
             this.checkBoxUseAlerts.TabIndex = 2;
             this.checkBoxUseAlerts.Text = "Use Alerts";
             this.checkBoxUseAlerts.UseVisualStyleBackColor = true;
-            this.checkBoxUseAlerts.CheckedChanged += new System.EventHandler(this.checkBoxUseAlerts_CheckedChanged);
+            this.checkBoxUseAlerts.CheckedChanged += new System.EventHandler(this.CheckBoxUseAlerts_CheckedChanged);
             // 
             // groupBoxAlertOn
             // 
@@ -2720,7 +2720,7 @@
             this.checkBoxAlertWarpJammed.TabIndex = 11;
             this.checkBoxAlertWarpJammed.Text = "Warp Jammed";
             this.checkBoxAlertWarpJammed.UseVisualStyleBackColor = true;
-            this.checkBoxAlertWarpJammed.CheckedChanged += new System.EventHandler(this.checkBoxAlertWarpJammed_CheckedChanged);
+            this.checkBoxAlertWarpJammed.CheckedChanged += new System.EventHandler(this.CheckBoxAlertWarpJammed_CheckedChanged);
             // 
             // checkBoxAlertTargetJammed
             // 
@@ -2732,7 +2732,7 @@
             this.checkBoxAlertTargetJammed.TabIndex = 10;
             this.checkBoxAlertTargetJammed.Text = "Target Jammed";
             this.checkBoxAlertTargetJammed.UseVisualStyleBackColor = true;
-            this.checkBoxAlertTargetJammed.CheckedChanged += new System.EventHandler(this.checkBoxAlertTargetJammed_CheckedChanged);
+            this.checkBoxAlertTargetJammed.CheckedChanged += new System.EventHandler(this.CheckBoxAlertTargetJammed_CheckedChanged);
             // 
             // checkBoxAlertFlee
             // 
@@ -2744,7 +2744,7 @@
             this.checkBoxAlertFlee.TabIndex = 9;
             this.checkBoxAlertFlee.Text = "Flee";
             this.checkBoxAlertFlee.UseVisualStyleBackColor = true;
-            this.checkBoxAlertFlee.CheckedChanged += new System.EventHandler(this.checkBoxAlertFlee_CheckedChanged);
+            this.checkBoxAlertFlee.CheckedChanged += new System.EventHandler(this.CheckBoxAlertFlee_CheckedChanged);
             // 
             // checkBoxAlertPlayerNear
             // 
@@ -2756,7 +2756,7 @@
             this.checkBoxAlertPlayerNear.TabIndex = 8;
             this.checkBoxAlertPlayerNear.Text = "Player Near";
             this.checkBoxAlertPlayerNear.UseVisualStyleBackColor = true;
-            this.checkBoxAlertPlayerNear.CheckedChanged += new System.EventHandler(this.checkBoxAlertPlayerNear_CheckedChanged);
+            this.checkBoxAlertPlayerNear.CheckedChanged += new System.EventHandler(this.CheckBoxAlertPlayerNear_CheckedChanged);
             // 
             // checkBoxAlertLongRandomWait
             // 
@@ -2768,7 +2768,7 @@
             this.checkBoxAlertLongRandomWait.TabIndex = 7;
             this.checkBoxAlertLongRandomWait.Text = "Long Rand. Wait";
             this.checkBoxAlertLongRandomWait.UseVisualStyleBackColor = true;
-            this.checkBoxAlertLongRandomWait.CheckedChanged += new System.EventHandler(this.checkBoxAlertLongRandomWait_CheckedChanged);
+            this.checkBoxAlertLongRandomWait.CheckedChanged += new System.EventHandler(this.CheckBoxAlertLongRandomWait_CheckedChanged);
             // 
             // checkBoxAlertFreighterNoPickup
             // 
@@ -2780,7 +2780,7 @@
             this.checkBoxAlertFreighterNoPickup.TabIndex = 6;
             this.checkBoxAlertFreighterNoPickup.Text = "Freighter No Pickup";
             this.checkBoxAlertFreighterNoPickup.UseVisualStyleBackColor = true;
-            this.checkBoxAlertFreighterNoPickup.CheckedChanged += new System.EventHandler(this.checkBoxAlertFreighterNoPickup_CheckedChanged);
+            this.checkBoxAlertFreighterNoPickup.CheckedChanged += new System.EventHandler(this.CheckBoxAlertFreighterNoPickup_CheckedChanged);
             // 
             // checkBoxAlertLowAmmo
             // 
@@ -2792,7 +2792,7 @@
             this.checkBoxAlertLowAmmo.TabIndex = 5;
             this.checkBoxAlertLowAmmo.Text = "Low Ammo";
             this.checkBoxAlertLowAmmo.UseVisualStyleBackColor = true;
-            this.checkBoxAlertLowAmmo.CheckedChanged += new System.EventHandler(this.checkBoxAlertLowAmmo_CheckedChanged);
+            this.checkBoxAlertLowAmmo.CheckedChanged += new System.EventHandler(this.CheckBoxAlertLowAmmo_CheckedChanged);
             // 
             // checkBoxAlertFactionSpawn
             // 
@@ -2804,7 +2804,7 @@
             this.checkBoxAlertFactionSpawn.TabIndex = 4;
             this.checkBoxAlertFactionSpawn.Text = "Faction Spawn";
             this.checkBoxAlertFactionSpawn.UseVisualStyleBackColor = true;
-            this.checkBoxAlertFactionSpawn.CheckedChanged += new System.EventHandler(this.checkBoxAlertFactionSpawn_CheckedChanged);
+            this.checkBoxAlertFactionSpawn.CheckedChanged += new System.EventHandler(this.CheckBoxAlertFactionSpawn_CheckedChanged);
             // 
             // checkBoxAlertLocalChat
             // 
@@ -2816,7 +2816,7 @@
             this.checkBoxAlertLocalChat.TabIndex = 3;
             this.checkBoxAlertLocalChat.Text = "Local Chat";
             this.checkBoxAlertLocalChat.UseVisualStyleBackColor = true;
-            this.checkBoxAlertLocalChat.CheckedChanged += new System.EventHandler(this.checkBoxAlertLocalChat_CheckedChanged);
+            this.checkBoxAlertLocalChat.CheckedChanged += new System.EventHandler(this.CheckBoxAlertLocalChat_CheckedChanged);
             // 
             // checkBoxAlertLocalUnsafe
             // 
@@ -2828,7 +2828,7 @@
             this.checkBoxAlertLocalUnsafe.TabIndex = 2;
             this.checkBoxAlertLocalUnsafe.Text = "Local Unsafe";
             this.checkBoxAlertLocalUnsafe.UseVisualStyleBackColor = true;
-            this.checkBoxAlertLocalUnsafe.CheckedChanged += new System.EventHandler(this.checkBoxAlertLocalUnsafe_CheckedChanged);
+            this.checkBoxAlertLocalUnsafe.CheckedChanged += new System.EventHandler(this.CheckBoxAlertLocalUnsafe_CheckedChanged);
             // 
             // miningHaulingTabPage
             // 
@@ -2861,7 +2861,7 @@
             this.boostLocationLabelTextBox.Name = "boostLocationLabelTextBox";
             this.boostLocationLabelTextBox.Size = new System.Drawing.Size(116, 20);
             this.boostLocationLabelTextBox.TabIndex = 1;
-            this.boostLocationLabelTextBox.TextChanged += new System.EventHandler(this.boostLocationLabelTextBox_TextChanged);
+            this.boostLocationLabelTextBox.TextChanged += new System.EventHandler(this.BoostLocationLabelTextBox_TextChanged);
             // 
             // label66
             // 
@@ -2904,7 +2904,7 @@
             this.textboxCycleFleetDelay.Name = "textboxCycleFleetDelay";
             this.textboxCycleFleetDelay.Size = new System.Drawing.Size(50, 20);
             this.textboxCycleFleetDelay.TabIndex = 51;
-            this.textboxCycleFleetDelay.TextChanged += new System.EventHandler(this.textboxCycleFleetDelay_TextChanged);
+            this.textboxCycleFleetDelay.TextChanged += new System.EventHandler(this.TextboxCycleFleetDelay_TextChanged);
             // 
             // comboBoxHaulerMode
             // 
@@ -2915,7 +2915,7 @@
             this.comboBoxHaulerMode.Name = "comboBoxHaulerMode";
             this.comboBoxHaulerMode.Size = new System.Drawing.Size(116, 21);
             this.comboBoxHaulerMode.TabIndex = 23;
-            this.comboBoxHaulerMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxHaulerMode_SelectedIndexChanged);
+            this.comboBoxHaulerMode.SelectedIndexChanged += new System.EventHandler(this.ComboBoxHaulerMode_SelectedIndexChanged);
             // 
             // label37
             // 
@@ -2955,7 +2955,7 @@
             this.checkBoxUseMiningDrones.TabIndex = 53;
             this.checkBoxUseMiningDrones.Text = "Use Mining Drones";
             this.checkBoxUseMiningDrones.UseVisualStyleBackColor = true;
-            this.checkBoxUseMiningDrones.CheckedChanged += new System.EventHandler(this.checkBoxUseMiningDrones_CheckedChanged);
+            this.checkBoxUseMiningDrones.CheckedChanged += new System.EventHandler(this.CheckBoxUseMiningDrones_CheckedChanged);
             // 
             // checkBoxIceMining
             // 
@@ -2966,7 +2966,7 @@
             this.checkBoxIceMining.TabIndex = 35;
             this.checkBoxIceMining.Text = "Ice Mining";
             this.checkBoxIceMining.UseVisualStyleBackColor = true;
-            this.checkBoxIceMining.CheckedChanged += new System.EventHandler(this.checkBoxIceMining_CheckedChanged);
+            this.checkBoxIceMining.CheckedChanged += new System.EventHandler(this.CheckBoxIceMining_CheckedChanged);
             // 
             // label42
             // 
@@ -2986,7 +2986,7 @@
             this.checkBoxDistributeLasers.TabIndex = 37;
             this.checkBoxDistributeLasers.Text = "Distribute Lasers";
             this.checkBoxDistributeLasers.UseVisualStyleBackColor = true;
-            this.checkBoxDistributeLasers.CheckedChanged += new System.EventHandler(this.checkBoxDistributeLasers_CheckedChanged);
+            this.checkBoxDistributeLasers.CheckedChanged += new System.EventHandler(this.CheckBoxDistributeLasers_CheckedChanged);
             // 
             // textBoxMinDistanceToPlayers
             // 
@@ -2994,7 +2994,7 @@
             this.textBoxMinDistanceToPlayers.Name = "textBoxMinDistanceToPlayers";
             this.textBoxMinDistanceToPlayers.Size = new System.Drawing.Size(50, 20);
             this.textBoxMinDistanceToPlayers.TabIndex = 51;
-            this.textBoxMinDistanceToPlayers.TextChanged += new System.EventHandler(this.textBoxMinDistanceToPlayers_TextChanged);
+            this.textBoxMinDistanceToPlayers.TextChanged += new System.EventHandler(this.TextBoxMinDistanceToPlayers_TextChanged);
             // 
             // checkBoxStripMine
             // 
@@ -3005,7 +3005,7 @@
             this.checkBoxStripMine.TabIndex = 44;
             this.checkBoxStripMine.Text = "Strip Mine";
             this.checkBoxStripMine.UseVisualStyleBackColor = true;
-            this.checkBoxStripMine.CheckedChanged += new System.EventHandler(this.checkBoxStripMine_CheckedChanged);
+            this.checkBoxStripMine.CheckedChanged += new System.EventHandler(this.CheckBoxStripMine_CheckedChanged);
             // 
             // label39
             // 
@@ -3025,7 +3025,7 @@
             this.checkBoxShortCycle.TabIndex = 47;
             this.checkBoxShortCycle.Text = "Short Cycle";
             this.checkBoxShortCycle.UseVisualStyleBackColor = true;
-            this.checkBoxShortCycle.CheckedChanged += new System.EventHandler(this.checkBoxShortCycle_CheckedChanged);
+            this.checkBoxShortCycle.CheckedChanged += new System.EventHandler(this.CheckBoxShortCycle_CheckedChanged);
             // 
             // textBoxNumCrystalsToCarry
             // 
@@ -3033,7 +3033,7 @@
             this.textBoxNumCrystalsToCarry.Name = "textBoxNumCrystalsToCarry";
             this.textBoxNumCrystalsToCarry.Size = new System.Drawing.Size(50, 20);
             this.textBoxNumCrystalsToCarry.TabIndex = 49;
-            this.textBoxNumCrystalsToCarry.TextChanged += new System.EventHandler(this.textBoxNumCrystalsToCarry_TextChanged);
+            this.textBoxNumCrystalsToCarry.TextChanged += new System.EventHandler(this.TextBoxNumCrystalsToCarry_TextChanged);
             // 
             // groupBoxMiningHaulingOresIces
             // 
@@ -3059,7 +3059,7 @@
             this.checkedListBoxIcePriorities.Name = "checkedListBoxIcePriorities";
             this.checkedListBoxIcePriorities.Size = new System.Drawing.Size(147, 109);
             this.checkedListBoxIcePriorities.TabIndex = 43;
-            this.checkedListBoxIcePriorities.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxIcePriorities_ItemCheck);
+            this.checkedListBoxIcePriorities.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBoxIcePriorities_ItemCheck);
             // 
             // checkedListBoxOrePriorities
             // 
@@ -3068,7 +3068,7 @@
             this.checkedListBoxOrePriorities.Name = "checkedListBoxOrePriorities";
             this.checkedListBoxOrePriorities.Size = new System.Drawing.Size(147, 109);
             this.checkedListBoxOrePriorities.TabIndex = 36;
-            this.checkedListBoxOrePriorities.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxOrePriorities_ItemCheck);
+            this.checkedListBoxOrePriorities.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBoxOrePriorities_ItemCheck);
             // 
             // buttonOreIncreasePriority
             // 
@@ -3078,7 +3078,7 @@
             this.buttonOreIncreasePriority.TabIndex = 39;
             this.buttonOreIncreasePriority.Text = "↑";
             this.buttonOreIncreasePriority.UseVisualStyleBackColor = true;
-            this.buttonOreIncreasePriority.Click += new System.EventHandler(this.buttonOreIncreasePriority_Click);
+            this.buttonOreIncreasePriority.Click += new System.EventHandler(this.ButtonOreIncreasePriority_Click);
             // 
             // buttonOreLowerPriority
             // 
@@ -3088,7 +3088,7 @@
             this.buttonOreLowerPriority.TabIndex = 40;
             this.buttonOreLowerPriority.Text = "↓";
             this.buttonOreLowerPriority.UseVisualStyleBackColor = true;
-            this.buttonOreLowerPriority.Click += new System.EventHandler(this.buttonOreLowerPriority_Click);
+            this.buttonOreLowerPriority.Click += new System.EventHandler(this.ButtonOreLowerPriority_Click);
             // 
             // buttonIceIncreasePriority
             // 
@@ -3098,7 +3098,7 @@
             this.buttonIceIncreasePriority.TabIndex = 41;
             this.buttonIceIncreasePriority.Text = "↑";
             this.buttonIceIncreasePriority.UseVisualStyleBackColor = true;
-            this.buttonIceIncreasePriority.Click += new System.EventHandler(this.buttonIceIncreasePriority_Click);
+            this.buttonIceIncreasePriority.Click += new System.EventHandler(this.ButtonIceIncreasePriority_Click);
             // 
             // buttonIceDecreasePriority
             // 
@@ -3108,7 +3108,7 @@
             this.buttonIceDecreasePriority.TabIndex = 42;
             this.buttonIceDecreasePriority.Text = "↓";
             this.buttonIceDecreasePriority.UseVisualStyleBackColor = true;
-            this.buttonIceDecreasePriority.Click += new System.EventHandler(this.buttonIceDecreasePriority_Click);
+            this.buttonIceDecreasePriority.Click += new System.EventHandler(this.ButtonIceDecreasePriority_Click);
             // 
             // missioningTabPage
             // 
@@ -3150,7 +3150,7 @@
             this.checkBoxIgnoreMissionDeclineTimer.TabIndex = 1;
             this.checkBoxIgnoreMissionDeclineTimer.Text = "Ignore 4hr Decline Timer";
             this.checkBoxIgnoreMissionDeclineTimer.UseVisualStyleBackColor = true;
-            this.checkBoxIgnoreMissionDeclineTimer.CheckedChanged += new System.EventHandler(this.checkBoxIgnoreMissionDeclineTimer_CheckedChanged);
+            this.checkBoxIgnoreMissionDeclineTimer.CheckedChanged += new System.EventHandler(this.CheckBoxIgnoreMissionDeclineTimer_CheckedChanged);
             // 
             // groupBoxStorylines
             // 
@@ -3172,7 +3172,7 @@
             this.checkBoxDoChainCouriers.TabIndex = 2;
             this.checkBoxDoChainCouriers.Text = "Do Chain Couriers";
             this.checkBoxDoChainCouriers.UseVisualStyleBackColor = true;
-            this.checkBoxDoChainCouriers.CheckedChanged += new System.EventHandler(this.checkBoxDoChainCouriers_CheckedChanged);
+            this.checkBoxDoChainCouriers.CheckedChanged += new System.EventHandler(this.CheckBoxDoChainCouriers_CheckedChanged);
             // 
             // checkBoxDoStorylineMissions
             // 
@@ -3183,7 +3183,7 @@
             this.checkBoxDoStorylineMissions.TabIndex = 1;
             this.checkBoxDoStorylineMissions.Text = "Do Storyline Missions";
             this.checkBoxDoStorylineMissions.UseVisualStyleBackColor = true;
-            this.checkBoxDoStorylineMissions.CheckedChanged += new System.EventHandler(this.checkBoxDoStorylineMissions_CheckedChanged);
+            this.checkBoxDoStorylineMissions.CheckedChanged += new System.EventHandler(this.CheckBoxDoStorylineMissions_CheckedChanged);
             // 
             // groupBoxFactionsToKill
             // 
@@ -3205,7 +3205,7 @@
             this.checkBoxKillPirateFactions.TabIndex = 1;
             this.checkBoxKillPirateFactions.Text = "Pirate";
             this.checkBoxKillPirateFactions.UseVisualStyleBackColor = true;
-            this.checkBoxKillPirateFactions.CheckedChanged += new System.EventHandler(this.checkBoxKillPirateFactions_CheckedChanged);
+            this.checkBoxKillPirateFactions.CheckedChanged += new System.EventHandler(this.CheckBoxKillPirateFactions_CheckedChanged);
             // 
             // checkBoxKillEmpireFactions
             // 
@@ -3216,7 +3216,7 @@
             this.checkBoxKillEmpireFactions.TabIndex = 0;
             this.checkBoxKillEmpireFactions.Text = "Empire";
             this.checkBoxKillEmpireFactions.UseVisualStyleBackColor = true;
-            this.checkBoxKillEmpireFactions.CheckedChanged += new System.EventHandler(this.checkBoxKillEmpireFactions_CheckedChanged);
+            this.checkBoxKillEmpireFactions.CheckedChanged += new System.EventHandler(this.CheckBoxKillEmpireFactions_CheckedChanged);
             // 
             // groupBoxMissionBlacklist
             // 
@@ -3242,7 +3242,7 @@
             this.buttonRemoveBlacklistedMission.TabIndex = 6;
             this.buttonRemoveBlacklistedMission.Text = "RemoveBookmarkAndCacheEntry";
             this.buttonRemoveBlacklistedMission.UseVisualStyleBackColor = true;
-            this.buttonRemoveBlacklistedMission.Click += new System.EventHandler(this.buttonRemoveBlacklistedMission_Click);
+            this.buttonRemoveBlacklistedMission.Click += new System.EventHandler(this.ButtonRemoveBlacklistedMission_Click);
             // 
             // buttonAddBlacklistedMission
             // 
@@ -3253,7 +3253,7 @@
             this.buttonAddBlacklistedMission.TabIndex = 4;
             this.buttonAddBlacklistedMission.Text = "Add";
             this.buttonAddBlacklistedMission.UseVisualStyleBackColor = true;
-            this.buttonAddBlacklistedMission.Click += new System.EventHandler(this.buttonAddBlacklistedMission_Click);
+            this.buttonAddBlacklistedMission.Click += new System.EventHandler(this.ButtonAddBlacklistedMission_Click);
             // 
             // textBoxBlacklistedMission
             // 
@@ -3262,7 +3262,7 @@
             this.textBoxBlacklistedMission.Name = "textBoxBlacklistedMission";
             this.textBoxBlacklistedMission.Size = new System.Drawing.Size(117, 20);
             this.textBoxBlacklistedMission.TabIndex = 3;
-            this.textBoxBlacklistedMission.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxBlacklistedMission_KeyUp);
+            this.textBoxBlacklistedMission.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxBlacklistedMission_KeyUp);
             // 
             // listBoxMissionBacklist
             // 
@@ -3272,7 +3272,7 @@
             this.listBoxMissionBacklist.Name = "listBoxMissionBacklist";
             this.listBoxMissionBacklist.Size = new System.Drawing.Size(141, 82);
             this.listBoxMissionBacklist.TabIndex = 0;
-            this.listBoxMissionBacklist.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listBoxMissionBacklist_KeyUp);
+            this.listBoxMissionBacklist.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListBoxMissionBacklist_KeyUp);
             // 
             // groupBoxMiningMissionTypes
             // 
@@ -3296,7 +3296,7 @@
             this.checkBoxDoGasMiningMissions.TabIndex = 3;
             this.checkBoxDoGasMiningMissions.Text = "Gas";
             this.checkBoxDoGasMiningMissions.UseVisualStyleBackColor = true;
-            this.checkBoxDoGasMiningMissions.CheckedChanged += new System.EventHandler(this.checkBoxDoGasMiningMissions_CheckedChanged);
+            this.checkBoxDoGasMiningMissions.CheckedChanged += new System.EventHandler(this.CheckBoxDoGasMiningMissions_CheckedChanged);
             // 
             // checkBoxDoIceMiningMissions
             // 
@@ -3308,7 +3308,7 @@
             this.checkBoxDoIceMiningMissions.TabIndex = 2;
             this.checkBoxDoIceMiningMissions.Text = "Ice";
             this.checkBoxDoIceMiningMissions.UseVisualStyleBackColor = true;
-            this.checkBoxDoIceMiningMissions.CheckedChanged += new System.EventHandler(this.checkBoxDoIceMiningMissions_CheckedChanged);
+            this.checkBoxDoIceMiningMissions.CheckedChanged += new System.EventHandler(this.CheckBoxDoIceMiningMissions_CheckedChanged);
             // 
             // checkBoxDoOreMiningMissions
             // 
@@ -3320,7 +3320,7 @@
             this.checkBoxDoOreMiningMissions.TabIndex = 1;
             this.checkBoxDoOreMiningMissions.Text = "Ore";
             this.checkBoxDoOreMiningMissions.UseVisualStyleBackColor = true;
-            this.checkBoxDoOreMiningMissions.CheckedChanged += new System.EventHandler(this.checkBoxDoOreMiningMissions_CheckedChanged);
+            this.checkBoxDoOreMiningMissions.CheckedChanged += new System.EventHandler(this.CheckBoxDoOreMiningMissions_CheckedChanged);
             // 
             // groupBoxResearchAgents
             // 
@@ -3348,7 +3348,7 @@
             this.buttonRemoveRAgent.TabIndex = 6;
             this.buttonRemoveRAgent.Text = "X";
             this.buttonRemoveRAgent.UseVisualStyleBackColor = true;
-            this.buttonRemoveRAgent.Click += new System.EventHandler(this.buttonRemoveRAgent_Click);
+            this.buttonRemoveRAgent.Click += new System.EventHandler(this.ButtonRemoveRAgent_Click);
             // 
             // buttonDereaseRAgentPriority
             // 
@@ -3359,7 +3359,7 @@
             this.buttonDereaseRAgentPriority.TabIndex = 5;
             this.buttonDereaseRAgentPriority.Text = "↓";
             this.buttonDereaseRAgentPriority.UseVisualStyleBackColor = true;
-            this.buttonDereaseRAgentPriority.Click += new System.EventHandler(this.buttonDereaseRAgentPriority_Click);
+            this.buttonDereaseRAgentPriority.Click += new System.EventHandler(this.ButtonDereaseRAgentPriority_Click);
             // 
             // buttonIncreaseRAgentPriority
             // 
@@ -3370,7 +3370,7 @@
             this.buttonIncreaseRAgentPriority.TabIndex = 3;
             this.buttonIncreaseRAgentPriority.Text = "↑";
             this.buttonIncreaseRAgentPriority.UseVisualStyleBackColor = true;
-            this.buttonIncreaseRAgentPriority.Click += new System.EventHandler(this.buttonIncreaseRAgentPriority_Click);
+            this.buttonIncreaseRAgentPriority.Click += new System.EventHandler(this.ButtonIncreaseRAgentPriority_Click);
             // 
             // buttonAddResearchAgent
             // 
@@ -3381,7 +3381,7 @@
             this.buttonAddResearchAgent.TabIndex = 4;
             this.buttonAddResearchAgent.Text = "Add";
             this.buttonAddResearchAgent.UseVisualStyleBackColor = true;
-            this.buttonAddResearchAgent.Click += new System.EventHandler(this.buttonAddResearchAgent_Click);
+            this.buttonAddResearchAgent.Click += new System.EventHandler(this.ButtonAddResearchAgent_Click);
             // 
             // textBoxResearchAgentName
             // 
@@ -3390,7 +3390,7 @@
             this.textBoxResearchAgentName.Name = "textBoxResearchAgentName";
             this.textBoxResearchAgentName.Size = new System.Drawing.Size(117, 20);
             this.textBoxResearchAgentName.TabIndex = 3;
-            this.textBoxResearchAgentName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxResearchAgentName_KeyUp);
+            this.textBoxResearchAgentName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxResearchAgentName_KeyUp);
             // 
             // listBoxResearchAgents
             // 
@@ -3400,7 +3400,7 @@
             this.listBoxResearchAgents.Name = "listBoxResearchAgents";
             this.listBoxResearchAgents.Size = new System.Drawing.Size(117, 82);
             this.listBoxResearchAgents.TabIndex = 0;
-            this.listBoxResearchAgents.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listBoxResearchAgents_KeyUp);
+            this.listBoxResearchAgents.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListBoxResearchAgents_KeyUp);
             // 
             // groupBoxMissionAgents
             // 
@@ -3428,7 +3428,7 @@
             this.buttonRemoveAgent.TabIndex = 6;
             this.buttonRemoveAgent.Text = "X";
             this.buttonRemoveAgent.UseVisualStyleBackColor = true;
-            this.buttonRemoveAgent.Click += new System.EventHandler(this.buttonRemoveAgent_Click);
+            this.buttonRemoveAgent.Click += new System.EventHandler(this.ButtonRemoveAgent_Click);
             // 
             // buttonDecreaseAgentPriority
             // 
@@ -3439,7 +3439,7 @@
             this.buttonDecreaseAgentPriority.TabIndex = 5;
             this.buttonDecreaseAgentPriority.Text = "↓";
             this.buttonDecreaseAgentPriority.UseVisualStyleBackColor = true;
-            this.buttonDecreaseAgentPriority.Click += new System.EventHandler(this.buttonDecreaseAgentPriority_Click);
+            this.buttonDecreaseAgentPriority.Click += new System.EventHandler(this.ButtonDecreaseAgentPriority_Click);
             // 
             // buttonAgentIncreasePriority
             // 
@@ -3450,7 +3450,7 @@
             this.buttonAgentIncreasePriority.TabIndex = 3;
             this.buttonAgentIncreasePriority.Text = "↑";
             this.buttonAgentIncreasePriority.UseVisualStyleBackColor = true;
-            this.buttonAgentIncreasePriority.Click += new System.EventHandler(this.buttonAgentIncreasePriority_Click);
+            this.buttonAgentIncreasePriority.Click += new System.EventHandler(this.ButtonAgentIncreasePriority_Click);
             // 
             // buttonAgentAdd
             // 
@@ -3461,7 +3461,7 @@
             this.buttonAgentAdd.TabIndex = 4;
             this.buttonAgentAdd.Text = "Add";
             this.buttonAgentAdd.UseVisualStyleBackColor = true;
-            this.buttonAgentAdd.Click += new System.EventHandler(this.buttonAgentAdd_Click);
+            this.buttonAgentAdd.Click += new System.EventHandler(this.ButtonAgentAdd_Click);
             // 
             // textBoxAgentName
             // 
@@ -3470,7 +3470,7 @@
             this.textBoxAgentName.Name = "textBoxAgentName";
             this.textBoxAgentName.Size = new System.Drawing.Size(117, 20);
             this.textBoxAgentName.TabIndex = 3;
-            this.textBoxAgentName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxAgentName_KeyUp);
+            this.textBoxAgentName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxAgentName_KeyUp);
             // 
             // listBoxAgents
             // 
@@ -3480,7 +3480,7 @@
             this.listBoxAgents.Name = "listBoxAgents";
             this.listBoxAgents.Size = new System.Drawing.Size(117, 82);
             this.listBoxAgents.TabIndex = 0;
-            this.listBoxAgents.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listBoxAgents_KeyUp);
+            this.listBoxAgents.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListBoxAgents_KeyUp);
             // 
             // groupBoxLowsecMission
             // 
@@ -3504,7 +3504,7 @@
             this.checkBoxAvoidLowsecMissions.TabIndex = 0;
             this.checkBoxAvoidLowsecMissions.Text = "Avoid Lowsec Missions";
             this.checkBoxAvoidLowsecMissions.UseVisualStyleBackColor = true;
-            this.checkBoxAvoidLowsecMissions.CheckedChanged += new System.EventHandler(this.checkBoxAvoidLowsecMissions_CheckedChanged);
+            this.checkBoxAvoidLowsecMissions.CheckedChanged += new System.EventHandler(this.CheckBoxAvoidLowsecMissions_CheckedChanged);
             // 
             // groupBoxRunMissionTypes
             // 
@@ -3531,7 +3531,7 @@
             this.checkBoxRunMiningMissions.TabIndex = 4;
             this.checkBoxRunMiningMissions.Text = "Mining";
             this.checkBoxRunMiningMissions.UseVisualStyleBackColor = true;
-            this.checkBoxRunMiningMissions.CheckedChanged += new System.EventHandler(this.checkBoxRunMiningMissions_CheckedChanged);
+            this.checkBoxRunMiningMissions.CheckedChanged += new System.EventHandler(this.CheckBoxRunMiningMissions_CheckedChanged);
             // 
             // checkBoxRunEncounterMissions
             // 
@@ -3543,7 +3543,7 @@
             this.checkBoxRunEncounterMissions.TabIndex = 3;
             this.checkBoxRunEncounterMissions.Text = "Encounters";
             this.checkBoxRunEncounterMissions.UseVisualStyleBackColor = true;
-            this.checkBoxRunEncounterMissions.CheckedChanged += new System.EventHandler(this.checkBoxRunEncounterMissions_CheckedChanged);
+            this.checkBoxRunEncounterMissions.CheckedChanged += new System.EventHandler(this.CheckBoxRunEncounterMissions_CheckedChanged);
             // 
             // checkBoxRunTradeMissions
             // 
@@ -3555,7 +3555,7 @@
             this.checkBoxRunTradeMissions.TabIndex = 2;
             this.checkBoxRunTradeMissions.Text = "Trade";
             this.checkBoxRunTradeMissions.UseVisualStyleBackColor = true;
-            this.checkBoxRunTradeMissions.CheckedChanged += new System.EventHandler(this.checkBoxRunTradeMissions_CheckedChanged);
+            this.checkBoxRunTradeMissions.CheckedChanged += new System.EventHandler(this.CheckBoxRunTradeMissions_CheckedChanged);
             // 
             // checkBoxRunCourierMissions
             // 
@@ -3567,7 +3567,7 @@
             this.checkBoxRunCourierMissions.TabIndex = 1;
             this.checkBoxRunCourierMissions.Text = "Couriers";
             this.checkBoxRunCourierMissions.UseVisualStyleBackColor = true;
-            this.checkBoxRunCourierMissions.CheckedChanged += new System.EventHandler(this.checkBoxRunCourierMissions_CheckedChanged);
+            this.checkBoxRunCourierMissions.CheckedChanged += new System.EventHandler(this.CheckBoxRunCourierMissions_CheckedChanged);
             // 
             // rattingTabPage
             // 
@@ -3600,7 +3600,7 @@
             this.anomalyStatusByNameCheckedListBox.Name = "anomalyStatusByNameCheckedListBox";
             this.anomalyStatusByNameCheckedListBox.Size = new System.Drawing.Size(162, 124);
             this.anomalyStatusByNameCheckedListBox.TabIndex = 5;
-            this.anomalyStatusByNameCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.anomalyStatusByNameCheckedListBox_ItemCheck);
+            this.anomalyStatusByNameCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.AnomalyStatusByNameCheckedListBox_ItemCheck);
             // 
             // runCosmicAnomaliesCheckBox
             // 
@@ -3611,7 +3611,7 @@
             this.runCosmicAnomaliesCheckBox.TabIndex = 4;
             this.runCosmicAnomaliesCheckBox.Text = "Run Cosmic Anomalies";
             this.runCosmicAnomaliesCheckBox.UseVisualStyleBackColor = true;
-            this.runCosmicAnomaliesCheckBox.CheckedChanged += new System.EventHandler(this.checkBoxIsAnomalyMode_CheckedChanged);
+            this.runCosmicAnomaliesCheckBox.CheckedChanged += new System.EventHandler(this.CheckBoxIsAnomalyMode_CheckedChanged);
             // 
             // groupBoxRattingOptions
             // 
@@ -3643,7 +3643,7 @@
             this.textBoxMinChainBounty.Name = "textBoxMinChainBounty";
             this.textBoxMinChainBounty.Size = new System.Drawing.Size(69, 20);
             this.textBoxMinChainBounty.TabIndex = 2;
-            this.textBoxMinChainBounty.TextChanged += new System.EventHandler(this.textBoxMinChainBounty_TextChanged);
+            this.textBoxMinChainBounty.TextChanged += new System.EventHandler(this.TextBoxMinChainBounty_TextChanged);
             // 
             // checkBoxOnlyChainSolo
             // 
@@ -3654,7 +3654,7 @@
             this.checkBoxOnlyChainSolo.TabIndex = 1;
             this.checkBoxOnlyChainSolo.Text = "Only Chain When Alone";
             this.checkBoxOnlyChainSolo.UseVisualStyleBackColor = true;
-            this.checkBoxOnlyChainSolo.CheckedChanged += new System.EventHandler(this.checkBoxOnlyChainSolo_CheckedChanged);
+            this.checkBoxOnlyChainSolo.CheckedChanged += new System.EventHandler(this.CheckBoxOnlyChainSolo_CheckedChanged);
             // 
             // checkBoxChainBelts
             // 
@@ -3665,7 +3665,7 @@
             this.checkBoxChainBelts.TabIndex = 0;
             this.checkBoxChainBelts.Text = "Chain Belts";
             this.checkBoxChainBelts.UseVisualStyleBackColor = true;
-            this.checkBoxChainBelts.CheckedChanged += new System.EventHandler(this.checkBoxChainBelts_CheckedChanged);
+            this.checkBoxChainBelts.CheckedChanged += new System.EventHandler(this.CheckBoxChainBelts_CheckedChanged);
             // 
             // salvagingTabPage
             // 
@@ -3699,7 +3699,7 @@
             this.checkBoxEnableSalvagingBM.TabIndex = 27;
             this.checkBoxEnableSalvagingBM.Text = "Create Salvage Bookmarks";
             this.checkBoxEnableSalvagingBM.UseVisualStyleBackColor = true;
-            this.checkBoxEnableSalvagingBM.CheckedChanged += new System.EventHandler(this.checkBoxEnableSalvagingBM_CheckedChanged);
+            this.checkBoxEnableSalvagingBM.CheckedChanged += new System.EventHandler(this.CheckBoxEnableSalvagingBM_CheckedChanged);
             // 
             // checkBoxSalvageToCorp
             // 
@@ -3711,7 +3711,7 @@
             this.checkBoxSalvageToCorp.TabIndex = 26;
             this.checkBoxSalvageToCorp.Text = "Save Bookmarks for Corporation";
             this.checkBoxSalvageToCorp.UseVisualStyleBackColor = true;
-            this.checkBoxSalvageToCorp.CheckedChanged += new System.EventHandler(this.checkBoxSaveBookmarksForCorporation_CheckedChanged);
+            this.checkBoxSalvageToCorp.CheckedChanged += new System.EventHandler(this.CheckBoxSaveBookmarksForCorporation_CheckedChanged);
             // 
             // statisticsTabPage
             // 
@@ -4059,7 +4059,7 @@
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "StealthBot";
-            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            this.notifyIcon1.Click += new System.EventHandler(this.NotifyIcon1_Click);
             // 
             // StealthBotForm
             // 
@@ -4181,14 +4181,14 @@
         private System.Windows.Forms.TabPage configurationTabPage;
         private System.Windows.Forms.TabPage statisticsTabPage;
         private System.Windows.Forms.TabPage helpAboutTabPage;
-        private System.Windows.Forms.Button buttonPause;
-        private System.Windows.Forms.Button buttonStartResume;
+        private System.Windows.Forms.Button ButtonPause;
+        private System.Windows.Forms.Button ButtonStartResume;
         private System.Windows.Forms.ListBox listBox_logMessages;
         private System.Windows.Forms.ComboBox buildsToPatchComboBox;
         private System.Windows.Forms.Button buttonChangeBuild;
         private System.Windows.Forms.GroupBox authenticationGroupBox;
-        private System.Windows.Forms.TextBox textBoxAuthPassword;
-        private System.Windows.Forms.TextBox textBoxAuthEmailAddress;
+        private System.Windows.Forms.TextBox TextBoxAuthPassword;
+        private System.Windows.Forms.TextBox TextBoxAuthEmailAddress;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TabControl configurationTabControl;

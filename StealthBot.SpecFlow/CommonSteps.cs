@@ -14,30 +14,38 @@ using IShip = StealthBot.Core.IShip;
 
 namespace StealthBot.SpecFlow
 {
+    [Binding]
     public class CommonSteps
     {
+        protected readonly CustomScenarioContext _context;
+        private readonly ScenarioContext _scenarioContext;
+        public CommonSteps(CustomScenarioContext context, ScenarioContext scenarioContext)
+        {
+            _context = context;
+            _scenarioContext = scenarioContext;
+        }
         protected void Initialize()
         {
-            Ship = new Mock<IShip>();
-            EntityProvider = new Mock<IEntityProvider>();
-            Logging = new Mock<ILogging>();
+            _context.Ship = new Mock<IShip>();
+            _context.EntityProvider = new Mock<IEntityProvider>();
+            _context.Logging = new Mock<ILogging>();
         }
 
         #region Scenario Context
         protected T GetFromScenarioContext<T>(string key)
         {
-            return (T) ScenarioContext.Current[key];
+            return (T)_scenarioContext[key];
         }
 
         protected void SetInScenarioContext<T>(string key, T obj)
         {
-            if (!ScenarioContext.Current.ContainsKey(key))
+            if (!_scenarioContext.ContainsKey(key))
             {
-                ScenarioContext.Current.Add(key, obj);
+                _scenarioContext.Add(key, obj);
             }
             else
             {
-                ScenarioContext.Current[key] = obj;
+                _scenarioContext[key] = obj;
             }
         }
 
