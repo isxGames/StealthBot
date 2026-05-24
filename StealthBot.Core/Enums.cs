@@ -645,12 +645,12 @@ namespace StealthBot
         /// <summary>
         /// Only go to pickup a can when we receive request events.
         /// </summary>
-        [ProtoEnum(Name = "WaitForRequestEvent", Value = 0)]
+        [ProtoEnum(Name = "WaitForRequestEvent")]
         WaitForRequestEvent = 0,
         /// <summary>
         /// Cycle all members in the fleet without waiting for request events.
         /// </summary>
-        [ProtoEnum(Name = "CycleFleetMembers", Value = 1)]
+        [ProtoEnum(Name = "CycleFleetMembers")]
         CycleFleetMembers = 1
     }
 

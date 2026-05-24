@@ -18,7 +18,7 @@ namespace StealthBot.Core
         [ProtoMember(3)]
         public int DivisionId;
         [ProtoMember(5)]
-        public int StationId;
+        public long StationId;
         [ProtoMember(6)]
         public int Level;
         [ProtoMember(7)]

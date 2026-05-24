@@ -239,8 +239,8 @@ namespace StealthBot.Core
 			LogTrace(methodName);
 
 			//If I'm the only person in system
-            if (StealthBot.MeCache.SolarSystemId < 0 || _isxeveProvider.Eve.ChatChannel(StealthBot.MeCache.SolarSystemId).PilotCount == 1)
-				return true;
+            //if (StealthBot.MeCache.SolarSystemId < 0 || _isxeveProvider.Eve.ChatChannel(StealthBot.MeCache.SolarSystemId).PilotCount == 1)
+			//	return true;
 
 			foreach (var pilot in _pilots)
 			{

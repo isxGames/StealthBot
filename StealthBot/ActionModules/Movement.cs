@@ -1581,10 +1581,10 @@ namespace StealthBot.ActionModules
 			LogTrace(methodName, "FleetMember: {0}", fleetMember.CharID);
 
         	string pilotName;
-			using (var pilot = fleetMember.ToPilot)
-			{
-				pilotName = pilot.Name;
-			}
+            using (var pilot = fleetMember.ToFleetMember)
+            {
+                pilotName = pilot.Name;
+            }
 
 			LogMessage(methodName, LogSeverityTypes.Standard, "Warping to fleet member {0}",
 				pilotName);

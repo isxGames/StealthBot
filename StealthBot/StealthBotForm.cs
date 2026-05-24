@@ -16,12 +16,13 @@ namespace StealthBot
 {
     public partial class StealthBotForm : Form
     {
-        private bool _areTabsLocked = true;
-        private string _stealthBotVersionAndBuild;
+        private bool _areTabsLocked = false;
+        private bool _authCompleted = true;
+        private readonly string _stealthBotVersionAndBuild;
 
-        private bool _authStarted, _authCompleted, _autoStarted, _isReadyToExit;
+        private bool _authStarted, _autoStarted, _isReadyToExit;
 
-        private Dictionary<string, long> _idsByName = new Dictionary<string, long>();
+        private readonly Dictionary<string, long> _idsByName = new Dictionary<string, long>();
         private int _pilotCacheIndex = 0, _miningCargoFullEvents;
 
         private EventHandler<LogEventArgs> _logMessageEventHandler;
@@ -30,18 +31,18 @@ namespace StealthBot
         private EventHandler<PairEventArgs<string, int>> _statisticsOnAddIceOreMinedEventHandler;
         private EventHandler<PairEventArgs<string, int>> _statisticsOnCrystalsUsedEventHandler;
         private EventHandler<TimeSpanEventArgs> _statisticsOnMiningCargoFullEventHandler;
-        private EventHandler<ManuallyAddPilotEventArgs> _manuallyAddEntryFormManuallyAddEntry;
+        private readonly EventHandler<ManuallyAddPilotEventArgs> _manuallyAddEntryFormManuallyAddEntry;
         private EventHandler<__err_retn> _authenticationCompleted;
         private EventHandler<WalletStatisticsUpdatedEventArgs> _walletStatisticsUpdated;
         private EventHandler _exitDelegate;
 
         private readonly AutoResetEvent _exitResetEvent = new AutoResetEvent(true);
-    	private AutoResetEvent _pulseResetEvent = new AutoResetEvent(true);
+    	private readonly AutoResetEvent _pulseResetEvent = new AutoResetEvent(true);
         private Thread _exitThread;
 
-        private Dictionary<string, BotModes> _botModesByText = new Dictionary<string, BotModes>();
-        private Dictionary<string, HaulerModes> _haulerModesByText = new Dictionary<string, HaulerModes>();
-        private Dictionary<string, LocationTypes> _locationTypesByText = new Dictionary<string, LocationTypes>();
+        private readonly Dictionary<string, BotModes> _botModesByText = new Dictionary<string, BotModes>();
+        private readonly Dictionary<string, HaulerModes> _haulerModesByText = new Dictionary<string, HaulerModes>();
+        private readonly Dictionary<string, LocationTypes> _locationTypesByText = new Dictionary<string, LocationTypes>();
 
         private readonly Auth _auth;
 
@@ -53,10 +54,10 @@ namespace StealthBot
         	var instance = Core.StealthBot.Instance;
 			if (string.IsNullOrEmpty(instance.ModuleName)) return;
 
-            _auth = Auth.CreateAuth(Core.StealthBot.Logging);
+            //_auth = Auth.CreateAuth(Core.StealthBot.Logging);
             LavishScript.ExecuteCommand("stealthbotLoaded:Set[TRUE]");
 
-            buttonPause.Visible = false;
+            ButtonPause.Visible = false;
 
             _stealthBotVersionAndBuild = String.Format("StealthBot v{0} ({1})", Application.ProductVersion, Core.StealthBot.Build);
             Text = _stealthBotVersionAndBuild;
@@ -75,12 +76,12 @@ namespace StealthBot
             _autoStarted = autoStart;
             if (_autoStarted)
             {
-                buttonStartResume_Click(this, new EventArgs());
+                ButtonStartResume_Click(this, new EventArgs());
             }
         }
 
         #region UI Control EventHandlers
-        private void configurationTabControl_DrawItem(object sender, DrawItemEventArgs e)
+        private void ConfigurationTabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
             Brush textBrush;
 
@@ -115,7 +116,7 @@ namespace StealthBot
             g.DrawString(tabPage.Text, e.Font, textBrush, tabBounds, stringFlags);
         }
 
-        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             //If it's locked and we selected any tab other than the main tab, display a message and return.
             var tabControl = ((TabControl)sender);
@@ -133,58 +134,58 @@ namespace StealthBot
             Close();
         }
 
-        private void Auth_AuthenticationComplete(object sender, __err_retn e)
-        {
-            if (InvokeRequired)
-            {
-                _exitResetEvent.WaitOne();
-                Invoke(_authenticationCompleted, sender, e);
-                _exitResetEvent.Set();
-                return;
-            }
+        //private void Auth_AuthenticationComplete(object sender, __err_retn e)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        _exitResetEvent.WaitOne();
+        //        Invoke(_authenticationCompleted, sender, e);
+        //        _exitResetEvent.Set();
+        //        return;
+        //    }
 
             //use a bunch of =='s instead of !=
-            if (!e.DidAuthenticationFail ||
-                e.AuthenticationResult != "Successful")
-            {
-                _authCompleted = false;
-                _authStarted = false;
+        //    if (!e.DidAuthenticationFail ||
+        //        e.AuthenticationResult != "Successful")
+        //    {
+        //        _authCompleted = true;
+        //        _authStarted = true;
 
-                if (e.DidAuthenticationFail)
-                {
-                    Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
-                        "Authentication failed. Reason: {0}. Contact a StealthBot administrator for help.", e.AuthenticationResult);
-                }
-                else
-                {
-                    Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
-                        "Authentication failed. Reason: __err_fail. Contact a StealthBot administrator for help.");
-                }
-            }
-            else
-            {
-                var isTestBuild = false;
-#if DEBUG
-                isTestBuild = true;
-#endif
+        //        if (e.DidAuthenticationFail)
+        //        {
+        //            Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
+        //                "Authentication failed. Reason: {0}. Contact a StealthBot administrator for help.", e.AuthenticationResult);
+        //        }
+        //        else
+        //        {
+        //            Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
+        //                "Authentication failed. Reason: __err_fail. Contact a StealthBot administrator for help.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var isTestBuild = false;
+//#if DEBUG
+        //        isTestBuild = true;
+//#endif
 
-                if ((isTestBuild && e.CanUseTestBuilds) || !isTestBuild)
-                {
-                    Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard, "Authentication successful.");
-                    _authCompleted = true;
-                    _areTabsLocked = false;
-                    buttonStartResume_Click(this, new EventArgs());
-                }
-                else
-                {
-                    if (isTestBuild && !e.CanUseTestBuilds)
-                    {
-                        Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
-                            "Authentication failed. This is a test build of StealthBot and you are not an authorized tester.");
-                    }
-                }
-            }
-        }
+        //        if ((isTestBuild && e.CanUseTestBuilds) || !isTestBuild)
+        //        {
+        //            Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard, "Authentication successful.");
+        //            _authCompleted = true;
+        //            _areTabsLocked = false;
+        //            ButtonStartResume_Click(this, new EventArgs());
+        //        }
+        //        else
+        //        {
+        //            if (isTestBuild && !e.CanUseTestBuilds)
+        //            {
+        //                Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
+        //                    "Authentication failed. This is a test build of StealthBot and you are not an authorized tester.");
+        //            }
+        //        }
+        //    }
+        //}
 
         private void Statistics_OnMiningCargoFull(object sender, TimeSpanEventArgs e)
         {
@@ -767,10 +768,10 @@ namespace StealthBot
 
         private void SetButtonsAndLabels()
         {
-            if (buttonStartResume.Text.Equals("Auth"))
-                buttonStartResume.Text = "Start";
-            if (!buttonPause.Visible)
-                buttonPause.Visible = true;
+            if (ButtonStartResume.Text.Equals("Auth"))
+                ButtonStartResume.Text = "Start";
+            if (!ButtonPause.Visible)
+                ButtonPause.Visible = true;
             if (!comboBoxBotMode.Visible)
                 comboBoxBotMode.Visible = true;
             if (!checkBoxUseRandomWaits.Visible)
@@ -787,7 +788,7 @@ namespace StealthBot
             Core.StealthBot.Logging.LogMessage("StealthBotForm", "Start", LogSeverityTypes.Standard, "Starting or resuming.");
 
             if (_autoStarted)
-                buttonStartResume_Click(this, new EventArgs());
+                ButtonStartResume_Click(this, new EventArgs());
         }
 
         private void AttachEventHandlers()
@@ -801,8 +802,8 @@ namespace StealthBot
             _onPulse = Pulse;
             Core.StealthBot.OnPulse += _onPulse;
 
-            _authenticationCompleted = Auth_AuthenticationComplete;
-            _auth.AuthenticationComplete += _authenticationCompleted;
+            //_authenticationCompleted = Auth_AuthenticationComplete;
+            //_auth.AuthenticationComplete += _authenticationCompleted;
 
             _walletStatisticsUpdated = WalletStatisticsUpdated;
             Core.StealthBot.Statistics.WalletStatisticsUpdated += _walletStatisticsUpdated;
@@ -840,8 +841,8 @@ namespace StealthBot
 
             using (var sr = new StreamReader(File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read)))
             {
-                textBoxAuthEmailAddress.Text = sr.ReadLine();
-                textBoxAuthPassword.Text = sr.ReadLine();
+                TextBoxAuthEmailAddress.Text = sr.ReadLine();
+                TextBoxAuthPassword.Text = sr.ReadLine();
             }
         }
 
@@ -910,7 +911,7 @@ namespace StealthBot
 
         #region Configuration Control Event Handlers
         #region Main Tab
-        private void buttonAddProfile_Click(object sender, EventArgs e)
+        private void ButtonAddProfile_Click(object sender, EventArgs e)
         {
             var inputForm = new TextInputForm("Enter name of new profile");
             var result = inputForm.ShowDialog();
@@ -944,7 +945,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveProfile_Click(object sender, EventArgs e)
+        private void ButtonRemoveProfile_Click(object sender, EventArgs e)
         {
             if (listBoxConfigProfiles.SelectedIndex == -1)
             {
@@ -965,7 +966,7 @@ namespace StealthBot
             listBoxConfigProfiles.Items.Remove(selectedProfile);
         }
 
-        private void buttonRenameProfile_Click(object sender, EventArgs e)
+        private void ButtonRenameProfile_Click(object sender, EventArgs e)
         {
             if (listBoxConfigProfiles.SelectedIndex == -1)
             {
@@ -1006,7 +1007,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonCopyProfile_Click(object sender, EventArgs e)
+        private void ButtonCopyProfile_Click(object sender, EventArgs e)
         {
             if (listBoxConfigProfiles.SelectedIndex == -1)
             {
@@ -1021,7 +1022,7 @@ namespace StealthBot
         	_exitResetEvent.Set();
         }
 
-        private void buttonLoadProfile_Click(object sender, EventArgs e)
+        private void ButtonLoadProfile_Click(object sender, EventArgs e)
         {
             if (listBoxConfigProfiles.SelectedIndex == -1)
             {
@@ -1041,7 +1042,7 @@ namespace StealthBot
         	_exitResetEvent.Set();
         }
 
-        private void buttonSaveProfiles_Click(object sender, EventArgs e)
+        private void ButtonSaveProfiles_Click(object sender, EventArgs e)
         {
             if (Core.StealthBot.Config != null && !string.IsNullOrEmpty(Core.StealthBot.ConfigurationManager.ActiveConfigName))
             {
@@ -1051,34 +1052,34 @@ namespace StealthBot
             }
         }
 
-        private void comboBoxBotMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxBotMode_SelectedIndexChanged(object sender, EventArgs e)
         {
         	Core.StealthBot.Config.MainConfig.ActiveBehavior = _botModesByText[((ComboBox) sender).Text];
         }
 
-        private void checkBoxDisable3dRender_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDisable3dRender_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MainConfig.Disable3DRender = ((CheckBox) sender).Checked;
         }
 
-        private void checkBoxDisableTextureLoading_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDisableTextureLoading_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MainConfig.DisableTextureLoading = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDisableUIRender_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDisableUIRender_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MainConfig.DisableUiRender = ((CheckBox)sender).Checked;
         }
         #endregion
 
         #region Defense Tab
-        private void checkBoxRunOnLowTank_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnLowTank_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnLowTank = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxMinArmorPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinArmorPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1087,7 +1088,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxMinShieldPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinShieldPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1096,7 +1097,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxResumeShieldPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxResumeShieldPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1105,17 +1106,17 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxRunOnLowCapacitor_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnLowCapacitor_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnLowCap = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnLowAmmo_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnLowAmmo_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnLowAmmo = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxMinCapPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinCapPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1124,7 +1125,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxResumeCapPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxResumeCapPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1133,12 +1134,12 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxRunOnLowDrones_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnLowDrones_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnLowDrones = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxMinNumDrones_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinNumDrones_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1147,27 +1148,27 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxRunOnTargetJammed_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnTargetJammed_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunIfTargetJammed = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnNonWhitelisted_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnNonWhitelisted_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnNonWhitelistedPilot = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnBlacklist_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnBlacklist_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnBlacklistedPilot = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxWaitAfterFleeing_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxWaitAfterFleeing_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.WaitAfterFleeing = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxMinutesToWait_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinutesToWait_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1176,37 +1177,37 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxRunOnMeToPilot_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnMeToPilot_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnMeToPilot = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnMeToCorp_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnMeToCorp_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnMeToCorp = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnCorpToAlliance_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnCorpToAlliance_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnCorpToAlliance = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnCorpToPilot_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnCorpToPilot_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnCorpToPilot = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnCorpToCorp_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnCorpToCorp_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnCorpToCorp = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunOnAllianceToAlliance_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunOnAllianceToAlliance_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.RunOnAllianceToAlliance = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxMinimumAllianceStanding_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinimumAllianceStanding_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1215,7 +1216,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxMinimumCorpStanding_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinimumCorpStanding_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1224,7 +1225,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxMinimumPilotStanding_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinimumPilotStanding_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1233,34 +1234,34 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxPreferStationSafespots_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxPreferStationSafespots_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.PreferStationsOverSafespots = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlwaysShieldBoost_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlwaysShieldBoost_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.AlwaysShieldBoost = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlwaysRunTank_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlwaysRunTank_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.AlwaysRunTank = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDisableStandingsChecks_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDisableStandingsChecks_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.DefenseConfig.DisableStandingsChecks = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxUseChatReading_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseChatReading_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.SocialConfig.UseChatReading = ((CheckBox)sender).Checked;
         }
         #endregion
 
         #region Whitelist/Blacklist
-        private void buttonRemoveWhitelistPilot_Click(object sender, EventArgs e)
+        private void ButtonRemoveWhitelistPilot_Click(object sender, EventArgs e)
         {
             if (listBoxWhitelistPilots.SelectedItem == null)
             {
@@ -1275,7 +1276,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveWhitelistCorp_Click(object sender, EventArgs e)
+        private void ButtonRemoveWhitelistCorp_Click(object sender, EventArgs e)
         {
             if (listBoxWhitelistCorps.SelectedItem == null)
             {
@@ -1290,7 +1291,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveWhitelistAlliance_Click(object sender, EventArgs e)
+        private void ButtonRemoveWhitelistAlliance_Click(object sender, EventArgs e)
         {
             if (listBoxWhitelistAlliances.SelectedItem == null)
             {
@@ -1305,7 +1306,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveBlacklistPilot_Click(object sender, EventArgs e)
+        private void ButtonRemoveBlacklistPilot_Click(object sender, EventArgs e)
         {
             if (listBoxBlacklistPilots.SelectedItem == null)
             {
@@ -1320,7 +1321,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveBlacklistCorp_Click(object sender, EventArgs e)
+        private void ButtonRemoveBlacklistCorp_Click(object sender, EventArgs e)
         {
             if (listBoxBlacklistCorps.SelectedItem == null)
             {
@@ -1335,7 +1336,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveBlacklistAlliance_Click(object sender, EventArgs e)
+        private void ButtonRemoveBlacklistAlliance_Click(object sender, EventArgs e)
         {
             if (listBoxBlacklistAlliances.SelectedItem == null)
             {
@@ -1350,13 +1351,13 @@ namespace StealthBot
             }
         }
 
-        private void buttonManuallyAdd_Click(object sender, EventArgs e)
+        private void ButtonManuallyAdd_Click(object sender, EventArgs e)
         {
             var form = new ManuallyAddPilotForm();
             form.ShowDialog();
         }
 
-        private void buttonAddWhitelistPilot_Click(object sender, EventArgs e)
+        private void ButtonAddWhitelistPilot_Click(object sender, EventArgs e)
         {
             if (listBoxSearchResults.SelectedIndex == -1)
             {
@@ -1374,7 +1375,7 @@ namespace StealthBot
                 Core.StealthBot.Config.SocialConfig.PilotWhitelist.Add(nameToAdd);
         }
 
-        private void buttonAddBlacklistPilot_Click_1(object sender, EventArgs e)
+        private void ButtonAddBlacklistPilot_Click_1(object sender, EventArgs e)
         {
             if (listBoxSearchResults.SelectedIndex == -1)
             {
@@ -1392,7 +1393,7 @@ namespace StealthBot
                 Core.StealthBot.Config.SocialConfig.PilotBlacklist.Add(nameToAdd);
         }
 
-        private void buttonAddWhitelistCorp_Click(object sender, EventArgs e)
+        private void ButtonAddWhitelistCorp_Click(object sender, EventArgs e)
         {
             if (listBoxSearchResults.SelectedIndex == -1)
             {
@@ -1425,7 +1426,7 @@ namespace StealthBot
                 Core.StealthBot.Config.SocialConfig.CorpWhitelist.Add(nameToAdd);
         }
 
-        private void buttonAddBlacklistCorp_Click(object sender, EventArgs e)
+        private void ButtonAddBlacklistCorp_Click(object sender, EventArgs e)
         {
             if (listBoxSearchResults.SelectedIndex == -1)
             {
@@ -1459,7 +1460,7 @@ namespace StealthBot
                 Core.StealthBot.Config.SocialConfig.CorpBlacklist.Add(nameToAdd);
         }
 
-        private void buttonAddWhitelistAlliance_Click_1(object sender, EventArgs e)
+        private void ButtonAddWhitelistAlliance_Click_1(object sender, EventArgs e)
         {
             if (listBoxSearchResults.SelectedIndex == -1)
             {
@@ -1540,7 +1541,7 @@ namespace StealthBot
                 Core.StealthBot.Config.SocialConfig.AllianceWhitelist.Add(nameToAdd);
         }
 
-        private void buttonAddBlacklistAlliance_Click(object sender, EventArgs e)
+        private void ButtonAddBlacklistAlliance_Click(object sender, EventArgs e)
         {
             if (listBoxSearchResults.SelectedIndex == -1)
             {
@@ -1621,7 +1622,7 @@ namespace StealthBot
                 Core.StealthBot.Config.SocialConfig.AllianceBlacklist.Add(nameToAdd);
         }
 
-        private void radioButtonDisplayPilotCache_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonDisplayPilotCache_CheckedChanged(object sender, EventArgs e)
         {
             //Reset the cachedpilot index on check changed
             _pilotCacheIndex = 0;
@@ -1654,7 +1655,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxSearchCache_TextChanged(object sender, EventArgs e)
+        private void TextBoxSearchCache_TextChanged(object sender, EventArgs e)
         {
             var searchString = textBoxSearchCache.Text;
             if (searchString != string.Empty)
@@ -1673,44 +1674,44 @@ namespace StealthBot
 
         #region Bookmarks
 
-        private void textBoxSafeBookmarkPrefix_TextChanged(object sender, EventArgs e)
+        private void TextBoxSafeBookmarkPrefix_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.SafeBookmarkPrefix = ((TextBox)sender).Text;
         }
 
-        private void textBoxSalvagingPrefix_TextChanged(object sender, EventArgs e)
+        private void TextBoxSalvagingPrefix_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.SalvagingPrefix = ((TextBox)sender).Text;
         }
 
-        private void textBoxAsteroidBeltBookmarkPrefix_TextChanged(object sender, EventArgs e)
+        private void TextBoxAsteroidBeltBookmarkPrefix_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.AsteroidBeltBookmarkPrefix = ((TextBox)sender).Text;
         }
 
-        private void textBoxIceBeltBookmarkPrefix_TextChanged(object sender, EventArgs e)
+        private void TextBoxIceBeltBookmarkPrefix_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.IceBeltBookmarkPrefix = ((TextBox)sender).Text;
         }
 
-        private void textBoxTemporaryBeltBookMark_TextChanged(object sender, EventArgs e)
+        private void TextBoxTemporaryBeltBookMark_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.TemporaryBeltBookMarkPrefix = ((TextBox)sender).Text;
         }
 
-        private void textBoxTemporaryCanPrefix_TextChanged(object sender, EventArgs e)
+        private void TextBoxTemporaryCanPrefix_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.TemporaryCanBookMarkPrefix = ((TextBox)sender).Text;
         }
         #endregion
 
         #region Movement
-        private void checkBoxBounceWarp_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxBounceWarp_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.UseBounceWarp = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxMaxSlowboatTime_TextChanged(object sender, EventArgs e)
+        private void TextBoxMaxSlowboatTime_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1719,27 +1720,27 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxUseTempBeltBookmarks_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseTempBeltBookmarks_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.UseTempBeltBookmarks = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxOnlyUseBookMarkedBelts_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxOnlyUseBookMarkedBelts_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.OnlyUseBeltBookmarks = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxMoveToRandomBelts_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxMoveToRandomBelts_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.UseRandomBeltOrder = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxUseBeltSubsets_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseBeltSubsets_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.UseBeltSubsets = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxNumBeltsInSubset_TextChanged(object sender, EventArgs e)
+        private void TextBoxNumBeltsInSubset_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1748,7 +1749,7 @@ namespace StealthBot
             }
         }
 
-        private void comboBoxBeltSubsetMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxBeltSubsetMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch ((string)((ComboBox)sender).SelectedItem)
             {
@@ -1765,7 +1766,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxPropModMinCapPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxPropModMinCapPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1774,7 +1775,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxPropModResumeCapPct_TextChanged(object sender, EventArgs e)
+        private void TextBoxPropModResumeCapPct_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1783,22 +1784,22 @@ namespace StealthBot
             }
         }
 
-        private void textBoxStartBookMark_TextChanged(object sender, EventArgs e)
+        private void TextBoxStartBookMark_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.JumpStabilityTestStartBookmark = ((TextBox)sender).Text;
         }
 
-        private void textBoxEndBookMark_TextChanged(object sender, EventArgs e)
+        private void TextBoxEndBookMark_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.JumpStabilityTestEndBookmark = ((TextBox)sender).Text;
         }
 
-        private void checkBoxUseCustomOrbitDistance_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseCustomOrbitDistance_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.UseCustomOrbitDistance = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxOrbitDistance_TextChanged(object sender, EventArgs e)
+        private void TextBoxOrbitDistance_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1807,24 +1808,24 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxKeepAtRange_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxKeepAtRange_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MovementConfig.UseKeepAtRangeInsteadOfOrbit = ((CheckBox) sender).Checked;
         }
         #endregion
 
         #region Cargo
-        private void comboBoxDropoffType_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxDropoffType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.CargoConfig.DropoffLocation.LocationType = _locationTypesByText[((ComboBox)sender).Text];
         }
 
-        private void textBoxDropoffBookmarkLabel_TextChanged(object sender, EventArgs e)
+        private void TextBoxDropoffBookmarkLabel_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.CargoConfig.DropoffLocation.BookmarkLabel = ((TextBox)sender).Text;
         }
 
-        private void textBoxDropoffID_TextChanged(object sender, EventArgs e)
+        private void TextBoxDropoffID_TextChanged(object sender, EventArgs e)
         {
             long value;
             if (long.TryParse(((TextBox)sender).Text, out value))
@@ -1833,7 +1834,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxDropoffHangarDivision_TextChanged(object sender, EventArgs e)
+        private void TextBoxDropoffHangarDivision_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (!int.TryParse(((TextBox) sender).Text, out value)) return;
@@ -1844,17 +1845,17 @@ namespace StealthBot
                 Core.StealthBot.Config.CargoConfig.DropoffLocation.HangarDivision = value;
         }
 
-        private void comboBoxPickupType_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxPickupType_SelectedIndexChanged(object sender, EventArgs e)
         {
 			Core.StealthBot.Config.CargoConfig.PickupLocation.LocationType = _locationTypesByText[((ComboBox)sender).Text];
         }
 
-        private void textBoxPickupName_TextChanged(object sender, EventArgs e)
+        private void TextBoxPickupName_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.CargoConfig.PickupLocation.BookmarkLabel = ((TextBox)sender).Text;
         }
 
-        private void textBoxPickupID_TextChanged(object sender, EventArgs e)
+        private void TextBoxPickupID_TextChanged(object sender, EventArgs e)
         {
             long value;
             if (long.TryParse(((TextBox)sender).Text, out value))
@@ -1863,7 +1864,7 @@ namespace StealthBot
             }
         }
 
-        private void textPickupHangarDivision_TextChanged(object sender, EventArgs e)
+        private void TextPickupHangarDivision_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (!int.TryParse(((TextBox)sender).Text, out value)) return;
@@ -1874,12 +1875,12 @@ namespace StealthBot
                 Core.StealthBot.Config.CargoConfig.PickupLocation.HangarDivision = value;
         }
 
-        private void textBoxPickupSystemBookmark_TextChanged(object sender, EventArgs e)
+        private void TextBoxPickupSystemBookmark_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.CargoConfig.PickupSystemBookmark = ((TextBox) sender).Text;
         }
 
-        private void textBoxCargoFullThreshold_TextChanged(object sender, EventArgs e)
+        private void TextBoxCargoFullThreshold_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1888,24 +1889,24 @@ namespace StealthBot
             }
         }
 
-        private void textBoxJetcanNameFormat_TextChanged(object sender, EventArgs e)
+        private void TextBoxJetcanNameFormat_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.CargoConfig.CanNameFormat = ((TextBox) sender).Text;
         }
 
-        private void checkBoxAlwaysPopCans_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlwaysPopCans_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.CargoConfig.AlwaysPopCans = ((CheckBox) sender).Checked;
         }
         #endregion
 
         #region Max Runtime
-        private void checkBoxUseMaxRuntime_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseMaxRuntime_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MaxRuntimeConfig.UseMaxRuntime = ((CheckBox) sender).Checked;
         }
 
-        private void textBoxMaxRuntime_TextChanged(object sender, EventArgs e)
+        private void TextBoxMaxRuntime_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1914,12 +1915,12 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxResumeAfter_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxResumeAfter_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MaxRuntimeConfig.ResumeAfterWaiting = ((CheckBox) sender).Checked;
         }
 
-        private void textBoxResumeAfter_TextChanged(object sender, EventArgs e)
+        private void TextBoxResumeAfter_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -1928,39 +1929,39 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxUseRandomWaits_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseRandomWaits_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MaxRuntimeConfig.UseRandomWaits = ((CheckBox) sender).Checked;
         }
 
-        private void checkBoxUseRelaunching_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseRelaunching_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MaxRuntimeConfig.UseRelaunching = ((CheckBox) sender).Checked;
         }
 
-        private void textBoxCharacterSetToLaunch_TextChanged(object sender, EventArgs e)
+        private void TextBoxCharacterSetToLaunch_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MaxRuntimeConfig.CharacterSetToRelaunch = ((TextBox) sender).Text;
         }
 
-        private void checkBoxRelaunchAfterDowntime_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRelaunchAfterDowntime_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MaxRuntimeConfig.RelaunchAfterDowntime = ((CheckBox) sender).Checked;
         }
         #endregion
 
         #region Fleet
-        private void checkBoxDoFleetInvites_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDoFleetInvites_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.FleetConfig.DoFleetInvites = ((CheckBox) sender).Checked;
         }
 
-        private void checkBoxOnlyHaulForListedMembers_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxOnlyHaulForListedMembers_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.FleetConfig.OnlyHaulForSkipList = ((CheckBox) sender).Checked;
         }
 
-        private void buttonFleetAddCharID_Click(object sender, EventArgs e)
+        private void ButtonFleetAddCharID_Click(object sender, EventArgs e)
         {
             Int64 charId;
             if (Int64.TryParse(textBoxFleetCharID.Text, out charId))
@@ -1983,7 +1984,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonFleetAddSkipCharID_Click(object sender, EventArgs e)
+        private void ButtonFleetAddSkipCharID_Click(object sender, EventArgs e)
         {
             Int64 charID;
             if (Int64.TryParse(textBoxFleetCharIDSkip.Text, out charID))
@@ -2006,15 +2007,15 @@ namespace StealthBot
             }
         }
 
-        private void listBoxFleetCharIDs_KeyUp(object sender, KeyEventArgs e)
+        private void ListBoxFleetCharIDs_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Delete)
                 return;
 
-            buttonFleetRemoveCharID_Click(this, new EventArgs());
+            ButtonFleetRemoveCharID_Click(this, new EventArgs());
         }
 
-        private void buttonFleetRemoveCharID_Click(object sender, EventArgs e)
+        private void ButtonFleetRemoveCharID_Click(object sender, EventArgs e)
         {
             if (listBoxFleetCharIDs.SelectedIndex == -1)
             {
@@ -2033,7 +2034,7 @@ namespace StealthBot
                 listBoxFleetCharIDs.SelectedIndex = 0;
         }
 
-        private void buttonFleetRemoveSkipCharID_Click(object sender, EventArgs e)
+        private void ButtonFleetRemoveSkipCharID_Click(object sender, EventArgs e)
         {
             if (listBoxFleetCharIDsToSkip.SelectedIndex == -1)
             {
@@ -2052,94 +2053,94 @@ namespace StealthBot
                 listBoxFleetCharIDsToSkip.SelectedIndex = 0;
         }
 
-        private void listBoxFleetCharIDsToSkip_KeyUp(object sender, KeyEventArgs e)
+        private void ListBoxFleetCharIDsToSkip_KeyUp(object sender, KeyEventArgs e)
         {
-            buttonFleetRemoveSkipCharID_Click(this, new EventArgs());
+            ButtonFleetRemoveSkipCharID_Click(this, new EventArgs());
         }
 
-        private void textBoxFleetCharID_KeyUp(object sender, KeyEventArgs e)
+        private void TextBoxFleetCharID_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            buttonFleetAddCharID_Click(this, e);
+            ButtonFleetAddCharID_Click(this, e);
         }
 
-        private void textBoxFleetCharIDSkip_KeyUp(object sender, KeyEventArgs e)
+        private void TextBoxFleetCharIDSkip_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            buttonFleetAddSkipCharID_Click(this, e);
+            ButtonFleetAddSkipCharID_Click(this, e);
         }
         #endregion 
 
         #region Alerts
-        private void checkBoxUseAlerts_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseAlerts_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.UseAlerts = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertLocalUnsafe_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertLocalUnsafe_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnLocalUnsafe = ((CheckBox) sender).Checked;
         }
 
-        private void checkBoxAlertLocalChat_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertLocalChat_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnLocalChat = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertFactionSpawn_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertFactionSpawn_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnFactionSpawn = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertLowAmmo_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertLowAmmo_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnLowAmmo = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertFreighterNoPickup_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertFreighterNoPickup_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnFreighterNoPickup = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertPlayerNear_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertPlayerNear_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnPlayerNear = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertLongRandomWait_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertLongRandomWait_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnLongRandomWait = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertTargetJammed_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertTargetJammed_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnTargetJammed = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertFlee_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertFlee_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnFlee = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAlertWarpJammed_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAlertWarpJammed_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.AlertConfig.AlertOnWarpJammed = ((CheckBox)sender).Checked;
         }
         #endregion
 
         #region Mining
-        private void checkedListBoxOrePriorities_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void CheckedListBoxOrePriorities_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var name = (string)((CheckedListBox)sender).Items[e.Index];
 
             Core.StealthBot.Config.MiningConfig.StatusByOre[name] = e.NewValue == CheckState.Checked;
         }
 
-        private void checkedListBoxIcePriorities_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void CheckedListBoxIcePriorities_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var listBox = (CheckedListBox) sender;
             var name = (string)listBox.Items[e.Index];
@@ -2147,7 +2148,7 @@ namespace StealthBot
             Core.StealthBot.Config.MiningConfig.StatusByIce[name] = e.NewValue == CheckState.Checked;
         }
 
-        private void buttonOreIncreasePriority_Click(object sender, EventArgs e)
+        private void ButtonOreIncreasePriority_Click(object sender, EventArgs e)
         {
             if (checkedListBoxOrePriorities.SelectedIndex == -1)
             {
@@ -2178,7 +2179,7 @@ namespace StealthBot
             checkedListBoxOrePriorities.SelectedIndex = idx - 1;
         }
 
-        private void buttonOreLowerPriority_Click(object sender, EventArgs e)
+        private void ButtonOreLowerPriority_Click(object sender, EventArgs e)
         {
             if (checkedListBoxOrePriorities.SelectedIndex == -1)
             {
@@ -2210,7 +2211,7 @@ namespace StealthBot
             checkedListBoxOrePriorities.SelectedIndex = idx + 1;
         }
 
-        private void buttonIceIncreasePriority_Click(object sender, EventArgs e)
+        private void ButtonIceIncreasePriority_Click(object sender, EventArgs e)
         {
             if (checkedListBoxIcePriorities.SelectedIndex == -1)
             {
@@ -2241,7 +2242,7 @@ namespace StealthBot
             checkedListBoxIcePriorities.SelectedIndex = idx - 1;
         }
 
-        private void buttonIceDecreasePriority_Click(object sender, EventArgs e)
+        private void ButtonIceDecreasePriority_Click(object sender, EventArgs e)
         {
             if (checkedListBoxIcePriorities.SelectedIndex == -1)
             {
@@ -2272,32 +2273,32 @@ namespace StealthBot
             checkedListBoxIcePriorities.SelectedIndex = idx + 1;
         }
 
-        private void checkBoxUseMiningDrones_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxUseMiningDrones_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MiningConfig.UseMiningDrones = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxStripMine_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxStripMine_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MiningConfig.StripMine = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDistributeLasers_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDistributeLasers_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MiningConfig.DistributeLasers = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxShortCycle_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxShortCycle_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MiningConfig.ShortCycle = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxIceMining_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxIceMining_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MiningConfig.IsIceMining = ((CheckBox)sender).Checked;
         }
 
-        private void textBoxNumCrystalsToCarry_TextChanged(object sender, EventArgs e)
+        private void TextBoxNumCrystalsToCarry_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -2306,7 +2307,7 @@ namespace StealthBot
             }
         }
 
-        private void textBoxMinDistanceToPlayers_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinDistanceToPlayers_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -2315,18 +2316,18 @@ namespace StealthBot
             }
         }
 
-        private void boostLocationLabelTextBox_TextChanged(object sender, EventArgs e)
+        private void BoostLocationLabelTextBox_TextChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MiningConfig.BoostOrcaBoostLocationLabel = ((TextBox) sender).Text;
         }
         #endregion
 
         #region Hauler
-        private void comboBoxHaulerMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxHaulerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.HaulingConfig.HaulerMode = _haulerModesByText[((ComboBox)sender).Text];
         }
-        private void textboxCycleFleetDelay_TextChanged(object sender, EventArgs e)
+        private void TextboxCycleFleetDelay_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -2337,67 +2338,67 @@ namespace StealthBot
         #endregion
 
         #region Missions
-        private void checkBoxRunCourierMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunCourierMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.RunCourierMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunTradeMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunTradeMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.RunTradeMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunEncounterMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunEncounterMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.RunEncounterMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxRunMiningMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRunMiningMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.RunMiningMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxAvoidLowsecMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAvoidLowsecMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.AvoidLowSec = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDoOreMiningMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDoOreMiningMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoOreMiningMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDoIceMiningMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDoIceMiningMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoIceMiningMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDoGasMiningMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDoGasMiningMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoGasMiningMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxKillEmpireFactions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxKillEmpireFactions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoEmpireKillMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxKillPirateFactions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxKillPirateFactions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoPirateKillMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDoStorylineMissions_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDoStorylineMissions_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoStorylineMissions = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxDoChainCouriers_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDoChainCouriers_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.DoChainCouriers = ((CheckBox)sender).Checked;
         }
 
-        private void buttonAgentAdd_Click(object sender, EventArgs e)
+        private void ButtonAgentAdd_Click(object sender, EventArgs e)
         {
             var agentName = textBoxAgentName.Text;
 
@@ -2416,7 +2417,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveAgent_Click(object sender, EventArgs e)
+        private void ButtonRemoveAgent_Click(object sender, EventArgs e)
         {
             if (listBoxAgents.SelectedIndex == -1)
             {
@@ -2433,7 +2434,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonAgentIncreasePriority_Click(object sender, EventArgs e)
+        private void ButtonAgentIncreasePriority_Click(object sender, EventArgs e)
         {
             if (listBoxAgents.SelectedIndex == -1)
             {
@@ -2458,7 +2459,7 @@ namespace StealthBot
             listBoxAgents.SelectedIndex = idx - 1;
         }
 
-        private void buttonDecreaseAgentPriority_Click(object sender, EventArgs e)
+        private void ButtonDecreaseAgentPriority_Click(object sender, EventArgs e)
         {
             if (listBoxAgents.SelectedIndex == -1)
             {
@@ -2483,7 +2484,7 @@ namespace StealthBot
             listBoxAgents.SelectedIndex = idx + 1;
         }
 
-        private void buttonAddResearchAgent_Click(object sender, EventArgs e)
+        private void ButtonAddResearchAgent_Click(object sender, EventArgs e)
         {
             var agentName = textBoxResearchAgentName.Text;
 
@@ -2502,7 +2503,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonRemoveRAgent_Click(object sender, EventArgs e)
+        private void ButtonRemoveRAgent_Click(object sender, EventArgs e)
         {
             if (listBoxResearchAgents.SelectedIndex == -1)
             {
@@ -2519,7 +2520,7 @@ namespace StealthBot
             }
         }
 
-        private void buttonIncreaseRAgentPriority_Click(object sender, EventArgs e)
+        private void ButtonIncreaseRAgentPriority_Click(object sender, EventArgs e)
         {
             if (listBoxResearchAgents.SelectedIndex == -1)
             {
@@ -2544,7 +2545,7 @@ namespace StealthBot
             listBoxResearchAgents.SelectedIndex = idx - 1;
         }
 
-        private void buttonDereaseRAgentPriority_Click(object sender, EventArgs e)
+        private void ButtonDereaseRAgentPriority_Click(object sender, EventArgs e)
         {
             if (listBoxResearchAgents.SelectedIndex == -1)
             {
@@ -2569,7 +2570,7 @@ namespace StealthBot
             listBoxResearchAgents.SelectedIndex = idx + 1;
         }
 
-        private void buttonAddBlacklistedMission_Click(object sender, EventArgs e)
+        private void ButtonAddBlacklistedMission_Click(object sender, EventArgs e)
         {
             var mission = textBoxBlacklistedMission.Text;
 
@@ -2585,7 +2586,7 @@ namespace StealthBot
             textBoxBlacklistedMission.Focus();
         }
 
-        private void buttonRemoveBlacklistedMission_Click(object sender, EventArgs e)
+        private void ButtonRemoveBlacklistedMission_Click(object sender, EventArgs e)
         {
             var index = listBoxMissionBacklist.SelectedIndex;
 
@@ -2606,67 +2607,67 @@ namespace StealthBot
             }
         }
 
-        private void textBoxAgentName_KeyUp(object sender, KeyEventArgs e)
+        private void TextBoxAgentName_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            buttonAgentAdd_Click(this, new EventArgs());
+            ButtonAgentAdd_Click(this, new EventArgs());
         }
 
-        private void textBoxResearchAgentName_KeyUp(object sender, KeyEventArgs e)
+        private void TextBoxResearchAgentName_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            buttonAddResearchAgent_Click(this, new EventArgs());
+            ButtonAddResearchAgent_Click(this, new EventArgs());
         }
 
-        private void textBoxBlacklistedMission_KeyUp(object sender, KeyEventArgs e)
+        private void TextBoxBlacklistedMission_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
                 return;
 
-            buttonAddBlacklistedMission_Click(this, new EventArgs());
+            ButtonAddBlacklistedMission_Click(this, new EventArgs());
         }
 
-        private void listBoxAgents_KeyUp(object sender, KeyEventArgs e)
+        private void ListBoxAgents_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Delete)
                 return;
 
-            buttonRemoveAgent_Click(this, new EventArgs());
+            ButtonRemoveAgent_Click(this, new EventArgs());
         }
 
-        private void listBoxResearchAgents_KeyUp(object sender, KeyEventArgs e)
+        private void ListBoxResearchAgents_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Delete)
                 return;
 
-            buttonRemoveRAgent_Click(this, new EventArgs());
+            ButtonRemoveRAgent_Click(this, new EventArgs());
         }
 
-        private void listBoxMissionBacklist_KeyUp(object sender, KeyEventArgs e)
+        private void ListBoxMissionBacklist_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Delete)
                 return;
 
-            buttonRemoveBlacklistedMission_Click(this, new EventArgs());
+            ButtonRemoveBlacklistedMission_Click(this, new EventArgs());
         }
 
-        private void checkBoxIgnoreMissionDeclineTimer_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxIgnoreMissionDeclineTimer_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.MissionConfig.IgnoreMissionDeclineTimer = ((CheckBox)sender).Checked;
         }
         #endregion
 
         #region Ratting
-        private void checkBoxChainBelts_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxChainBelts_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.RattingConfig.ChainBelts = ((CheckBox) sender).Checked;
         }
 
-        private void textBoxMinChainBounty_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinChainBounty_TextChanged(object sender, EventArgs e)
         {
             int value;
             if (int.TryParse(((TextBox)sender).Text, out value))
@@ -2675,17 +2676,17 @@ namespace StealthBot
             }
         }
 
-        private void checkBoxOnlyChainSolo_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxOnlyChainSolo_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.RattingConfig.OnlyChainWhenAlone = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxIsAnomalyMode_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxIsAnomalyMode_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.RattingConfig.IsAnomalyMode = ((CheckBox)sender).Checked;
         }
 
-        private void anomalyStatusByNameCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void AnomalyStatusByNameCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var listBox = (CheckedListBox)sender;
             var name = (string)listBox.Items[e.Index];
@@ -2697,12 +2698,12 @@ namespace StealthBot
 
         #region Salvaging
 
-        private void checkBoxSaveBookmarksForCorporation_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxSaveBookmarksForCorporation_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.SalvageConfig.SaveBookmarksForCorporation = ((CheckBox)sender).Checked;
         }
 
-        private void checkBoxEnableSalvagingBM_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxEnableSalvagingBM_CheckedChanged(object sender, EventArgs e)
         {
             Core.StealthBot.Config.SalvageConfig.CreateSalvageBookmarks = ((CheckBox)sender).Checked;
         }
@@ -2711,29 +2712,29 @@ namespace StealthBot
         #endregion
 
         #region Other Control Event Handlers
-        private void buttonStartResume_Click(object sender, EventArgs e)
+        private void ButtonStartResume_Click(object sender, EventArgs e)
         {
-            if (textBoxAuthEmailAddress.Text == string.Empty)
+            if (TextBoxAuthEmailAddress.Text == string.Empty)
             {
                 ShowError("Please enter your email address for authentication.");
                 return;
             }
 
-            if (textBoxAuthEmailAddress.Text.Contains('\'') ||
-                textBoxAuthEmailAddress.Text.Contains('\"'))
+            if (TextBoxAuthEmailAddress.Text.Contains('\'') ||
+                TextBoxAuthEmailAddress.Text.Contains('\"'))
             {
                 ShowError("Please remove all quotation marks from your email address.");
                 return;
             }
 
-            if (textBoxAuthPassword.Text == string.Empty)
+            if (TextBoxAuthPassword.Text == string.Empty)
             {
                 ShowError("Please enter your password for authentication.");
                 return;
             }
 
-            if (textBoxAuthPassword.Text.Contains('\'') ||
-                textBoxAuthPassword.Text.Contains('\"'))
+            if (TextBoxAuthPassword.Text.Contains('\'') ||
+                TextBoxAuthPassword.Text.Contains('\"'))
             {
                 ShowError("Please remove all quotation marks from your password.");
                 return;
@@ -2744,7 +2745,7 @@ namespace StealthBot
                 Core.StealthBot.Logging.LogMessage("StealthBotForm", "Authentication", LogSeverityTypes.Standard,
                     "Authenticating...");
 
-                _auth.TryLogin(textBoxAuthEmailAddress.Text, textBoxAuthPassword.Text);
+                _auth.TryLogin(TextBoxAuthEmailAddress.Text, TextBoxAuthPassword.Text);
                 _authStarted = true;
             }
 
@@ -2753,11 +2754,11 @@ namespace StealthBot
 
             Core.StealthBot.Instance.IsEnabled = true;
 
-            if (buttonStartResume.Text.Equals("Resume") ||
-                buttonStartResume.Text.Equals("Start"))
+            if (ButtonStartResume.Text.Equals("Resume") ||
+                ButtonStartResume.Text.Equals("Start"))
             {
-                buttonPause.BackColor = Color.Green;
-                buttonStartResume.Text = "Resume";
+                ButtonPause.BackColor = Color.Green;
+                ButtonStartResume.Text = "Resume";
                 Core.StealthBot.JustLoadConfig = false;
                 Core.StealthBot.Logging.LogMessage("StealthBotForm", "Start", LogSeverityTypes.Standard,
                     "Enabling full pulse");
@@ -2768,18 +2769,18 @@ namespace StealthBot
             }
         }
 
-        private void buttonPause_Click(object sender, EventArgs e)
+        private void ButtonPause_Click(object sender, EventArgs e)
         {
             if (Core.StealthBot.Instance.IsEnabled)
             {
-                buttonPause.BackColor = Color.Orange;
+                ButtonPause.BackColor = Color.Orange;
                 Core.StealthBot.Instance.IsEnabled = false;
                 Core.StealthBot.Logging.LogMessage("StealthBotForm", "Pause", LogSeverityTypes.Standard,
                     "Pausing");
             }
         }
 
-        private void buttonChangeBuild_Click(object sender, EventArgs e)
+        private void ButtonChangeBuild_Click(object sender, EventArgs e)
         {
             Core.StealthBot.Instance.IsEnabled = false;
 
@@ -2799,7 +2800,7 @@ namespace StealthBot
             Close();
         }
 
-        private void lstBox_DrawItem(object sender, DrawItemEventArgs e)
+        private void LstBox_DrawItem(object sender, DrawItemEventArgs e)
         {
             //
             // Draw the background of the ListBox control for each item.
@@ -3035,22 +3036,22 @@ namespace StealthBot
                     return;
                 }
 
-                if (textBoxAuthEmailAddress != null &&
-                    textBoxAuthEmailAddress.IsHandleCreated &&
-                    textBoxAuthEmailAddress.Text != string.Empty &&
-                    !textBoxAuthEmailAddress.Text.Contains('\'') &&
-                    !textBoxAuthEmailAddress.Text.Contains('\"') &&
-                    textBoxAuthPassword.Text != string.Empty &&
-                    !textBoxAuthPassword.Text.Contains('\'') &&
-                    !textBoxAuthPassword.Text.Contains('\"'))
+                if (TextBoxAuthEmailAddress != null &&
+                    TextBoxAuthEmailAddress.IsHandleCreated &&
+                    TextBoxAuthEmailAddress.Text != string.Empty &&
+                    !TextBoxAuthEmailAddress.Text.Contains('\'') &&
+                    !TextBoxAuthEmailAddress.Text.Contains('\"') &&
+                    TextBoxAuthPassword.Text != string.Empty &&
+                    !TextBoxAuthPassword.Text.Contains('\'') &&
+                    !TextBoxAuthPassword.Text.Contains('\"'))
                 {
                     var directory = String.Format("{0}\\stealthbot\\config",
                         Path.GetDirectoryName(Application.ExecutablePath));
                     var fileName = String.Format("{0}\\SBLogin.txt", directory);
                     using (var sw = new StreamWriter(File.Create(fileName)))
                     {
-                        sw.WriteLine(textBoxAuthEmailAddress.Text);
-                        sw.WriteLine(textBoxAuthPassword.Text);
+                        sw.WriteLine(TextBoxAuthEmailAddress.Text);
+                        sw.WriteLine(TextBoxAuthPassword.Text);
                     }
                 }
             }
@@ -3072,7 +3073,7 @@ namespace StealthBot
 			}
 		}
 
-		private void notifyIcon1_Click(object sender, EventArgs e)
+		private void NotifyIcon1_Click(object sender, EventArgs e)
 		{
 			Show();
 			WindowState = FormWindowState.Normal;

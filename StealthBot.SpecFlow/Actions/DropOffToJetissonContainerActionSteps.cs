@@ -19,6 +19,11 @@ namespace StealthBot.SpecFlow.Actions
     {
         private IPartialBehaviorBase _dropOffToJetissonContainerAction;
 
+        public DropOffToJetissonContainerActionSteps(CustomScenarioContext context, ScenarioContext scenarioContext) : base(context, scenarioContext)
+        {
+            // You can add any additional initialization here if needed
+        }
+
         [BeforeScenario("@DropOffToJetissonContainerActionTest")]
         public void DropoffToJetissonContanierActionTestBeforeScenario()
         {
@@ -84,14 +89,14 @@ namespace StealthBot.SpecFlow.Actions
 
         private Mock<IInventoryProvider> InventoryProvider
         {
-            get { return GetFromScenarioContext<Mock<IInventoryProvider>>("inventoryProvider"); }
-            set { SetInScenarioContext("inventoryProvider", value); }
+            get { return _context.InventoryProvider; }
+            set { _context.InventoryProvider = value; }
         }
 
         private Mock<IJettisonContainer> JettisonContainer
         {
-            get { return GetFromScenarioContext<Mock<IJettisonContainer>>("jettisonContainer"); }
-            set { SetInScenarioContext("jettisonContainer", value); }
+            get { return _context.JettisonContainer; }
+            set { _context.JettisonContainer = value; }
         }
     }
 }

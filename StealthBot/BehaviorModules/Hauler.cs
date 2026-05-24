@@ -672,7 +672,7 @@ namespace StealthBot.BehaviorModules
 					           fleetMember.CharID);
 
 					string fleetMemberName;
-					using (var fleetMemberPilot = fleetMember.ToPilot)
+					using (var fleetMemberPilot = fleetMember.ToFleetMember)
 					{
 						fleetMemberName = fleetMemberPilot.Name;
 					}
@@ -1424,7 +1424,7 @@ namespace StealthBot.BehaviorModules
 				foreach (var entity in _entityProvider.EntityWrappers)
 				{
 					string fleetMemberName;
-					using (var fleetMemberPilot = fleetMember.ToPilot)
+					using (var fleetMemberPilot = fleetMember.ToFleetMember)
 					{
 						fleetMemberName = fleetMemberPilot.Name;
 					}

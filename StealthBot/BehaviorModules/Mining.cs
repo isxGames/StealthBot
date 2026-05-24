@@ -744,7 +744,7 @@ namespace StealthBot.BehaviorModules
 	        var methodName = "ArePlayersNearby";
             LogTrace(methodName);
 
-	        var pilotNamesInFleet = _meCache.FleetMembers.Select(fleetMember => fleetMember.ToPilot)
+	        var pilotNamesInFleet = _meCache.FleetMembers.Select(fleetMember => fleetMember.ToFleetMember)
 	                                    .Where(pilot => !LavishScriptObject.IsNullOrInvalid(pilot))
 	                                    .Select(pilot => pilot.Name);
 
